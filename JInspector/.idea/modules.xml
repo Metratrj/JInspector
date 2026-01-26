@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Analyzer/Analyzer.iml" filepath="$PROJECT_DIR$/Analyzer/Analyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/JInspector.iml" filepath="$PROJECT_DIR$/JInspector.iml" />
     </modules>
   </component>
