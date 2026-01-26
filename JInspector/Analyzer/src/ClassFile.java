@@ -45,22 +45,9 @@ public class ClassFile {
     public static final int MAX_ANNOTATIONS = 0xffff;
 
 
-    public String readModifiedUTF8(DataInputStream dis) throws IOException {
-        // 1. Tag wurde bereits gelesen, um diesen Typ zu identifizieren
-
-        // 2. u2 length lesen
-        int length = dis.readUnsignedShort();
-        byte[] bytes = new byte[length];
-
-        // 3. Den gesamten Block in ein Array lesen
-        dis.readFully(bytes);
-
-        char[] characters = new char[length];
-
-        return "";
-    }
-
     public static void main(String[] args) throws IOException {
+
+        // Open the class file for reading.
         String filePath = "out/production/JInspector/Programm.class";
         DataInputStream in = new DataInputStream(new FileInputStream(filePath));
         try {
@@ -81,8 +68,10 @@ public class ClassFile {
             // 3. Constant Pool
             int cpCount = in.readUnsignedShort();
             System.out.printf("Constant Pool Count: %d\n", cpCount);
-            cp_info[] cpPool = new cp_info[cpCount - 1];
-            for (int i = 0; i < cpCount; i++) {
+            cp_info[] cpPool = new cp_info[cpCount];
+
+            // Iterate through the constant pool and parse each entry based on its tag.
+            for (int i = 1; i < cpCount; i++) {
                 int tag = in.readUnsignedByte();
                 System.out.println("\n\nTag: " + tag);
                 switch (tag) {
@@ -216,6 +205,93 @@ public class ClassFile {
                 }
 
             }
+
+            // 4. Access Flags
+            int access_flags = in.readUnsignedShort();
+            System.out.printf("Access Flags: %4X\n", access_flags);
+
+            // 5. this_class
+            int this_class = in.readUnsignedShort();
+            int super_class = in.readUnsignedShort();
+
+            System.out.printf("this_class: %d\nsuper_class %d\n", this_class, super_class);
+
+            // 6. interfaces
+            int interfaces_count = in.readUnsignedShort();
+            System.out.println(interfaces_count);
+            CONSTANT_Class_info[] interfaces = new CONSTANT_Class_info[interfaces_count];
+            for (int i = 0; i < interfaces_count; i++) {
+                System.out.println("Interface");
+                int name_index = in.readUnsignedShort();
+                CONSTANT_Class_info entry = new CONSTANT_Class_info(0, name_index);
+                interfaces[i] = entry;
+                System.out.println(entry);
+            }
+
+            // 7. Fields
+            int fields_count = in.readUnsignedShort();
+            System.out.println(fields_count);
+            field_info[] fields = new field_info[fields_count];
+            for (int i = 0; i < fields_count; i++) {
+                System.out.println("Field");
+                int field_access_flags = in.readUnsignedShort();
+                int name_index = in.readUnsignedShort();
+                int descriptor_index = in.readUnsignedShort();
+                int attributes_count = in.readUnsignedShort();
+                attribute_info[] attributes = new attribute_info[attributes_count];
+                for (int j = 0; j < attributes_count; j++) {
+                    int attribute_name_index = in.readUnsignedShort();
+                    int attribute_length = in.readUnsignedShort();
+                    byte[] info = new byte[attribute_length];
+                    in.read(info);
+                    attribute_info attributeInfo = new attribute_info(attribute_name_index, attribute_length, info);
+                    attributes[j] = attributeInfo;
+                    System.out.println(attributeInfo);
+                }
+                field_info fieldInfo = new field_info(field_access_flags, name_index, descriptor_index, attributes_count, attributes);
+                fields[i] = fieldInfo;
+                System.out.println(fieldInfo);
+            }
+
+            // 8. Methods
+            int methods_count = in.readUnsignedShort();
+            System.out.println(methods_count);
+            method_info[] methods = new method_info[methods_count];
+            for (int i = 0; i < methods_count; i++) {
+                System.out.println("Method");
+                int method_access_flags = in.readUnsignedShort();
+                int name_index = in.readUnsignedShort();
+                System.out.println(cpPool[name_index]);
+                int description_index = in.readUnsignedShort();
+                int attributes_count = in.readUnsignedShort();
+                attribute_info[] attributes = new attribute_info[attributes_count];
+                for (int j = 0; j < attributes_count; j++) {
+                    int attribute_name_index = in.readUnsignedShort();
+                    int attribute_length = in.readUnsignedShort();
+                    byte[] info = new byte[attribute_length];
+                    in.read(info);
+                    attribute_info attributeInfo = new attribute_info(attribute_name_index, attribute_length, info);
+                    attributes[j] = attributeInfo;
+                    System.out.println(attributeInfo);
+                }
+                method_info methodInfo = new method_info(method_access_flags, name_index, description_index, attributes_count, attributes);
+                methods[i] = methodInfo;
+                System.out.println(methodInfo);
+            }
+
+            int attributes_count = in.readUnsignedShort();
+            attribute_info[] attributes = new attribute_info[attributes_count];
+            for (int i = 0; i < attributes_count; i++) {
+                int attribute_name_index = in.readUnsignedShort();
+                int attribute_length = in.readUnsignedShort();
+                byte[] info = new byte[attribute_length];
+                in.read(info);
+                attribute_info attributeInfo = new attribute_info(attribute_name_index, attribute_length, info);
+                attributes[i] = attributeInfo;
+                System.out.println(attributeInfo);
+            }
+
+
 
         } finally {
             in.close();
