@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+actor Developer as d
+
+skinparam usecase {
+    BackgroundColor YellowGreen
+}
+
+package JByteInspector {
+    usecase "UC1: Bytecode-Quelle laden\n(.class / .jar)" as UC1
+    usecase "UC2: Instruktions-Statistik\nanzeigen" as UC2
+    usecase "UC3: Klassenhierarchie &\nMethoden-Signaturen prüfen" as UC3
+    usecase "UC4: Call-Tree\nanzeigen" as UC4
+}
+
+d --> UC1
+d --> UC2
+d --> UC3
+d --> UC4
+
+' Relations
+UC2 ..> UC1 : <<include>>
+UC3 ..> UC1 : <<include>>
+UC4 ..> UC1 : <<include>>
+
+@enduml
