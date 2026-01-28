@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 group = 'xyz.metratrj'
@@ -17,4 +19,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+
+
+application {
+    mainClass = 'xyz.metratrj.Main'
+}
+
+javafx {
+    version = "25.0.2"
+    modules = [ 'javafx.controls' ]
 }

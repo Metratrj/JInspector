@@ -1,17 +1,40 @@
 package xyz.metratrj;
 
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+public class Main extends Application {
+    static void main(String[] args) {
+        System.out.println("Hello, World!");
+        launch(args);
+    }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        String javaVersion = System.getProperty("java.version");
+        String javafxVersion = System.getProperty("javafx.version");
+        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion);
+        StackPane pane = new StackPane(l);
+        Scene scene = new Scene(pane, 640, 480);
+
+
+        MenuItem exit_item = new MenuItem("Exit");
+        Menu menu = new Menu("File", null, exit_item);
+        MenuBar menuBar = new MenuBar(menu);
+        Group group = new Group(menuBar, pane);
+
+        scene.setRoot(group);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
