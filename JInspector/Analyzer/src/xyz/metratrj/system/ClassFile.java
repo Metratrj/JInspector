@@ -13,70 +13,83 @@ public class ClassFile {
     public static final int JAVA_MAGIC = 0xCAFEBABE;
 
     // see Target
-    public static final int CONSTANT_Utf8 = 1;
-    public static final int CONSTANT_Unicode = 2;
-    public static final int CONSTANT_Integer = 3;
-    public static final int CONSTANT_Float = 4;
-    public static final int CONSTANT_Long = 5;
-    public static final int CONSTANT_Double = 6;
-    public static final int CONSTANT_Class = 7;
-    public static final int CONSTANT_String = 8;
-    public static final int CONSTANT_Fieldref = 9;
-    public static final int CONSTANT_Methodref = 10;
+    public static final int CONSTANT_Utf8               = 1;
+    public static final int CONSTANT_Unicode            = 2;
+    public static final int CONSTANT_Integer            = 3;
+    public static final int CONSTANT_Float              = 4;
+    public static final int CONSTANT_Long               = 5;
+    public static final int CONSTANT_Double             = 6;
+    public static final int CONSTANT_Class              = 7;
+    public static final int CONSTANT_String             = 8;
+    public static final int CONSTANT_Fieldref           = 9;
+    public static final int CONSTANT_Methodref          = 10;
     public static final int CONSTANT_InterfaceMethodref = 11;
-    public static final int CONSTANT_NameandType = 12;
-    public static final int CONSTANT_MethodHandle = 15;
-    public static final int CONSTANT_MethodType = 16;
-    public static final int CONSTANT_Dynamic = 17;
-    public static final int CONSTANT_InvokeDynamic = 18;
-    public static final int CONSTANT_Module = 19;
-    public static final int CONSTANT_Package = 20;
+    public static final int CONSTANT_NameandType        = 12;
+    public static final int CONSTANT_MethodHandle       = 15;
+    public static final int CONSTANT_MethodType         = 16;
+    public static final int CONSTANT_Dynamic            = 17;
+    public static final int CONSTANT_InvokeDynamic      = 18;
+    public static final int CONSTANT_Module             = 19;
+    public static final int CONSTANT_Package            = 20;
 
-    public static final int REF_getField = 1;
-    public static final int REF_getStatic = 2;
-    public static final int REF_putField = 3;
-    public static final int REF_putStatic = 4;
-    public static final int REF_invokeVirtual = 5;
-    public static final int REF_invokeStatic = 6;
-    public static final int REF_invokeSpecial = 7;
+
+    public static final int REF_getField         = 1;
+    public static final int REF_getStatic        = 2;
+    public static final int REF_putField         = 3;
+    public static final int REF_putStatic        = 4;
+    public static final int REF_invokeVirtual    = 5;
+    public static final int REF_invokeStatic     = 6;
+    public static final int REF_invokeSpecial    = 7;
     public static final int REF_newInvokeSpecial = 8;
-    public static final int REF_invokeInterface = 9;
+    public static final int REF_invokeInterface  = 9;
+
 
     public static final int MAX_PARAMETERS = 0xff;
     public static final int MAX_DIMENSIONS = 0xff;
-    public static final int MAX_CODE = 0xffff;
-    public static final int MAX_LOCALS = 0xffff;
-    public static final int MAX_STACK = 0xffff;
 
+
+    public static final int MAX_CODE              = 0xffff;
+    public static final int MAX_LOCALS            = 0xffff;
+    public static final int MAX_STACK             = 0xffff;
     public static final int PREVIEW_MINOR_VERSION = 0xffff;
-    public static final int MAX_ANNOTATIONS = 0xffff;
+    public static final int MAX_ANNOTATIONS       = 0xffff;
 
-    public static final int ACC_PUBLIC     = 0x0001;
-    public static final int ACC_FINAL      = 0x0001;
-    public static final int ACC_SUPER      = 0x0001;
-    public static final int ACC_INTERFACE  = 0x0001;
-    public static final int ACC_ABSTRACT   = 0x0001;
-    public static final int ACC_SYNTHETIC  = 0x0001;
-    public static final int ACC_ANNOTATION = 0x0001;
-    public static final int ACC_ENUM       = 0x0001;
-    public static final int ACC_MODULE     = 0x0001;
 
-    private int magic;
-    private int minorVersion;
-    private int majorVersion;
-    private int constantPoolCount;
-    private cp_info[] constantPool;
-    private int accessFlags;
-    private int thisClass;
-    private int superClass;
-    private int interfacesCount;
+    public static final int ACC_PUBLIC       = 0x0001; // maybe accessed from outside its package
+    public static final int ACC_PRIVATE      = 0x0002; // accessable only within the defining class and other classes belonging to the same nest
+    public static final int ACC_PROTECTED    = 0x0004; // maybe accessed within subclass
+    public static final int ACC_STATIC       = 0x0008;
+    public static final int ACC_FINAL        = 0x0010;
+    public static final int ACC_SYNCHRONIZED = 0x0020;
+    public static final int ACC_VOLATILE     = 0x0040;
+    public static final int ACC_BRIDGE       = 0x0040;
+    public static final int ACC_VARARGS      = 0x0080;
+    public static final int ACC_TRANSIENT    = 0x0080;
+    public static final int ACC_SUPER        = 0x0100;
+    public static final int ACC_INTERFACE    = 0x0200;
+    public static final int ACC_ABSTRACT     = 0x0400;
+    public static final int ACC_SYNTHETIC    = 0x1000; // indicate that this is generated by compiler and can't be found in source code
+    public static final int ACC_ANNOTATION   = 0x2000;
+    public static final int ACC_ENUM         = 0x4000;
+    public static final int ACC_MODULE       = 0x8000;
+
+
+    private int                   magic;
+    private int                   minorVersion;
+    private int                   majorVersion;
+    private int                   constantPoolCount;
+    private cp_info[]             constantPool;
+    private int                   accessFlags;
+    private int                   thisClass;
+    private int                   superClass;
+    private int                   interfacesCount;
     private CONSTANT_Class_info[] interfaces;
-    private int fieldsCount;
-    private field_info[] fields;
-    private int methodsCount;
-    private method_info[] methods;
-    private int attributesCount;
-    private attribute_info[] attributes;
+    private int                   fieldsCount;
+    private field_info[]          fields;
+    private int                   methodsCount;
+    private method_info[]         methods;
+    private int                   attributesCount;
+    private attribute_info[]      attributes;
 
     private ClassFile() {
     }
@@ -99,6 +112,93 @@ public class ClassFile {
             logger.log(Level.SEVERE, "Error parsing class file: " + path, e);
             throw e;
         }
+    }
+
+    public int getMagic() {
+        return magic;
+    }
+
+    public int getMinorVersion() {
+        return minorVersion;
+    }
+
+    public int getMajorVersion() {
+        return majorVersion;
+    }
+
+    public int getConstantPoolCount() {
+        return constantPoolCount;
+    }
+
+    public cp_info[] getConstantPool() {
+        return constantPool;
+    }
+
+    public cp_info getConstantPoolItem(int index) {
+        if (constantPool != null && index > 0 && index < constantPool.length) {
+            return constantPool[index];
+        }
+        return null;
+    }
+
+    public <T extends cp_info> T getConstantPoolItem(int index, Class<T> type) {
+        cp_info item = getConstantPoolItem(index);
+        if (type.isInstance(item)) {
+            return type.cast(item);
+        }
+        return null;
+    }
+
+    public int getConstantPoolTag(int index) {
+        cp_info item = getConstantPoolItem(index);
+        if (item != null) {
+            return item.tag;
+        }
+        return 0;
+    }
+
+    public int getAccessFlags() {
+        return accessFlags;
+    }
+
+    public int getThisClass() {
+        return thisClass;
+    }
+
+    public int getSuperClass() {
+        return superClass;
+    }
+
+    public int getInterfacesCount() {
+        return interfacesCount;
+    }
+
+    public CONSTANT_Class_info[] getInterfaces() {
+        return interfaces;
+    }
+
+    public int getFieldsCount() {
+        return fieldsCount;
+    }
+
+    public field_info[] getFields() {
+        return fields;
+    }
+
+    public int getMethodsCount() {
+        return methodsCount;
+    }
+
+    public method_info[] getMethods() {
+        return methods;
+    }
+
+    public int getAttributesCount() {
+        return attributesCount;
+    }
+
+    public attribute_info[] getAttributes() {
+        return attributes;
     }
 
     private void parseMagic(DataInputStream in) throws IOException {
@@ -176,8 +276,8 @@ public class ClassFile {
 
     private void parseClassInfo(DataInputStream in) throws IOException {
         accessFlags = in.readUnsignedShort();
-        thisClass = in.readUnsignedShort();
-        superClass = in.readUnsignedShort();
+        thisClass   = in.readUnsignedShort();
+        superClass  = in.readUnsignedShort();
         logger.fine("Class info parsed. Access flags: " + Integer.toHexString(accessFlags));
     }
 
@@ -201,11 +301,11 @@ public class ClassFile {
     }
 
     private field_info parseFieldInfo(DataInputStream in) throws IOException {
-        int accessFlags = in.readUnsignedShort();
-        int nameIndex = in.readUnsignedShort();
-        int descriptorIndex = in.readUnsignedShort();
-        int attributesCount = in.readUnsignedShort();
-        attribute_info[] attributes = parseAttributesArray(in, attributesCount);
+        int              accessFlags     = in.readUnsignedShort();
+        int              nameIndex       = in.readUnsignedShort();
+        int              descriptorIndex = in.readUnsignedShort();
+        int              attributesCount = in.readUnsignedShort();
+        attribute_info[] attributes      = parseAttributesArray(in, attributesCount);
         return new field_info(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
     }
 
@@ -219,11 +319,11 @@ public class ClassFile {
     }
 
     private method_info parseMethodInfo(DataInputStream in) throws IOException {
-        int accessFlags = in.readUnsignedShort();
-        int nameIndex = in.readUnsignedShort();
-        int descriptorIndex = in.readUnsignedShort();
-        int attributesCount = in.readUnsignedShort();
-        attribute_info[] attributes = parseAttributesArray(in, attributesCount);
+        int              accessFlags     = in.readUnsignedShort();
+        int              nameIndex       = in.readUnsignedShort();
+        int              descriptorIndex = in.readUnsignedShort();
+        int              attributesCount = in.readUnsignedShort();
+        attribute_info[] attributes      = parseAttributesArray(in, attributesCount);
         return new method_info(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
     }
 
@@ -242,9 +342,9 @@ public class ClassFile {
     }
 
     private attribute_info parseAttributeInfo(DataInputStream in) throws IOException {
-        int attributeNameIndex = in.readUnsignedShort();
-        int attributeLength = in.readInt();
-        byte[] info = new byte[attributeLength];
+        int    attributeNameIndex = in.readUnsignedShort();
+        int    attributeLength    = in.readInt();
+        byte[] info               = new byte[attributeLength];
         in.readFully(info);
         return new attribute_info(attributeNameIndex, attributeLength, info);
     }
