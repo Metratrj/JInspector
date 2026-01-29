@@ -54,9 +54,13 @@ public class Programm {
                     // return super.visitFileFailed(file, exc);
                 }
             });
+
+            System.out.println(Arrays.toString(arr.toArray()));
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
 
 
         String filePath = "out/production/TestModule/xyz/metratrj/Main.class";
