@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'org.beryx.jlink' version '3.2.0'
 }
 
 group = 'xyz.metratrj'
@@ -10,6 +11,7 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
@@ -21,7 +23,11 @@ test {
     useJUnitPlatform()
 }
 
-
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 application {
     mainClass = 'xyz.metratrj.Main'
@@ -30,4 +36,12 @@ application {
 javafx {
     version = "25.0.2"
     modules = [ 'javafx.controls' ]
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'JByteInspector'
+        jvmArgs = ['--enable-native-access=javafx.graphics,javafx.fxml']
+    }
 }
