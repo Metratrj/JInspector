@@ -4,48 +4,52 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClassFile {
+    private static final Logger logger = Logger.getLogger(ClassFile.class.getName());
+
     public static final int JAVA_MAGIC = 0xCAFEBABE;
 
     // see Target
-    public static final int CONSTANT_Utf8               = 1;
-    public static final int CONSTANT_Unicode            = 2;
-    public static final int CONSTANT_Integer            = 3;
-    public static final int CONSTANT_Float              = 4;
-    public static final int CONSTANT_Long               = 5;
-    public static final int CONSTANT_Double             = 6;
-    public static final int CONSTANT_Class              = 7;
-    public static final int CONSTANT_String             = 8;
-    public static final int CONSTANT_Fieldref           = 9;
-    public static final int CONSTANT_Methodref          = 10;
+    public static final int CONSTANT_Utf8 = 1;
+    public static final int CONSTANT_Unicode = 2;
+    public static final int CONSTANT_Integer = 3;
+    public static final int CONSTANT_Float = 4;
+    public static final int CONSTANT_Long = 5;
+    public static final int CONSTANT_Double = 6;
+    public static final int CONSTANT_Class = 7;
+    public static final int CONSTANT_String = 8;
+    public static final int CONSTANT_Fieldref = 9;
+    public static final int CONSTANT_Methodref = 10;
     public static final int CONSTANT_InterfaceMethodref = 11;
-    public static final int CONSTANT_NameandType        = 12;
-    public static final int CONSTANT_MethodHandle       = 15;
-    public static final int CONSTANT_MethodType         = 16;
-    public static final int CONSTANT_Dynamic            = 17;
-    public static final int CONSTANT_InvokeDynamic      = 18;
-    public static final int CONSTANT_Module             = 19;
-    public static final int CONSTANT_Package            = 20;
+    public static final int CONSTANT_NameandType = 12;
+    public static final int CONSTANT_MethodHandle = 15;
+    public static final int CONSTANT_MethodType = 16;
+    public static final int CONSTANT_Dynamic = 17;
+    public static final int CONSTANT_InvokeDynamic = 18;
+    public static final int CONSTANT_Module = 19;
+    public static final int CONSTANT_Package = 20;
 
-    public static final int REF_getField         = 1;
-    public static final int REF_getStatic        = 2;
-    public static final int REF_putField         = 3;
-    public static final int REF_putStatic        = 4;
-    public static final int REF_invokeVirtual    = 5;
-    public static final int REF_invokeStatic     = 6;
-    public static final int REF_invokeSpecial    = 7;
+    public static final int REF_getField = 1;
+    public static final int REF_getStatic = 2;
+    public static final int REF_putField = 3;
+    public static final int REF_putStatic = 4;
+    public static final int REF_invokeVirtual = 5;
+    public static final int REF_invokeStatic = 6;
+    public static final int REF_invokeSpecial = 7;
     public static final int REF_newInvokeSpecial = 8;
-    public static final int REF_invokeInterface  = 9;
+    public static final int REF_invokeInterface = 9;
 
     public static final int MAX_PARAMETERS = 0xff;
     public static final int MAX_DIMENSIONS = 0xff;
-    public static final int MAX_CODE       = 0xffff;
-    public static final int MAX_LOCALS     = 0xffff;
-    public static final int MAX_STACK      = 0xffff;
+    public static final int MAX_CODE = 0xffff;
+    public static final int MAX_LOCALS = 0xffff;
+    public static final int MAX_STACK = 0xffff;
 
     public static final int PREVIEW_MINOR_VERSION = 0xffff;
-    public static final int MAX_ANNOTATIONS       = 0xffff;
+    public static final int MAX_ANNOTATIONS = 0xffff;
 
     public static final int ACC_PUBLIC     = 0x0001;
     public static final int ACC_FINAL      = 0x0001;
@@ -57,30 +61,28 @@ public class ClassFile {
     public static final int ACC_ENUM       = 0x0001;
     public static final int ACC_MODULE     = 0x0001;
 
-
-    private int                   magic;
-    private int                   minorVersion;
-    private int                   majorVersion;
-    private int                   constantPoolCount;
-    private cp_info[]             constantPool;
-    private int                   accessFlags;
-    private int                   thisClass;
-    private int                   superClass;
-    private int                   interfacesCount;
+    private int magic;
+    private int minorVersion;
+    private int majorVersion;
+    private int constantPoolCount;
+    private cp_info[] constantPool;
+    private int accessFlags;
+    private int thisClass;
+    private int superClass;
+    private int interfacesCount;
     private CONSTANT_Class_info[] interfaces;
-    private int                   fieldsCount;
-    private field_info[]          fields;
-    private int                   methodsCount;
-    private method_info[]         methods;
-    private int                   attributesCount;
-    private attribute_info[]      attributes;
+    private int fieldsCount;
+    private field_info[] fields;
+    private int methodsCount;
+    private method_info[] methods;
+    private int attributesCount;
+    private attribute_info[] attributes;
 
     private ClassFile() {
     }
 
-
-
     public static ClassFile parse(Path path) throws IOException {
+        logger.info("Starting to parse class file: " + path);
         try (DataInputStream in = new DataInputStream(new FileInputStream(path.toString()))) {
             ClassFile classFile = new ClassFile();
             classFile.parseMagic(in);
@@ -91,25 +93,33 @@ public class ClassFile {
             classFile.parseFields(in);
             classFile.parseMethods(in);
             classFile.parseAttributes(in);
+            logger.info("Successfully parsed class file: " + path);
             return classFile;
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error parsing class file: " + path, e);
+            throw e;
         }
     }
 
     private void parseMagic(DataInputStream in) throws IOException {
         magic = in.readInt();
         if (magic != JAVA_MAGIC) {
+            logger.severe("Invalid magic number: " + Integer.toHexString(magic));
             throw new IOException("Invalid magic number");
         }
+        logger.fine("Magic number verified");
     }
 
     private void parseVersion(DataInputStream in) throws IOException {
         minorVersion = in.readUnsignedShort();
         majorVersion = in.readUnsignedShort();
+        logger.fine("Class version: " + majorVersion + "." + minorVersion);
     }
 
     private void parseConstantPool(DataInputStream in) throws IOException {
         constantPoolCount = in.readUnsignedShort();
-        constantPool      = new cp_info[constantPoolCount];
+        logger.fine("Constant pool count: " + constantPoolCount);
+        constantPool = new cp_info[constantPoolCount];
         for (int i = 1; i < constantPoolCount; i++) {
             int tag = in.readUnsignedByte();
             switch (tag) {
@@ -158,7 +168,7 @@ public class ClassFile {
                     constantPool[i] = new CONSTANT_InvokeDynamic_info(tag, in.readUnsignedShort(), in.readUnsignedShort());
                     break;
                 default:
-                    // ignore unknown tags
+                    logger.warning("Unknown constant pool tag: " + tag);
                     break;
             }
         }
@@ -166,13 +176,15 @@ public class ClassFile {
 
     private void parseClassInfo(DataInputStream in) throws IOException {
         accessFlags = in.readUnsignedShort();
-        thisClass   = in.readUnsignedShort();
-        superClass  = in.readUnsignedShort();
+        thisClass = in.readUnsignedShort();
+        superClass = in.readUnsignedShort();
+        logger.fine("Class info parsed. Access flags: " + Integer.toHexString(accessFlags));
     }
 
     private void parseInterfaces(DataInputStream in) throws IOException {
         interfacesCount = in.readUnsignedShort();
-        interfaces      = new CONSTANT_Class_info[interfacesCount];
+        logger.fine("Interfaces count: " + interfacesCount);
+        interfaces = new CONSTANT_Class_info[interfacesCount];
         for (int i = 0; i < interfacesCount; i++) {
             int interfaceIndex = in.readUnsignedShort();
             interfaces[i] = (CONSTANT_Class_info) constantPool[interfaceIndex];
@@ -181,41 +193,44 @@ public class ClassFile {
 
     private void parseFields(DataInputStream in) throws IOException {
         fieldsCount = in.readUnsignedShort();
-        fields      = new field_info[fieldsCount];
+        logger.fine("Fields count: " + fieldsCount);
+        fields = new field_info[fieldsCount];
         for (int i = 0; i < fieldsCount; i++) {
             fields[i] = parseFieldInfo(in);
         }
     }
 
     private field_info parseFieldInfo(DataInputStream in) throws IOException {
-        int              accessFlags     = in.readUnsignedShort();
-        int              nameIndex       = in.readUnsignedShort();
-        int              descriptorIndex = in.readUnsignedShort();
-        int              attributesCount = in.readUnsignedShort();
-        attribute_info[] attributes      = parseAttributesArray(in, attributesCount);
+        int accessFlags = in.readUnsignedShort();
+        int nameIndex = in.readUnsignedShort();
+        int descriptorIndex = in.readUnsignedShort();
+        int attributesCount = in.readUnsignedShort();
+        attribute_info[] attributes = parseAttributesArray(in, attributesCount);
         return new field_info(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
     }
 
     private void parseMethods(DataInputStream in) throws IOException {
         methodsCount = in.readUnsignedShort();
-        methods      = new method_info[methodsCount];
+        logger.fine("Methods count: " + methodsCount);
+        methods = new method_info[methodsCount];
         for (int i = 0; i < methodsCount; i++) {
             methods[i] = parseMethodInfo(in);
         }
     }
 
     private method_info parseMethodInfo(DataInputStream in) throws IOException {
-        int              accessFlags     = in.readUnsignedShort();
-        int              nameIndex       = in.readUnsignedShort();
-        int              descriptorIndex = in.readUnsignedShort();
-        int              attributesCount = in.readUnsignedShort();
-        attribute_info[] attributes      = parseAttributesArray(in, attributesCount);
+        int accessFlags = in.readUnsignedShort();
+        int nameIndex = in.readUnsignedShort();
+        int descriptorIndex = in.readUnsignedShort();
+        int attributesCount = in.readUnsignedShort();
+        attribute_info[] attributes = parseAttributesArray(in, attributesCount);
         return new method_info(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
     }
 
     private void parseAttributes(DataInputStream in) throws IOException {
         attributesCount = in.readUnsignedShort();
-        attributes      = parseAttributesArray(in, attributesCount);
+        logger.fine("Attributes count: " + attributesCount);
+        attributes = parseAttributesArray(in, attributesCount);
     }
 
     private attribute_info[] parseAttributesArray(DataInputStream in, int count) throws IOException {
@@ -227,10 +242,26 @@ public class ClassFile {
     }
 
     private attribute_info parseAttributeInfo(DataInputStream in) throws IOException {
-        int    attributeNameIndex = in.readUnsignedShort();
-        int    attributeLength    = in.readInt();
-        byte[] info               = new byte[attributeLength];
+        int attributeNameIndex = in.readUnsignedShort();
+        int attributeLength = in.readInt();
+        byte[] info = new byte[attributeLength];
         in.readFully(info);
         return new attribute_info(attributeNameIndex, attributeLength, info);
+    }
+
+    @Override
+    public String toString() {
+        return "ClassFile{" +
+                "magic=" + Integer.toHexString(magic) +
+                ", version=" + majorVersion + "." + minorVersion +
+                ", constantPoolCount=" + constantPoolCount +
+                ", accessFlags=" + Integer.toHexString(accessFlags) +
+                ", thisClass=" + thisClass +
+                ", superClass=" + superClass +
+                ", interfacesCount=" + interfacesCount +
+                ", fieldsCount=" + fieldsCount +
+                ", methodsCount=" + methodsCount +
+                ", attributesCount=" + attributesCount +
+                '}';
     }
 }
