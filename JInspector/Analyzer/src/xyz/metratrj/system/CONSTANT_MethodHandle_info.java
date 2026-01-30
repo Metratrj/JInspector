@@ -6,7 +6,7 @@ public class CONSTANT_MethodHandle_info extends cp_info {
 
     public CONSTANT_MethodHandle_info(int tag, int reference_type, int reference_index) {
         super(tag);
-        this.reference_type = reference_type;
+        this.reference_type  = reference_type;
         this.reference_index = reference_index;
     }
 

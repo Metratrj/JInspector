@@ -1,8 +1,9 @@
 package xyz.metratrj.system;
 
 
-public class CONSTANT_Float_info extends cp_info{
+public class CONSTANT_Float_info extends cp_info {
     float bytes;
+
     public CONSTANT_Float_info(int tag, float bytes) {
         super(tag);
         this.bytes = bytes;

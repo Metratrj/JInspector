@@ -1,6 +1,7 @@
 package xyz.metratrj;
 
 public class ClassNode {
+    public ClassNode       parent;
     public int             version;
     public int             access;
     public String          name;

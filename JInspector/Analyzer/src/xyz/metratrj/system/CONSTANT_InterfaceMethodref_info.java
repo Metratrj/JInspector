@@ -1,8 +1,14 @@
 package xyz.metratrj.system;
 
-public class CONSTANT_InterfaceMethodref_info extends cp_info{
+public class CONSTANT_InterfaceMethodref_info extends cp_info {
     int class_index;
     int name_and_type_index;
+
+    public CONSTANT_InterfaceMethodref_info(int tag, int class_index, int name_and_type_index) {
+        super(tag);
+        this.class_index         = class_index;
+        this.name_and_type_index = name_and_type_index;
+    }
 
     @Override
     public String toString() {
@@ -11,11 +17,5 @@ public class CONSTANT_InterfaceMethodref_info extends cp_info{
                 ", name_and_type_index=" + name_and_type_index +
                 ", tag=" + tag +
                 '}';
-    }
-
-    public CONSTANT_InterfaceMethodref_info(int tag, int class_index, int name_and_type_index) {
-        super(tag);
-        this.class_index = class_index;
-        this.name_and_type_index = name_and_type_index;
     }
 }

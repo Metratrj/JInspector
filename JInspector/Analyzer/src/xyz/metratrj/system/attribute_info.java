@@ -3,14 +3,14 @@ package xyz.metratrj.system;
 import java.util.Arrays;
 
 public class attribute_info {
-    int attribute_name_index;
-    int attribute_length;
+    int    attribute_name_index;
+    int    attribute_length;
     byte[] info;
 
     public attribute_info(int attribute_name_index, int attribute_length, byte[] info) {
         this.attribute_name_index = attribute_name_index;
-        this.attribute_length = attribute_length;
-        this.info = info;
+        this.attribute_length     = attribute_length;
+        this.info                 = info;
     }
 
     @Override

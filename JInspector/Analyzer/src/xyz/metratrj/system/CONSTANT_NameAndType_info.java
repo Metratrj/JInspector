@@ -6,7 +6,7 @@ public class CONSTANT_NameAndType_info extends cp_info {
 
     public CONSTANT_NameAndType_info(int tag, int name_index, int descriptor_index) {
         super(tag);
-        this.name_index = name_index;
+        this.name_index       = name_index;
         this.descriptor_index = descriptor_index;
     }
 

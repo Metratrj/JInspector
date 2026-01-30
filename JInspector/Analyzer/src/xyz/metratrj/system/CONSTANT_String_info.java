@@ -1,6 +1,6 @@
 package xyz.metratrj.system;
 
-public class CONSTANT_String_info extends cp_info{
+public class CONSTANT_String_info extends cp_info {
     int string_index;
 
     public CONSTANT_String_info(int tag, int string_index) {

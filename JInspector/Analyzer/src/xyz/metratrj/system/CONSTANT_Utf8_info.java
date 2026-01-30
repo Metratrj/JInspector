@@ -3,13 +3,13 @@ package xyz.metratrj.system;
 public class CONSTANT_Utf8_info extends cp_info {
     String value;
 
-    public String getValue() {
-        return value;
-    }
-
     public CONSTANT_Utf8_info(int tag, String value) {
         super(tag);
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override

@@ -3,28 +3,49 @@ package xyz.metratrj.system;
 import java.util.Arrays;
 
 public class method_info {
-    int access_flags;
-    int name_index;
-    int description_index;
-    int attributes_count;
+    int              accessFlags;
+    int              nameIndex;
+    int              descriptionIndex;
+    int              attributesCount;
     attribute_info[] attributes;
 
-    public method_info(int access_flags, int name_index, int description_index, int attributes_count, attribute_info[] attributes) {
-        this.access_flags = access_flags;
-        this.name_index = name_index;
-        this.description_index = description_index;
-        this.attributes_count = attributes_count;
-        this.attributes = attributes;
+    public method_info(int accessFlags, int nameIndex, int descriptionIndex, int attributesCount,
+                       attribute_info[] attributes) {
+        this.accessFlags      = accessFlags;
+        this.nameIndex        = nameIndex;
+        this.descriptionIndex = descriptionIndex;
+        this.attributesCount  = attributesCount;
+        this.attributes       = attributes;
     }
 
     @Override
     public String toString() {
         return "method_info{" +
-                "access_flags=" + access_flags +
-                ", name_index=" + name_index +
-                ", description_index=" + description_index +
-                ", attributes_count=" + attributes_count +
+                "access_flags=" + accessFlags +
+                ", name_index=" + nameIndex +
+                ", description_index=" + descriptionIndex +
+                ", attributes_count=" + attributesCount +
                 ", attributes=" + Arrays.toString(attributes) +
                 '}';
+    }
+
+    public int getAccessFlags() {
+        return accessFlags;
+    }
+
+    public int getNameIndex() {
+        return nameIndex;
+    }
+
+    public int getDescriptionIndex() {
+        return descriptionIndex;
+    }
+
+    public int getAttributesCount() {
+        return attributesCount;
+    }
+
+    public attribute_info[] getAttributes() {
+        return attributes;
     }
 }
