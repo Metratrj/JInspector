@@ -11,7 +11,14 @@ public class FileUtils {
     public static List<Path> findFiles(Path root, Predicate<Path> filter) throws IOException {
         List<Path> result = new ArrayList<>();
         if (!Files.exists(root)) return result;
-        
+
+        if (Files.isRegularFile(root)) {
+            if (filter.test(root)) {
+                result.add(root);
+            }
+            return result;
+        }
+
         Files.walkFileTree(root, new SimpleFileVisitor<>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {

@@ -75,6 +75,23 @@ class PipelineIntegrationTest {
         }
     }
 
+    @Test
+    void testJarAnalysis() {
+        Path jarPath = Paths.get("build/test-libs/animals.jar");
+        // Note: The path might be relative to the 'tests' module directory if running via gradle
+        // Let's make it more robust by checking where we are.
+        if (!Files.exists(jarPath)) {
+             jarPath = Paths.get("tests/build/test-libs/animals.jar");
+        }
+        assertTrue(Files.exists(jarPath), "JAR fixture not found at " + jarPath.toAbsolutePath());
+
+        AnalysisService service = new JByteInspectorEngine();
+        List<ClassReport> reports = service.analyze(jarPath);
+
+        assertEquals(5, reports.size(), "Should have analyzed 5 classes inside the JAR");
+        assertTrue(reports.stream().anyMatch(r -> r.className().contains("Esel")));
+    }
+
     private ClassReport findReport(List<ClassReport> reports, String className) {
         return reports.stream()
                 .filter(r -> r.className().equals(className))

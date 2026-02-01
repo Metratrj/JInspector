@@ -1,8 +1,8 @@
 package xyz.metratrj.jbyteinspector.parser.classfile;
 
 import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,7 +86,7 @@ public class ClassFile {
 
     public static ClassFile parse(Path path) throws IOException {
         logger.info("Starting to parse class file: " + path);
-        try (DataInputStream in = new DataInputStream(new FileInputStream(path.toString()))) {
+        try (DataInputStream in = new DataInputStream(Files.newInputStream(path))) {
             ClassFile classFile = new ClassFile();
             classFile.parseMagic(in);
             classFile.parseVersion(in);

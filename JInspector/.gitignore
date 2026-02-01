@@ -3,3 +3,12 @@
 
 ### VS Code ###
 .vscode/
+/examples/build/
+/tests/build/
+/bytecode-parser/build/
+/analysis-api/build/
+/analysis-engine/build/
+/benchmarks/build/
+.gradle
+core-utils/build/
+build/

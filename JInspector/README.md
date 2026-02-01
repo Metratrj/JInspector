@@ -30,24 +30,17 @@ Das Projekt nutzt den **Gradle Wrapper**, sodass keine lokale Gradle-Installatio
 
 ## 💻 Benutzung (CLI)
 
-Die CLI-Applikation ist der primäre Einstiegspunkt. Sie analysiert ein Verzeichnis (rekursiv) oder eine einzelne `.class`-Datei.
+Die CLI-Applikation ist der primäre Einstiegspunkt. Sie analysiert ein Verzeichnis (rekursiv), eine einzelne `.class`-Datei oder ein `.jar`-Archiv.
 
 ### Syntax
 ```bash
-./gradlew :cli-app:run --args="<pfad-zu-den-klassen>"
+./gradlew :cli-app:run --args="<pfad-zu-den-klassen-oder-jar>"
 ```
 
-### Beispiel
-Analysieren der mitgelieferten Beispiele (nach dem Kompilieren):
-
-1.  Beispiele kompilieren:
-    ```bash
-    ./gradlew :examples:compileJava
-    ```
-2.  Beispiele analysieren:
-    ```bash
-    ./gradlew :cli-app:run --args="examples/build/classes/java/main"
-    ```
+### Beispiele
+*   **Verzeichnis:** `./gradlew :cli-app:run --args="path/to/classes"`
+*   **JAR-Datei:** `./gradlew :cli-app:run --args="path/to/library.jar"`
+*   **Einzeldatei:** `./gradlew :cli-app:run --args="path/to/MyClass.class"`
 
 **Output:**
 ```text

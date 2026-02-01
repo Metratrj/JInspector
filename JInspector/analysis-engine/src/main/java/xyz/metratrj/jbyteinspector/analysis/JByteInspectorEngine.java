@@ -19,10 +19,17 @@ public class JByteInspectorEngine implements AnalysisService {
 
     @Override
     public List<ClassReport> analyze(Path inputPath) {
+        if (inputPath.toString().endsWith(".jar")) {
+            return analyzeJar(inputPath);
+        }
+        return analyzePath(inputPath);
+    }
+
+    private List<ClassReport> analyzePath(Path path) {
         List<ClassReport> reports = new ArrayList<>();
         try {
-            List<Path> classFiles = FileUtils.findFiles(inputPath, p -> p.toString().endsWith(".class"));
-            
+            List<Path> classFiles = FileUtils.findFiles(path, p -> p.toString().endsWith(".class"));
+
             for (Path file : classFiles) {
                 try {
                     ClassFile cf = ClassFile.parse(file);
@@ -32,9 +39,19 @@ public class JByteInspectorEngine implements AnalysisService {
                 }
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Failed to walk directories: " + inputPath, e);
+            logger.log(Level.SEVERE, "Failed to analyze path: " + path, e);
         }
         return reports;
+    }
+
+    private List<ClassReport> analyzeJar(Path jarPath) {
+        logger.info("Analyzing JAR: " + jarPath);
+        try (java.nio.file.FileSystem jarFs = java.nio.file.FileSystems.newFileSystem(jarPath, (ClassLoader) null)) {
+            return analyzePath(jarFs.getPath("/"));
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Failed to open JAR file: " + jarPath, e);
+            return List.of();
+        }
     }
 
     private ClassReport generateReport(ClassFile cf) {
