@@ -1,0 +1,21 @@
+package xyz.metratrj.jbyteinspector.parser.classfile;
+
+public class CONSTANT_InterfaceMethodref_info extends cp_info {
+    int class_index;
+    int name_and_type_index;
+
+    public CONSTANT_InterfaceMethodref_info(int tag, int class_index, int name_and_type_index) {
+        super(tag);
+        this.class_index         = class_index;
+        this.name_and_type_index = name_and_type_index;
+    }
+
+    @Override
+    public String toString() {
+        return "CONSTANT_InterfaceMethodref_info{" +
+                "class_index=" + class_index +
+                ", name_and_type_index=" + name_and_type_index +
+                ", tag=" + tag +
+                '}';
+    }
+}

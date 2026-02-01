@@ -23,7 +23,8 @@ subprojects {
     }
 
     dependencies {
-        testImplementation platform('org.junit:junit-bom:5.11.0') // Updated to newer version
+        testImplementation platform('org.junit:junit-bom:5.11.0')
         testImplementation 'org.junit.jupiter:junit-jupiter'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 }
