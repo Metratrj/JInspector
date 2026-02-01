@@ -27,13 +27,18 @@ public class Main extends Application {
         Scene scene = new Scene(pane, 640, 480);
 
 
+
         MenuItem exit_item = new MenuItem("Exit");
+
+        exit_item.setOnAction(actionEvent -> {
+            System.exit(0);
+        });
+
         Menu menu = new Menu("File", null, exit_item);
         MenuBar menuBar = new MenuBar(menu);
         Group group = new Group(menuBar, pane);
 
         scene.setRoot(group);
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }

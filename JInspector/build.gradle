@@ -1,0 +1,29 @@
+plugins {
+    // Core plugins don't need to be declared here with apply false
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    group = 'xyz.metratrj.jbyteinspector'
+    version = '0.1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(25)
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.11.0') // Updated to newer version
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+    }
+}

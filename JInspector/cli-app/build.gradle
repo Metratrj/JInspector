@@ -1,0 +1,15 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':analysis-engine')
+    implementation project(':analysis-api') // transitive from engine but good to be explicit if using types
+    implementation project(':core-utils')
+    implementation project(':bytecode-parser')
+}
+
+application {
+    mainModule = 'xyz.metratrj.jbyteinspector.cli'
+    mainClass = 'xyz.metratrj.jbyteinspector.cli.Main'
+}
