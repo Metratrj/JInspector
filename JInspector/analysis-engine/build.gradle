@@ -1,5 +1,0 @@
-dependencies {
-    api project(':analysis-api')
-    implementation project(':bytecode-parser')
-    implementation project(':core-utils')
-}

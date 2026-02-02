@@ -1,50 +1,79 @@
 # JByteInspector
 
-**JByteInspector** ist ein modularer, produktionsreifer **Java Bytecode Analyzer**, entwickelt für **Java 25**.
-Das Projekt dient der statischen Analyse von Java-Klassendateien (`.class`) und bietet detaillierte Einblicke in die Struktur von Klassen, Methoden, Feldern und Bytecode-Instruktionen.
+JByteInspector ist ein modularer Java Bytecode Analyzer, entwickelt für Java 25. Das Projekt dient der statischen Analyse von Java-Klassendateien (.class) und bietet detaillierte Einblicke in die Struktur von Klassen, Methoden, Feldern und Bytecode-Instruktionen.
 
-## 🚀 Features
+## Inhaltsverzeichnis
 
-*   **Java 25 Ready:** Nutzt die neuesten Sprachfeatures und das Java Platform Module System (JPMS).
-*   **Modulare Architektur:** Klare Trennung von Parsing, Analyse-Logik, API und UI/CLI.
-*   **Clean Parsing:** Eigener Bytecode-Parser (keine Abhängigkeiten zu ASM oder BCEL für den Core).
-*   **Strukturierte Reports:** Analyseergebnisse als typsichere Java Records.
-*   **Build & Test:** Vollständig automatisiert mit Gradle 9.2.0 und JUnit 5.
+1.  Funktionsumfang
+2.  Voraussetzungen
+3.  Installation und Build
+4.  Benutzung
+5.  Projektstruktur
+6.  Testen
+7.  Architektur
 
-## 📋 Voraussetzungen
+## Funktionsumfang
 
-*   **JDK 25** (muss installiert und via `JAVA_HOME` oder Toolchain verfügbar sein).
-*   Linux, macOS oder Windows.
+*   **Java 25 Kompatibilität**: Nutzt aktuelle Sprachfeatures und das Java Platform Module System (JPMS).
+*   **Modulare Architektur**: Strikte Trennung von Parsing, Analyse-Logik, Datenmodell und Benutzeroberfläche.
+*   **Unabhängiges Parsing**: Implementiert einen eigenständigen Bytecode-Parser ohne Abhängigkeiten zu Drittbibliotheken wie ASM oder BCEL für die Kernfunktionalität.
+*   **Typsichere Berichte**: Bereitstellung der Analyseergebnisse durch Java Records.
+*   **Automatisierung**: Build- und Testprozesse basieren auf Gradle 9.2.0 und JUnit 5.
 
-## 🛠️ Build & Installation
+## Voraussetzungen
 
-Das Projekt nutzt den **Gradle Wrapper**, sodass keine lokale Gradle-Installation notwendig ist.
+*   **JDK 25**: Muss installiert und über die Umgebungsvariable JAVA_HOME oder die Gradle Toolchain verfügbar sein.
+*   **Betriebssystem**: Kompatibel mit Linux, macOS und Windows.
+
+## Installation und Build
+
+Das Projekt verwendet den Gradle Wrapper, wodurch eine lokale Gradle-Installation nicht erforderlich ist.
+
+### Kompilierung und Build
+
+Führen Sie folgenden Befehl aus, um das gesamte Projekt zu bauen:
 
 ```bash
-# Projekt bauen
 ./gradlew build
+```
 
-# Nur kompilieren
+Um das Projekt nur zu kompilieren, ohne Tests auszuführen:
+
+```bash
 ./gradlew assemble
 ```
 
-## 💻 Benutzung (CLI)
+## Benutzung
 
-Die CLI-Applikation ist der primäre Einstiegspunkt. Sie analysiert ein Verzeichnis (rekursiv), eine einzelne `.class`-Datei oder ein `.jar`-Archiv.
+Die Kommandozeilenanwendung (CLI) dient als primäre Schnittstelle. Sie ermöglicht die Analyse von Verzeichnissen (rekursiv), einzelnen .class-Dateien oder .jar-Archiven.
 
 ### Syntax
+
 ```bash
-./gradlew :cli-app:run --args="<pfad-zu-den-klassen-oder-jar>"
+./gradlew :jbyteinspector:jbi-cli:run --args="<pfad>"
 ```
 
-### Beispiele
-*   **Verzeichnis:** `./gradlew :cli-app:run --args="path/to/classes"`
-*   **JAR-Datei:** `./gradlew :cli-app:run --args="path/to/library.jar"`
-*   **Einzeldatei:** `./gradlew :cli-app:run --args="path/to/MyClass.class"`
+### Anwendungsbeispiele
 
-**Output:**
+**Analyse eines Verzeichnisses**
+```bash
+./gradlew :jbyteinspector:jbi-cli:run --args="path/to/classes"
+```
+
+**Analyse eines JAR-Archivs**
+```bash
+./gradlew :jbyteinspector:jbi-cli:run --args="path/to/library.jar"
+```
+
+**Analyse einer Einzeldatei**
+```bash
+./gradlew :jbyteinspector:jbi-cli:run --args="path/to/MyClass.class"
+```
+
+### Beispielausgabe
+
 ```text
-Inspecting: /.../JByteInspector/examples/build/classes/java/main
+Inspecting: /path/to/classes
 --------------------------------------------------
 Class: xyz/metratrj/jbyteinspector/examples/animals/Katze
 Super: xyz/metratrj/jbyteinspector/examples/animals/Tier
@@ -56,42 +85,39 @@ Fields:
 Methods:
   [PUBLIC] <init> (Ljava/lang/String;)V
   [PUBLIC] MachLaut ()V
-...
 ```
 
-## 📂 Projektstruktur
+## Projektstruktur
 
-Das Projekt ist als **Gradle Monorepo** organisiert:
+Das Projekt ist als Gradle Monorepo unter dem Wurzelverzeichnis `jbyteinspector/` organisiert.
 
 | Modul | Beschreibung |
-|-------|--------------|
-| `core-utils` | Allgemeine Hilfsfunktionen (z. B. File-IO). Keine Fachlogik. |
-| `bytecode-parser` | Low-Level Parsing von `.class` Dateien. Liest Constant Pool, Attribute, etc. |
-| `analysis-api` | Öffentliche Schnittstellen und Datenmodelle (`ClassReport`, `MethodReport`). |
-| `analysis-engine` | Die "Business Logik". Orchestriert Parser und generiert Reports. |
-| `cli-app` | Command Line Interface. Entry-Point für den Benutzer. |
-| `examples` | Test-Code und Beispiele für Benchmarks und Validierung. |
-| `benchmarks` | JMH Benchmarks zur Performance-Messung. |
-| `tests` | Integrations-Tests über mehrere Module hinweg. |
+| :--- | :--- |
+| **jbi-model** | Definiert das Domänenmodell und öffentliche Datenstrukturen (z. B. ClassReport). |
+| **jbi-parser** | Implementiert das Low-Level-Parsing von .class-Dateien (Constant Pool, Attribute). |
+| **jbi-core** | Beinhaltet die Kernlogik der Analyse und orchestriert Parser sowie Berichterstellung. |
+| **jbi-io** | Stellt Funktionen für Dateisystemoperationen und das Einlesen von Ressourcen bereit. |
+| **jbi-report** | Verantwortlich für die Aufbereitung und den Export der Analyseergebnisse. |
+| **jbi-cli** | Implementiert die Kommandozeilenschnittstelle für den Endanwender. |
+| **jbi-utils** | Enthält allgemeine Hilfsfunktionen ohne Domänenabhängigkeit. |
+| **jbi-examples** | Beinhaltet Beispielcode zur Validierung und Demonstration. |
+| **jbi-benchmark** | Performance-Tests auf Basis von JMH. |
+| **jbi-tests** | Führt integrationsübergreifende Tests durch. |
 
-Weitere Details zur Architektur finden sich in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+## Testen
 
-## 🧪 Tests
+Die Qualitätssicherung erfolgt durch automatisierte Tests.
 
+**Ausführung aller Tests:**
 ```bash
-# Alle Tests ausführen
 ./gradlew test
-
-# Spezifisches Modul testen
-./gradlew :bytecode-parser:test
 ```
 
-## 🤝 Contributing
+**Testen eines spezifischen Moduls:**
+```bash
+./gradlew :jbyteinspector:jbi-parser:test
+```
 
-1.  Forken & Clonen.
-2.  Feature Branch erstellen (`git checkout -b feature/AmazingFeature`).
-3.  Änderungen committen (Bitte [Conventional Commits](https://www.conventionalcommits.org/) nutzen).
-4.  Push & Pull Request.
+## Architektur
 
----
-*Erstellt für das JByteInspector Projekt (2026).*
+Detaillierte Informationen zur Systemarchitektur und den Designentscheidungen befinden sich in der Datei `docs/ARCHITECTURE.md`.

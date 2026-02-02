@@ -1,6 +1,0 @@
-dependencies {
-    testImplementation project(':core-utils')
-    testImplementation project(':bytecode-parser')
-    testImplementation project(':analysis-engine')
-    testImplementation project(':analysis-api')
-}

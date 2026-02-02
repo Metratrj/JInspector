@@ -8,14 +8,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/analysis-api" />
-            <option value="$PROJECT_DIR$/analysis-engine" />
-            <option value="$PROJECT_DIR$/benchmarks" />
-            <option value="$PROJECT_DIR$/bytecode-parser" />
-            <option value="$PROJECT_DIR$/cli-app" />
-            <option value="$PROJECT_DIR$/core-utils" />
-            <option value="$PROJECT_DIR$/examples" />
-            <option value="$PROJECT_DIR$/tests" />
+            <option value="$PROJECT_DIR$/jbyteinspector" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-benchmark" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-cli" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-core" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-examples" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-io" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-model" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-parser" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-report" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-tests" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-utils" />
           </set>
         </option>
       </GradleProjectSettings>

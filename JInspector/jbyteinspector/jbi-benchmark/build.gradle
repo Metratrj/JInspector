@@ -1,0 +1,15 @@
+plugins {
+    id "me.champeau.jmh" version "0.7.2"
+}
+
+dependencies {
+    implementation project(':jbyteinspector:jbi-core')
+    implementation project(':jbyteinspector:jbi-parser')
+}
+
+jmh {
+    // Configuration for JMH
+    fork = 1
+    iterations = 1
+    warmupIterations = 1
+}

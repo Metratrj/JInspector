@@ -1,0 +1,15 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':jbyteinspector:jbi-core')
+    implementation project(':jbyteinspector:jbi-model')
+    implementation project(':jbyteinspector:jbi-utils')
+    implementation project(':jbyteinspector:jbi-parser')
+}
+
+application {
+    mainModule = 'xyz.metratrj.jbyteinspector.cli'
+    mainClass = 'xyz.metratrj.jbyteinspector.cli.Main'
+}
