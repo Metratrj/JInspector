@@ -10,6 +10,6 @@ dependencies {
 jmh {
     // Configuration for JMH
     fork = 1
-    iterations = 1
-    warmupIterations = 1
+    iterations = 100
+    warmupIterations = 50
 }

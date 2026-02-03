@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/JInspector" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/JInspector" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-benchmark" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-cli" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-core" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-examples" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-io" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-model" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-parser" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-report" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-tests" />
+            <option value="$PROJECT_DIR$/JInspector/jbyteinspector/jbi-utils" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/jbi" />
+        <option name="gradleJvm" value="openjdk-25" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/jbi" />
+            <option value="$PROJECT_DIR$/jbi/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
