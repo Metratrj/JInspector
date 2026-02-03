@@ -5,14 +5,18 @@ import xyz.metratrj.jbyteinspector.io.FileUtils;
 import xyz.metratrj.jbyteinspector.parser.classfile.*;
 import xyz.metratrj.jbyteinspector.parser.utils.AccessFlagUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.file.FileVisitOption;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.nio.file.SimpleFileVisitor;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JByteInspectorEngine implements AnalysisService {
     private static final Logger logger = Logger.getLogger(JByteInspectorEngine.class.getName());
@@ -25,12 +29,38 @@ public class JByteInspectorEngine implements AnalysisService {
         return analyzePath(inputPath);
     }
 
+    record ClassData(String name, byte[] content) {}
+
+    private List<ClassData> scan(Path path) throws IOException {
+        try (Stream<Path> walk = Files.walk(path, Integer.MAX_VALUE)) {
+            return walk
+                    .parallel()
+                    .filter(p -> p.toString().endsWith(".class"))
+                    .map(p -> {
+                        try {
+                            return new ClassData(p.getFileName().toString(), Files.readAllBytes(p));
+                        }
+                        catch (IOException e) {
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+    }
+
     private List<ClassReport> analyzePath(Path path) {
         List<ClassReport> reports = new ArrayList<>();
         try {
             List<Path> classFiles = FileUtils.findFiles(path, p -> p.toString().endsWith(".class"));
+            //var data = scan(path);
 
             for (Path file : classFiles) {
+                // TODO: Look at the module-info structure. Something is off with the parser when we try to parse it. So for now we need to skip util I come up with a better solution.
+                if (file.endsWith("module-info.class")) {
+                    logger.log(Level.INFO, "Skipping module-info.class: " + file);
+                    continue;
+                }
                 try {
                     ClassFile cf = ClassFile.parse(file);
                     reports.add(generateReport(cf));
@@ -70,6 +100,38 @@ public class JByteInspectorEngine implements AnalysisService {
                 String desc = resolveUtf8(cf, m.getDescriptionIndex());
                 Set<String> mFlags = AccessFlagUtils.extractForMethod(m.getAccessFlags()).stream()
                         .map(Enum::name).collect(Collectors.toSet());
+
+                for (attribute_info a: m.getAttributes()) {
+                    String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
+                    System.out.println("Attribute Name" + attribute_name);
+                    if (attribute_name.equals("Code")) {
+                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
+                            int maxStack = inputStream.readUnsignedShort();
+                            int maxLocals = inputStream.readUnsignedShort();
+                            int codeLength = inputStream.readInt();
+                            byte[] code = new byte[codeLength];
+                            inputStream.readFully(code);
+                            int exception_table_length = inputStream.readUnsignedShort();
+                            for (int i = 0; i < exception_table_length; i++) {
+                                int start_pc = inputStream.readUnsignedShort();
+                                int end_pc = inputStream.readUnsignedShort();
+                                int handler_pc = inputStream.readUnsignedShort();
+                                int catch_type = inputStream.readUnsignedShort();
+                            }
+                            int attributes_count = inputStream.readUnsignedShort();
+                            for (int i = 0; i < attributes_count; i++) {
+                                int attribute_name_index = inputStream.readUnsignedShort();
+                                int attribute_length = inputStream.readInt();
+                                byte[] info = new byte[attribute_length];
+                                inputStream.readFully(info);
+                            }
+
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
                 methods.add(new MethodReport(name, desc, mFlags));
             }
         }

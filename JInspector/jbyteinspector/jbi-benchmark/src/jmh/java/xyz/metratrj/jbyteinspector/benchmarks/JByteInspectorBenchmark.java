@@ -41,13 +41,13 @@ public class JByteInspectorBenchmark {
         Files.deleteIfExists(fixturePath);
     }
 
-    @Benchmark
-    public ClassFile benchmarkRawParser() throws IOException {
-        return ClassFile.parse(fixturePath);
-    }
+    //@Benchmark
+    //public ClassFile benchmarkRawParser() throws IOException {
+    //    return ClassFile.parse(fixturePath);
+    //}
 
-    @Benchmark
-    public List<ClassReport> benchmarkFullEngine() {
-        return engine.analyze(fixturePath);
-    }
+    //@Benchmark
+    //public List<ClassReport> benchmarkFullEngine() {
+    //    return engine.analyze(fixturePath);
+    //}
 }

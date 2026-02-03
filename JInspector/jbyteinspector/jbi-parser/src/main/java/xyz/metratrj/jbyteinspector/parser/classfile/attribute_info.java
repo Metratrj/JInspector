@@ -13,6 +13,18 @@ public class attribute_info {
         this.info                 = info;
     }
 
+    public int getAttribute_name_index() {
+        return attribute_name_index;
+    }
+
+    public int getAttribute_length() {
+        return attribute_length;
+    }
+
+    public byte[] getInfo() {
+        return info;
+    }
+
     @Override
     public String toString() {
         return "attribute_info{" +

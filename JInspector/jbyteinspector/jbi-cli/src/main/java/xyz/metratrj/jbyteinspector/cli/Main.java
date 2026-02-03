@@ -17,8 +17,9 @@ public class Main {
             return;
         }*/
 
-        //Path path  = Paths.get(args[0]);
-        Path oPath = Paths.get("/home/metratrj/sources/JInspector/Code/JInspector/out/production/TestModule/xyz/metratrj");
+        //Path oPath  = Paths.get(args[0]);
+        Path oPath  = Paths.get("jbi-examples-1.0.0.jar");
+        //Path oPath = Paths.get("/home/metratrj/sources/JInspector/JInspector/out/production/TestModule/xyz/metratrj");
 
         System.out.println("Inspecting: " + oPath.toAbsolutePath());
 

@@ -5,11 +5,20 @@ plugins {
 dependencies {
     implementation project(':jbyteinspector:jbi-core')
     implementation project(':jbyteinspector:jbi-parser')
+
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-bytecode:1.37'
+
 }
 
 jmh {
     // Configuration for JMH
-    fork = 1
-    iterations = 100
-    warmupIterations = 50
+    fork = 2
+    warmupIterations = 2
+    iterations = 3
+    benchmarkMode = ['all']
+    forceGC = false
+    resultFormat = "TEXT"
+    jmhVersion = "1.37"
 }
