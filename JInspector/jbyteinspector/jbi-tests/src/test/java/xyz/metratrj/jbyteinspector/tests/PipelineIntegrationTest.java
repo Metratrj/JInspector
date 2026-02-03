@@ -76,18 +76,23 @@ class PipelineIntegrationTest {
     }
 
     @Test
-    void testJarAnalysis() {
+    void testJarAnalysis() throws URISyntaxException {
         Path jarPath = Paths.get("jbyteinspector/jbi-examples/build/libs/jbi-examples-0.1.0-SNAPSHOT.jar");
         // Note: The path might be relative to the 'tests' module directory if running via gradle
         if (!Files.exists(jarPath)) {
              jarPath = Paths.get("../jbi-examples/build/libs/jbi-examples-0.1.0-SNAPSHOT.jar");
+        }
+        if (!Files.exists(jarPath)) {
+            var resource = getClass().getResource("/fixtures.jar/jbi-examples-1.0.0.jar");
+            assertNotNull(resource, "JAR fixture resource not found");
+            jarPath = Paths.get(resource.toURI());
         }
         assertTrue(Files.exists(jarPath), "JAR fixture not found at " + jarPath.toAbsolutePath());
 
         AnalysisService   service = new JByteInspectorEngine();
         List<ClassReport> reports = service.analyze(jarPath);
 
-        assertEquals(5, reports.size(), "Should have analyzed 5 classes inside the JAR");
+        assertEquals(6, reports.size(), "Should have analyzed 6 classes inside the JAR");
         assertTrue(reports.stream().anyMatch(r -> r.className().contains("Esel")));
     }
 
