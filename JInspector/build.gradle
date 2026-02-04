@@ -4,6 +4,7 @@ plugins {
 
 subprojects {
     apply plugin: 'java-library'
+    apply plugin: 'jacoco'
 
     group = 'xyz.metratrj.jbyteinspector'
     version = '0.1.0-SNAPSHOT'
@@ -20,6 +21,17 @@ subprojects {
 
     test {
         useJUnitPlatform()
+        finalizedBy jacocoTestReport
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.required = true
+            csv.required = false
+            html.required = true
+            html.outputLocation = layout.buildDirectory.dir('reports/jacoco/test')
+        }
     }
 
     dependencies {

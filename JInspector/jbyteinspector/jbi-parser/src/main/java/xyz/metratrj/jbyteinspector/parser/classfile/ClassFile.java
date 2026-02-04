@@ -84,6 +84,8 @@ public class ClassFile {
     public static final int BIPUSH = 16; // visitIntInsn
     public static final int SIPUSH = 17; // -
     public static final int LDC = 18; // visitLdcInsn
+    public static final int LDC_W = 19; // -
+    public static final int LDC2_W = 20; // -
     public static final int ILOAD = 21; // visitVarInsn
     public static final int LLOAD = 22; // -
     public static final int FLOAD = 23; // -
@@ -219,9 +221,13 @@ public class ClassFile {
     public static final int INSTANCEOF = 193; // -
     public static final int MONITORENTER = 194; // visitInsn
     public static final int MONITOREXIT = 195; // -
+    public static final int WIDE = 196; // -
     public static final int MULTIANEWARRAY = 197; // visitMultiANewArrayInsn
     public static final int IFNULL = 198; // visitJumpInsn
     public static final int IFNONNULL = 199; // -
+    public static final int GOTO_W = 200; // -
+    public static final int JSR_W = 201; // -
+
 
     private static final Logger LOGGER = Logger.getLogger(ClassFile.class.getName());
 

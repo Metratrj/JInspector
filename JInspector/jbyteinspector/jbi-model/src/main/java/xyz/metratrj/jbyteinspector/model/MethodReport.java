@@ -6,5 +6,6 @@ public record MethodReport(
         String name,
         String descriptor,
         Set<String> flags,
-        Set<AttributeReport> attributes
+        Set<AttributeReport> attributes,
+        CodeReport code
 ) { }

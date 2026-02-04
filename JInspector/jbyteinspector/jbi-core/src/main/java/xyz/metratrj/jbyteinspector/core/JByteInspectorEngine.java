@@ -8,6 +8,8 @@ import xyz.metratrj.jbyteinspector.parser.utils.AccessFlagUtils;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,7 +31,7 @@ public class JByteInspectorEngine implements AnalysisService {
         return analyzePath(inputPath);
     }
 
-    record ClassData(String name, byte[] content) {}
+    record ClassData(String name, byte[] content) { }
 
     private List<ClassData> scan(Path path) throws IOException {
         try (Stream<Path> walk = Files.walk(path, Integer.MAX_VALUE)) {
@@ -39,8 +41,7 @@ public class JByteInspectorEngine implements AnalysisService {
                     .map(p -> {
                         try {
                             return new ClassData(p.getFileName().toString(), Files.readAllBytes(p));
-                        }
-                        catch (IOException e) {
+                        } catch (IOException e) {
                             return null;
                         }
                     })
@@ -52,9 +53,7 @@ public class JByteInspectorEngine implements AnalysisService {
     private List<ClassReport> analyzePath(Path path) {
         List<ClassReport> reports = new ArrayList<>();
         try {
-            List<Path> classFiles = FileUtils.findFiles(path, p -> p.toString().endsWith(".class"));
-            //var data = scan(path);
-
+            List<Path> classFiles = FileUtils.findFiles(path, p -> p.toString().endsWith(".class") && !p.endsWith("module-info.class") && !p.endsWith("package-info.class"));
             for (Path file : classFiles) {
                 // TODO: Look at the module-info structure. Something is off with the parser when we try to parse it. So for now we need to skip util I come up with a better solution.
                 if (file.endsWith("module-info.class")) {
@@ -88,9 +87,9 @@ public class JByteInspectorEngine implements AnalysisService {
         // Resolve Class Name
         String className = resolveClassName(cf, cf.getThisClass());
         String superName = resolveClassName(cf, cf.getSuperClass());
-        
+
         Set<String> classFlags = AccessFlagUtils.extract(cf.getAccessFlags()).stream()
-                .map(Enum::name).collect(Collectors.toSet());
+                                                .map(Enum::name).collect(Collectors.toSet());
 
         // Methods
         List<MethodReport> methods = new ArrayList<>();
@@ -99,7 +98,8 @@ public class JByteInspectorEngine implements AnalysisService {
                 String name = resolveUtf8(cf, m.getNameIndex());
                 String desc = resolveUtf8(cf, m.getDescriptionIndex());
                 Set<String> mFlags = AccessFlagUtils.extractForMethod(m.getAccessFlags()).stream()
-                        .map(Enum::name).collect(Collectors.toSet());
+                                                    .map(Enum::name).collect(Collectors.toSet());
+                CodeReport codeReport = null;
 
                 Set<AttributeReport> attributes = new HashSet<>();
                 attributes = Arrays.stream(m.getAttributes()).map(attribute_info -> {
@@ -107,38 +107,178 @@ public class JByteInspectorEngine implements AnalysisService {
                     return new AttributeReport(attribute_name, attribute_info.getAttribute_length(), attribute_info.getInfo());
                 }).collect(Collectors.toSet());
 
-                for (attribute_info a: m.getAttributes()) {
+                for (attribute_info a : m.getAttributes()) {
                     String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
                     System.out.println("Attribute Name" + attribute_name);
-//                    if (attribute_name.equals("Code")) {
-//                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
-//                            int    maxStack   = inputStream.readUnsignedShort();
-//                            int    maxLocals  = inputStream.readUnsignedShort();
-//                            int    codeLength = inputStream.readInt();
-//                            byte[] code       = new byte[codeLength];
-//                            inputStream.readFully(code);
-//                            int exception_table_length = inputStream.readUnsignedShort();
-//                            for (int i = 0; i < exception_table_length; i++) {
-//                                int start_pc   = inputStream.readUnsignedShort();
-//                                int end_pc     = inputStream.readUnsignedShort();
-//                                int handler_pc = inputStream.readUnsignedShort();
-//                                int catch_type = inputStream.readUnsignedShort();
-//                            }
-//                            int attributes_count = inputStream.readUnsignedShort();
-//                            for (int i = 0; i < attributes_count; i++) {
-//                                int    attribute_name_index = inputStream.readUnsignedShort();
-//                                int    attribute_length     = inputStream.readInt();
-//                                byte[] info                 = new byte[attribute_length];
-//                                inputStream.readFully(info);
-//                            }
-//
-//                        } catch (Exception e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                    }
+                    if (attribute_name.equals("Code")) {
+                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
+                            // 1. Header lesen
+                            int maxStack   = inputStream.readUnsignedShort();
+                            int maxLocals  = inputStream.readUnsignedShort();
+                            int codeLength = inputStream.readInt();
+                            System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n", maxStack, maxLocals, codeLength);
+
+                            // 1,5. Code lesen
+                            byte[] code = new byte[codeLength];
+                            inputStream.readFully(code);
+
+                            // 2. Bytecode Parsen mit ByteBuffer (WICHTIG für Alignments)
+                            System.out.println("      bytecode disassembly:");
+                            ByteBuffer bb = ByteBuffer.wrap(code);
+                            bb.order(ByteOrder.BIG_ENDIAN); // Java Classfiles are always big endian
+
+
+                            ArrayList<Opcodes> opcodes = new ArrayList<>();
+                            int                pc      = 0; // Program Counter (position in Array)
+                            while (bb.hasRemaining()) {
+                                pc = bb.position(); // aktuelle Position merken für Ausgabe
+                                int opcode = bb.get() & 0xFF; // Receive unsinged opcode
+                                System.out.printf("        %04d: %02X -> ", pc, opcode);
+
+                                switch (opcode) {
+                                    // --- Einfache Instructionen (1 Byte) ---
+                                    case ClassFile.NOP -> {
+                                        opcodes.add(Opcodes.NOP);
+                                        System.out.println("NOP");
+                                    }
+                                    case ClassFile.ACONST_NULL -> {
+                                        opcodes.add(Opcodes.ACONST_NULL);
+                                        System.out.println("ACONST_NULL");
+                                    }
+                                    case ClassFile.ICONST_M1 -> {
+                                        opcodes.add(Opcodes.ICONST_M1);
+                                        System.out.println("ICONST_M1");
+                                    }
+                                    case ClassFile.ICONST_0 -> {
+                                        opcodes.add(Opcodes.ICONST_0);
+                                        System.out.println("ICONST_0");
+                                    }
+                                    case ClassFile.ICONST_1 -> {
+                                        opcodes.add(Opcodes.ICONST_1);
+                                        System.out.println("ICONST_1");
+                                    }
+                                    case ClassFile.ICONST_2 -> {
+                                        opcodes.add(Opcodes.ICONST_2);
+                                        System.out.println("ICONST_2");
+                                    }
+                                    case ClassFile.ICONST_3 -> {
+                                        opcodes.add(Opcodes.ICONST_3);
+                                        System.out.println("ICONST_3");
+                                    }
+                                    case ClassFile.ICONST_4 -> {
+                                        opcodes.add(Opcodes.ICONST_4);
+                                        System.out.println("ICONST_4");
+                                    }
+                                    case ClassFile.ICONST_5 -> {
+                                        opcodes.add(Opcodes.ICONST_5);
+                                        System.out.println("ICONST_5");
+                                    }
+                                    case ClassFile.FCONST_0 -> {
+                                        opcodes.add(Opcodes.FCONST_0);
+                                        System.out.println("FCONST_0");
+                                    }
+                                    case ClassFile.FCONST_1 -> {
+                                        opcodes.add(Opcodes.FCONST_1);
+                                        System.out.println("FCONST_1");
+                                    }
+                                    case ClassFile.FCONST_2 -> {
+                                        opcodes.add(Opcodes.FCONST_2);
+                                        System.out.println("FCONST_2");
+                                    }
+
+                                    // --- Instruktionen mit Argumenten ---
+                                    case ClassFile.LDC -> {
+                                        // Nimmt 1 Byte Index
+                                        int index = bb.get() & 0xFF;
+                                        System.out.printf("LDC #%d\n", index);
+                                        opcodes.add(Opcodes.LDC);
+
+
+                                        break;
+                                    }
+                                    case ClassFile.GETSTATIC -> {
+                                        // Nimmt 2 Bytes Index
+                                        int index = bb.getShort() & 0xFFFF;
+                                        System.out.printf("GETSTATIC #%d\n", index);
+                                        opcodes.add(Opcodes.GETSTATIC);
+                                        break;
+                                    }
+
+                                    // --- TABLE SWITCH Handling ---
+                                    case ClassFile.TABLESWITCH -> {
+                                        System.out.println("TABLESWITCH");
+                                        // 1. Padding berechnen
+                                        // Wir sind jetzt bei (pc +1). Das Padding füllt bis zur nächsten 4-Byte Grenze auf
+                                        int currentPos = bb.position();
+                                        int padding    = (4 - (currentPos % 4)) % 4;
+
+                                        // Padding im Buffer überspringen
+                                        for (int k = 0; k < padding; k++)
+                                             bb.get();
+
+                                        // 2. Die 32-Bit Werte lesen
+                                        int defaultOffset = bb.getInt();
+                                        int low           = bb.getInt();
+                                        int high          = bb.getInt();
+                                        int numPairs      = high - low + 1;
+                                        System.out.printf("low=%d, high=%d, default=%d\n", low, high, defaultOffset);
+
+                                        // 3. Sprungziel lesen
+                                        for (int k = 0; k < numPairs; k++) {
+                                            int offset = bb.getInt();
+                                            System.out.printf("              %d: %d\n", (low + k), (pc + offset));
+                                        }
+                                        break;
+                                    }
+
+                                    default -> {
+                                        System.out.printf("UNKNOWN (Opcode %d)\n", opcode);
+                                        // ACHTUNG: Wenn wir den Opcode nicht kennen, wissen wir nicht,
+                                        // wie viele Bytes Argumente er hat. Der Parser wird hier wahrscheinlich crashen/falsch laufen.
+                                        break;
+                                    }
+                                }
+                            }
+
+                            System.out.println(opcodes);
+
+                            System.out.println();
+                            int exception_table_length = inputStream.readUnsignedShort();
+
+                            System.out.printf("      exception_table_length: %d\n", exception_table_length);
+
+                            ExceptionTableEntry[] tableEntries = new ExceptionTableEntry[exception_table_length];
+                            for (int i = 0; i < exception_table_length; i++) {
+                                int start_pc   = inputStream.readUnsignedShort();
+                                int end_pc     = inputStream.readUnsignedShort();
+                                int handler_pc = inputStream.readUnsignedShort();
+                                int catch_type = inputStream.readUnsignedShort();
+                                System.out.printf("        try: %d to %d, handler: %d, type: %d\n", start_pc, end_pc, handler_pc, catch_type);
+                                tableEntries[i] = new ExceptionTableEntry(start_pc, end_pc, handler_pc, catch_type);
+                            }
+
+
+                            int attributes_count = inputStream.readUnsignedShort();
+                            System.out.printf("      attributes_count: %d\n", attributes_count);
+                            AttributeReport[] attributeReports = new AttributeReport[attributes_count];
+                            for (int i = 0; i < attributes_count; i++) {
+                                int    attribute_name_index = inputStream.readUnsignedShort();
+                                int    attribute_length     = inputStream.readInt();
+                                byte[] info                 = new byte[attribute_length];
+                                inputStream.readFully(info);
+                                System.out.printf("        attr_index: %d, length: %d, data: %s\n", attribute_name_index, attribute_length, HexFormat.of().formatHex(info));
+                            }
+
+
+                            codeReport = new CodeReport(maxStack, maxLocals, codeLength, code, exception_table_length, tableEntries, attributes_count, attributeReports);
+
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
 
-                methods.add(new MethodReport(name, desc, mFlags, attributes));
+                methods.add(new MethodReport(name, desc, mFlags, attributes, codeReport));
             }
         }
 
@@ -148,7 +288,7 @@ public class JByteInspectorEngine implements AnalysisService {
             for (field_info f : cf.getFields()) {
                 String name = resolveUtf8(cf, f.getName_index());
                 Set<String> fFlags = AccessFlagUtils.extractForField(f.getAccess_flags()).stream()
-                        .map(Enum::name).collect(Collectors.toSet());
+                                                    .map(Enum::name).collect(Collectors.toSet());
                 fields.add(new FieldReport(name, fFlags));
             }
         }
@@ -157,7 +297,9 @@ public class JByteInspectorEngine implements AnalysisService {
     }
 
     private String resolveClassName(ClassFile cf, int index) {
-        if (index == 0) return "java/lang/Object"; // or null
+        if (index == 0) {
+            return "java/lang/Object"; // or null
+        }
         var classInfo = cf.getConstantPoolItem(index, CONSTANT_Class_info.class);
         if (classInfo != null) {
             return resolveUtf8(cf, classInfo.name_index);
