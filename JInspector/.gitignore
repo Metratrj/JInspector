@@ -12,3 +12,5 @@
 .gradle
 core-utils/build/
 build/
+bin/
+**/bin/**
