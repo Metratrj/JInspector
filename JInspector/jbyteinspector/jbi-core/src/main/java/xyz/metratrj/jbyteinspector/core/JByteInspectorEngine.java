@@ -101,38 +101,44 @@ public class JByteInspectorEngine implements AnalysisService {
                 Set<String> mFlags = AccessFlagUtils.extractForMethod(m.getAccessFlags()).stream()
                         .map(Enum::name).collect(Collectors.toSet());
 
+                Set<AttributeReport> attributes = new HashSet<>();
+                attributes = Arrays.stream(m.getAttributes()).map(attribute_info -> {
+                    String attribute_name = resolveUtf8(cf, attribute_info.getAttribute_name_index());
+                    return new AttributeReport(attribute_name, attribute_info.getAttribute_length(), attribute_info.getInfo());
+                }).collect(Collectors.toSet());
+
                 for (attribute_info a: m.getAttributes()) {
                     String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
                     System.out.println("Attribute Name" + attribute_name);
-                    if (attribute_name.equals("Code")) {
-                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
-                            int maxStack = inputStream.readUnsignedShort();
-                            int maxLocals = inputStream.readUnsignedShort();
-                            int codeLength = inputStream.readInt();
-                            byte[] code = new byte[codeLength];
-                            inputStream.readFully(code);
-                            int exception_table_length = inputStream.readUnsignedShort();
-                            for (int i = 0; i < exception_table_length; i++) {
-                                int start_pc = inputStream.readUnsignedShort();
-                                int end_pc = inputStream.readUnsignedShort();
-                                int handler_pc = inputStream.readUnsignedShort();
-                                int catch_type = inputStream.readUnsignedShort();
-                            }
-                            int attributes_count = inputStream.readUnsignedShort();
-                            for (int i = 0; i < attributes_count; i++) {
-                                int attribute_name_index = inputStream.readUnsignedShort();
-                                int attribute_length = inputStream.readInt();
-                                byte[] info = new byte[attribute_length];
-                                inputStream.readFully(info);
-                            }
-
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
+//                    if (attribute_name.equals("Code")) {
+//                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
+//                            int    maxStack   = inputStream.readUnsignedShort();
+//                            int    maxLocals  = inputStream.readUnsignedShort();
+//                            int    codeLength = inputStream.readInt();
+//                            byte[] code       = new byte[codeLength];
+//                            inputStream.readFully(code);
+//                            int exception_table_length = inputStream.readUnsignedShort();
+//                            for (int i = 0; i < exception_table_length; i++) {
+//                                int start_pc   = inputStream.readUnsignedShort();
+//                                int end_pc     = inputStream.readUnsignedShort();
+//                                int handler_pc = inputStream.readUnsignedShort();
+//                                int catch_type = inputStream.readUnsignedShort();
+//                            }
+//                            int attributes_count = inputStream.readUnsignedShort();
+//                            for (int i = 0; i < attributes_count; i++) {
+//                                int    attribute_name_index = inputStream.readUnsignedShort();
+//                                int    attribute_length     = inputStream.readInt();
+//                                byte[] info                 = new byte[attribute_length];
+//                                inputStream.readFully(info);
+//                            }
+//
+//                        } catch (Exception e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                    }
                 }
 
-                methods.add(new MethodReport(name, desc, mFlags));
+                methods.add(new MethodReport(name, desc, mFlags, attributes));
             }
         }
 

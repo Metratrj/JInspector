@@ -6,6 +6,7 @@ import java.util.List;
 public interface AnalysisService {
     /**
      * Analyzes all class files in the given path (directory or file).
+     *
      * @param inputPath Path to a .class file or directory containing .class files
      * @return List of reports, one per class file
      */
