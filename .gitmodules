@@ -1,3 +1,3 @@
-[submodule "JInspector/docs/planning"]
-	path = JInspector/docs/planning
+[submodule "docs/planning"]
+	path = docs/planning
 	url = https://github.com/Metratrj/JInspector-doc.git
