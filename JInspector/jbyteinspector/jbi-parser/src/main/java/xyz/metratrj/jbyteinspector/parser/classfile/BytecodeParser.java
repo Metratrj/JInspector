@@ -38,6 +38,7 @@ public class BytecodeParser {
                 case ClassFile.IINC -> {
                     operands.add(bb.get() & 0xFF); // index
                     operands.add((int) bb.get());  // const
+
                 }
 
                 case ClassFile.IFEQ, ClassFile.IFNE, ClassFile.IFLT, ClassFile.IFGE,
