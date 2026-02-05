@@ -7,18 +7,41 @@ import java.util.List;
 
 public class BytecodeParser {
 
-    public static String getMnemonic(int opcode) {
-        // This is a simplified version, should ideally map all opcodes
-        for (java.lang.reflect.Field field : ClassFile.class.getFields()) {
+    private static final String[] MNEMONICS = new String[256];
+
+    static {
+        for (java.lang.reflect.Field field : ICodes.class.getFields()) {
             try {
-                if (field.getType() == int.class && field.getModifiers() == (java.lang.reflect.Modifier.PUBLIC | java.lang.reflect.Modifier.STATIC | java.lang.reflect.Modifier.FINAL)) {
-                    if (field.getInt(null) == opcode && !field.getName().startsWith("ACC_") && !field.getName().startsWith("CONSTANT_") && !field.getName().equals("JAVA_MAGIC")) {
-                        return field.getName();
+                if (field.getType() == int.class &&
+                        (field.getModifiers() & java.lang.reflect.Modifier.STATIC) != 0 &&
+                        (field.getModifiers() & java.lang.reflect.Modifier.FINAL) != 0) {
+                    String name = field.getName();
+                    if (!name.startsWith("ACC_") &&
+                            !name.startsWith("CONSTANT_") &&
+                            !name.startsWith("REF_") &&
+                            !name.startsWith("MAX_") &&
+                            !name.startsWith("PREVIEW_") &&
+                            !name.equals("JAVA_MAGIC")) {
+                        int opcode = field.getInt(null);
+                        if (opcode >= 0 && opcode < MNEMONICS.length) {
+                            MNEMONICS[opcode] = name;
+                        }
                     }
                 }
             } catch (IllegalAccessException e) {
                 // ignore
             }
+        }
+        for (int i = 0; i < MNEMONICS.length; i++) {
+            if (MNEMONICS[i] == null) {
+                MNEMONICS[i] = "UNKNOWN_" + i;
+            }
+        }
+    }
+
+    public static String getMnemonic(int opcode) {
+        if (opcode >= 0 && opcode < MNEMONICS.length) {
+            return MNEMONICS[opcode];
         }
         return "UNKNOWN_" + opcode;
     }
@@ -145,4 +168,3 @@ public class BytecodeParser {
         }
     }
 }
-

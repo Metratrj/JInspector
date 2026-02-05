@@ -8,6 +8,7 @@ import xyz.metratrj.jbyteinspector.parser.classfile.MethodReport;
 import xyz.metratrj.jbyteinspector.parser.classfile.BytecodeParser;
 import xyz.metratrj.jbyteinspector.parser.classfile.Code_attribute;
 import xyz.metratrj.jbyteinspector.parser.classfile.attribute_info;
+import xyz.metratrj.jbyteinspector.parser.classfile.ICodes;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -74,14 +75,15 @@ public class Main {
 
                 System.out.printf("        %04d: %s %s\n", insn.pc(), insn.mnemonic(), insn.operands());
 
-                for(Object operand : insn.operands()){
-                    if(operand instanceof Integer){
-                        var cpItem = report.getConstantPoolItem(((Integer) operand).intValue());
-
-
+                if (usesConstantPool(insn.opcode()) && !insn.operands().isEmpty()) {
+                    Object operand = insn.operands().getFirst();
+                    if (operand instanceof Integer index) {
+                        var cpItem = report.getConstantPoolItem(index);
+                        if (cpItem != null) {
+                            System.out.printf("          -> CP[%d]: %s\n", index, cpItem);
+                        }
                     }
                 }
-
             }
 
             if (!codeAttr.getExceptionTable().isEmpty()) {
@@ -102,6 +104,16 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Error disassembling code: " + e.getMessage());
         }
+    }
+
+    private static boolean usesConstantPool(int opcode) {
+        return switch (opcode) {
+            case ICodes.LDC, ICodes.LDC_W, ICodes.LDC2_W,
+                 ICodes.GETSTATIC, ICodes.PUTSTATIC, ICodes.GETFIELD, ICodes.PUTFIELD,
+                 ICodes.INVOKEVIRTUAL, ICodes.INVOKESPECIAL, ICodes.INVOKESTATIC, ICodes.INVOKEINTERFACE, ICodes.INVOKEDYNAMIC,
+                 ICodes.NEW, ICodes.ANEWARRAY, ICodes.CHECKCAST, ICodes.INSTANCEOF, ICodes.MULTIANEWARRAY -> true;
+            default -> false;
+        };
     }
 
     private static void displayMethodCode(xyz.metratrj.jbyteinspector.parser.classfile.CodeReport code) {
