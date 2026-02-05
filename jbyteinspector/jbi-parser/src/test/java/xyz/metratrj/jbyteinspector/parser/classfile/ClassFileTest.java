@@ -1,11 +1,11 @@
 package xyz.metratrj.jbyteinspector.parser.classfile;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,13 +24,13 @@ class ClassFileTest {
         // Verify basic properties
         assertEquals(0xCAFEBABE, cf.getMagic(), "Magic number should be 0xCAFEBABE");
         assertTrue(cf.getMajorVersion() >= 45, "Major version should be at least 45");
-        
+
         // Verify we found some members
         assertTrue(cf.getMethodsCount() > 0, "Should have at least one method (constructor)");
-        
+
         // Verify constant pool is populated
         assertTrue(cf.getConstantPoolCount() > 0, "Constant pool should not be empty");
-        
+
         // Check for specific class name in constant pool
         boolean foundClassName = false;
         for (int i = 1; i < cf.getConstantPoolCount(); i++) {

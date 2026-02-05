@@ -10,4 +10,9 @@ public record CodeReport(
         int attributesCount,
         AttributeReport[] attributes
 ) {
+    public static CodeReport parse(byte[] code) {
+
+
+        return null;
+    }
 }

@@ -1,9 +1,9 @@
 package xyz.metratrj.jbyteinspector.tests;
 
 import org.junit.jupiter.api.Test;
+import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
 import xyz.metratrj.jbyteinspector.model.AnalysisService;
 import xyz.metratrj.jbyteinspector.model.ClassReport;
-import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -80,7 +80,7 @@ class PipelineIntegrationTest {
         Path jarPath = Paths.get("jbyteinspector/jbi-examples/build/libs/jbi-examples-0.1.0-SNAPSHOT.jar");
         // Note: The path might be relative to the 'tests' module directory if running via gradle
         if (!Files.exists(jarPath)) {
-             jarPath = Paths.get("../jbi-examples/build/libs/jbi-examples-0.1.0-SNAPSHOT.jar");
+            jarPath = Paths.get("../jbi-examples/build/libs/jbi-examples-0.1.0-SNAPSHOT.jar");
         }
         if (!Files.exists(jarPath)) {
             var resource = getClass().getResource("/fixtures.jar/jbi-examples-1.0.0.jar");

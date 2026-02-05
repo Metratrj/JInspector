@@ -2,17 +2,9 @@ package xyz.metratrj.jbyteinspector.cli;
 
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
 import xyz.metratrj.jbyteinspector.model.*;
-import xyz.metratrj.jbyteinspector.parser.classfile.ClassFile;
-import xyz.metratrj.jbyteinspector.parser.classfile.Opcodes;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HexFormat;
 import java.util.List;
 
 public class Main {

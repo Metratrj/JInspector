@@ -14,10 +14,10 @@ dependencies {
 
 jmh {
     // Configuration for JMH
-    fork = 2
-    warmupIterations = 2
+    fork = 1
+    warmupIterations = 1
     iterations = 3
-    benchmarkMode = ['all']
+    benchmarkMode = ['avgt']
     forceGC = false
     resultFormat = "TEXT"
     jmhVersion = "1.37"

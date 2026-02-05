@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/jbi-common" />
             <option value="$PROJECT_DIR$/jbyteinspector" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-benchmark" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-cli" />

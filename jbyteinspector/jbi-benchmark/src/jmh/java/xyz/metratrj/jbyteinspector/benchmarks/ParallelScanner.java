@@ -8,10 +8,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ParallelScanner implements ClassScanner{
+public class ParallelScanner implements ClassScanner {
     @Override
     public List<ClassData> scan(Path rootPath) throws Exception {
-        try (Stream<Path> walk = Files.walk(rootPath)){
+        try (Stream<Path> walk = Files.walk(rootPath)) {
             return walk.parallel() // Take usage of common ForkJoinPools
                        .filter(p -> p.toString().endsWith(".class"))
                        .map(p -> {

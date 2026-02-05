@@ -1,7 +1,7 @@
 package xyz.metratrj.jbyteinspector.core;
 
-import xyz.metratrj.jbyteinspector.model.*;
 import xyz.metratrj.jbyteinspector.io.FileUtils;
+import xyz.metratrj.jbyteinspector.model.*;
 import xyz.metratrj.jbyteinspector.parser.classfile.*;
 import xyz.metratrj.jbyteinspector.parser.utils.AccessFlagUtils;
 
@@ -10,10 +10,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +28,6 @@ public class JByteInspectorEngine implements AnalysisService {
         }
         return analyzePath(inputPath);
     }
-
-    record ClassData(String name, byte[] content) { }
 
     private List<ClassData> scan(Path path) throws IOException {
         try (Stream<Path> walk = Files.walk(path, Integer.MAX_VALUE)) {
@@ -103,15 +99,15 @@ public class JByteInspectorEngine implements AnalysisService {
 
                 Set<AttributeReport> attributes = new HashSet<>();
                 attributes = Arrays.stream(m.getAttributes()).map(attribute_info -> {
-                    String attribute_name = resolveUtf8(cf, attribute_info.getAttribute_name_index());
-                    return new AttributeReport(attribute_name, attribute_info.getAttribute_length(), attribute_info.getInfo());
+                    String attribute_name = resolveUtf8(cf, attribute_info.attribute_name_index());
+                    return new AttributeReport(attribute_name, attribute_info.attribute_length(), attribute_info.info());
                 }).collect(Collectors.toSet());
 
                 for (attribute_info a : m.getAttributes()) {
-                    String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
+                    String attribute_name = resolveUtf8(cf, a.attribute_name_index());
                     System.out.println("Attribute Name" + attribute_name);
                     if (attribute_name.equals("Code")) {
-                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
+                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.info()))) {
                             // 1. Header lesen
                             int maxStack   = inputStream.readUnsignedShort();
                             int maxLocals  = inputStream.readUnsignedShort();
@@ -193,6 +189,8 @@ public class JByteInspectorEngine implements AnalysisService {
                                         System.out.printf("LDC #%d\n", index);
                                         opcodes.add(Opcodes.LDC);
 
+                                        var constantPoolItem = cf.getConstantPoolItem(index);
+                                        System.out.println(constantPoolItem);
 
                                         break;
                                     }
@@ -311,4 +309,6 @@ public class JByteInspectorEngine implements AnalysisService {
         var utf8Info = cf.getConstantPoolItem(index, CONSTANT_Utf8_info.class);
         return utf8Info != null ? utf8Info.getValue() : "???";
     }
+
+    record ClassData(String name, byte[] content) { }
 }

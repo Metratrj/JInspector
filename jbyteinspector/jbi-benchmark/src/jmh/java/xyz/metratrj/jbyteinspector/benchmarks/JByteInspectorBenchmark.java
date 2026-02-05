@@ -1,17 +1,13 @@
 package xyz.metratrj.jbyteinspector.benchmarks;
 
 import org.openjdk.jmh.annotations.*;
-import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine; // Wait, I need to check if I can replace 3 lines at once or if they are separated.
+import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
 import xyz.metratrj.jbyteinspector.model.AnalysisService;
-import xyz.metratrj.jbyteinspector.model.ClassReport;
-import xyz.metratrj.jbyteinspector.parser.classfile.ClassFile;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
@@ -19,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Thread)
 public class JByteInspectorBenchmark {
 
-    private Path fixturePath;
+    private Path            fixturePath;
     private AnalysisService engine;
 
     @Setup
@@ -28,11 +24,11 @@ public class JByteInspectorBenchmark {
         if (inputStream == null) {
             throw new RuntimeException("Fixture not found!");
         }
-        
+
         // Copy to a real file in a temporary directory
         fixturePath = Files.createTempFile("Person", ".class");
         Files.copy(inputStream, fixturePath, StandardCopyOption.REPLACE_EXISTING);
-        
+
         engine = new JByteInspectorEngine();
     }
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Fractal Tree Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0a0a0c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="treeCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('treeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let time = 0;
+    let growthProgress = 0; // 0 to 1
+    const maxDepth = 10;
+
+    // Configuration
+    const config = {
+        branchColor: '#e0e0e0',
+        growthSpeed: 0.005,
+        swayAmplitude: 0.05,
+        swaySpeed: 0.02,
+        initialLength: 120,
+        reductionFactor: 0.75,
+        baseAngle: Math.PI / 4 // 45 degrees
+    };
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    /**
+     * Draws a branch recursively
+     * @param {number} x1 - Start X
+     * @param {number} y1 - Start Y
+     * @param {number} angle - Direction in radians
+     * @param {number} length - Length of current segment
+     * @param {number} depth - Current recursion depth
+     */
+    function drawTree(x1, y1, angle, length, depth) {
+        if (depth > maxDepth * growthProgress) return;
+
+        // Calculate end coordinates
+        const x2 = x1 + Math.sin(angle) * length;
+        const y2 = y1 - Math.cos(angle) * length;
+
+        // Visual properties based on depth
+        ctx.lineWidth = Math.max(1, depth * 0.8);
+        ctx.strokeStyle = `rgba(224, 224, 224, ${1 - (depth / (maxDepth + 2))})`;
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        // Calculate sway and variation
+        // We use Math.sin(time) to create the back-and-forth movement
+        const sway = Math.sin(time + depth) * config.swayAmplitude;
+
+        // Recursive calls for left and right branches
+        // Slight randomness could be added here, but sway provides organic movement
+        if (depth < maxDepth) {
+            drawTree(x2, y2, angle + config.baseAngle + sway, length * config.reductionFactor, depth + 1);
+            drawTree(x2, y2, angle - config.baseAngle + sway, length * config.reductionFactor, depth + 1);
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Update state
+        time += config.swaySpeed;
+        if (growthProgress < 1) {
+            growthProgress += config.growthSpeed;
+        }
+
+        // Draw from the bottom center
+        const startX = width / 2;
+        const startY = height - 50;
+
+        drawTree(startX, startY, 0, config.initialLength * growthProgress, 0);
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
+</body>
+</html>

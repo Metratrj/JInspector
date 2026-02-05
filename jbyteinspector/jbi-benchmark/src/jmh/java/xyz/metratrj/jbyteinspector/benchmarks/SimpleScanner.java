@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SimpleScanner implements ClassScanner{
+public class SimpleScanner implements ClassScanner {
     @Override
     public List<ClassData> scan(Path rootPath) throws IOException {
         try (Stream<Path> walk = Files.walk(rootPath)) {
