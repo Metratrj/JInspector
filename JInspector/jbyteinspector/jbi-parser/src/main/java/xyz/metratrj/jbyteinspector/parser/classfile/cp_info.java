@@ -1,7 +1,7 @@
 package xyz.metratrj.jbyteinspector.parser.classfile;
 
 public class cp_info {
-    int tag;
+    public int tag;
 
     public cp_info(int tag) {
         super();

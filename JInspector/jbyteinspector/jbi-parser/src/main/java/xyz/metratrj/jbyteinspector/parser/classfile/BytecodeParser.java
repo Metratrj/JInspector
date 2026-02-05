@@ -7,22 +7,35 @@ import java.util.List;
 
 public class BytecodeParser {
 
-    public record Instruction(int pc, int opcode, String mnemonic, List<Object> operands) {
-        @Override
-        public String toString() {
-            return String.format("%04d: %s %s", pc, mnemonic, operands);
+    public static String getMnemonic(int opcode) {
+        // This is a simplified version, should ideally map all opcodes
+        for (java.lang.reflect.Field field : ClassFile.class.getFields()) {
+            try {
+                if (field.getType() == int.class && field.getModifiers() == (java.lang.reflect.Modifier.PUBLIC | java.lang.reflect.Modifier.STATIC | java.lang.reflect.Modifier.FINAL)) {
+                    if (field.getInt(null) == opcode && !field.getName().startsWith("ACC_") && !field.getName().startsWith("CONSTANT_") && !field.getName().equals("JAVA_MAGIC")) {
+                        return field.getName();
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                // ignore
+            }
         }
+        return "UNKNOWN_" + opcode;
     }
 
     public static List<Instruction> parse(byte[] code) {
+        return parseTo(code);
+    }
+
+    private static List<Instruction> parseTo(byte[] code) {
         List<Instruction> instructions = new ArrayList<>();
-        ByteBuffer bb = ByteBuffer.wrap(code);
+        ByteBuffer        bb           = ByteBuffer.wrap(code);
         bb.order(ByteOrder.BIG_ENDIAN);
 
         while (bb.hasRemaining()) {
-            int pc = bb.position();
-            int opcode = bb.get() & 0xFF;
-            String mnemonic = getMnemonic(opcode);
+            int          pc       = bb.position();
+            int          opcode   = bb.get() & 0xFF;
+            String       mnemonic = getMnemonic(opcode);
             List<Object> operands = new ArrayList<>();
 
             switch (opcode) {
@@ -32,8 +45,8 @@ public class BytecodeParser {
                 case ClassFile.LDC_W, ClassFile.LDC2_W, ClassFile.GETSTATIC, ClassFile.PUTSTATIC,
                      ClassFile.GETFIELD, ClassFile.PUTFIELD, ClassFile.INVOKEVIRTUAL,
                      ClassFile.INVOKESPECIAL, ClassFile.INVOKESTATIC, ClassFile.NEW,
-                     ClassFile.ANEWARRAY, ClassFile.CHECKCAST, ClassFile.INSTANCEOF ->
-                        operands.add(bb.getShort() & 0xFFFF);
+                     ClassFile.ANEWARRAY, ClassFile.CHECKCAST,
+                     ClassFile.INSTANCEOF -> operands.add(bb.getShort() & 0xFFFF);
 
                 case ClassFile.IINC -> {
                     operands.add(bb.get() & 0xFF); // index
@@ -45,8 +58,8 @@ public class BytecodeParser {
                      ClassFile.IFGT, ClassFile.IFLE, ClassFile.IF_ICMPEQ, ClassFile.IF_ICMPNE,
                      ClassFile.IF_ICMPLT, ClassFile.IF_ICMPGE, ClassFile.IF_ICMPGT,
                      ClassFile.IF_ICMPLE, ClassFile.IF_ACMPEQ, ClassFile.IF_ACMPNE,
-                     ClassFile.GOTO, ClassFile.JSR, ClassFile.IFNULL, ClassFile.IFNONNULL ->
-                        operands.add(pc + bb.getShort());
+                     ClassFile.GOTO, ClassFile.JSR, ClassFile.IFNULL,
+                     ClassFile.IFNONNULL -> operands.add(pc + bb.getShort());
 
                 case ClassFile.GOTO_W, ClassFile.JSR_W -> operands.add(pc + bb.getInt());
 
@@ -70,11 +83,12 @@ public class BytecodeParser {
 
                 case ClassFile.TABLESWITCH -> {
                     int currentPos = bb.position();
-                    int padding = (4 - (currentPos % 4)) % 4;
-                    for (int k = 0; k < padding; k++) bb.get();
+                    int padding    = (4 - (currentPos % 4)) % 4;
+                    for (int k = 0; k < padding; k++)
+                         bb.get();
                     int defaultOffset = bb.getInt();
-                    int low = bb.getInt();
-                    int high = bb.getInt();
+                    int low           = bb.getInt();
+                    int high          = bb.getInt();
                     operands.add(pc + defaultOffset);
                     operands.add(low);
                     operands.add(high);
@@ -86,10 +100,11 @@ public class BytecodeParser {
 
                 case ClassFile.LOOKUPSWITCH -> {
                     int currentPos = bb.position();
-                    int padding = (4 - (currentPos % 4)) % 4;
-                    for (int k = 0; k < padding; k++) bb.get();
+                    int padding    = (4 - (currentPos % 4)) % 4;
+                    for (int k = 0; k < padding; k++)
+                         bb.get();
                     int defaultOffset = bb.getInt();
-                    int npairs = bb.getInt();
+                    int npairs        = bb.getInt();
                     operands.add(pc + defaultOffset);
                     operands.add(npairs);
                     for (int k = 0; k < npairs; k++) {
@@ -108,7 +123,8 @@ public class BytecodeParser {
                     if (extendedOpcode == ClassFile.IINC) {
                         operands.add(bb.getShort() & 0xFFFF);
                         operands.add((int) bb.getShort());
-                    } else {
+                    }
+                    else {
                         operands.add(bb.getShort() & 0xFFFF);
                     }
                 }
@@ -122,20 +138,11 @@ public class BytecodeParser {
         return instructions;
     }
 
-    public static String getMnemonic(int opcode) {
-        // This is a simplified version, should ideally map all opcodes
-        for (java.lang.reflect.Field field : ClassFile.class.getFields()) {
-            try {
-                if (field.getType() == int.class && field.getModifiers() == (java.lang.reflect.Modifier.PUBLIC | java.lang.reflect.Modifier.STATIC | java.lang.reflect.Modifier.FINAL)) {
-                    if (field.getInt(null) == opcode && !field.getName().startsWith("ACC_") && !field.getName().startsWith("CONSTANT_") && !field.getName().equals("JAVA_MAGIC")) {
-                        return field.getName();
-                    }
-                }
-            } catch (IllegalAccessException e) {
-                // ignore
-            }
+    public record Instruction(int pc, int opcode, String mnemonic, List<Object> operands) {
+        @Override
+        public String toString() {
+            return String.format("%04d: %s %s", pc, mnemonic, operands);
         }
-        return "UNKNOWN_" + opcode;
     }
 }
 

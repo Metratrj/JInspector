@@ -1,4 +1,4 @@
-package xyz.metratrj.jbyteinspector.model;
+package xyz.metratrj.jbyteinspector.parser.classfile;
 
 public record AttributeReport(String name,
                               int length,

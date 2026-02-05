@@ -1,4 +1,4 @@
-package xyz.metratrj.jbyteinspector.model;
+package xyz.metratrj.jbyteinspector.parser.classfile;
 
 import java.nio.file.Path;
 import java.util.List;

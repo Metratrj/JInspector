@@ -1,17 +1,16 @@
 package xyz.metratrj.jbyteinspector.cli;
 
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
-import xyz.metratrj.jbyteinspector.model.*;
-import xyz.metratrj.jbyteinspector.parser.classfile.ClassFile;
-import xyz.metratrj.jbyteinspector.parser.classfile.Opcodes;
+import xyz.metratrj.jbyteinspector.parser.classfile.AnalysisService;
+import xyz.metratrj.jbyteinspector.parser.classfile.ClassReport;
+import xyz.metratrj.jbyteinspector.parser.classfile.FieldReport;
+import xyz.metratrj.jbyteinspector.parser.classfile.MethodReport;
+import xyz.metratrj.jbyteinspector.parser.classfile.BytecodeParser;
+import xyz.metratrj.jbyteinspector.parser.classfile.Code_attribute;
+import xyz.metratrj.jbyteinspector.parser.classfile.attribute_info;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HexFormat;
 import java.util.List;
 
@@ -50,15 +49,62 @@ public class Main {
                     System.out.printf("  %s %s %s\n", m.flags(), m.name(), m.descriptor());
                     m.attributes().forEach(a -> {
                         System.out.printf("    %s\n", a.name());
+                        if (a.name().equals("Code")) {
+                            disassembleCode(a.data(), report);
+                        }
                     });
-                    displayMethodCode(m.code());
+
                 }
             }
             System.out.println();
         }
     }
 
-    private static void displayMethodCode(CodeReport code) {
+    private static void disassembleCode(byte[] data, ClassReport report) {
+        try {
+            Code_attribute codeAttr = new Code_attribute(0, data.length, data);
+            
+            System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n", 
+                codeAttr.getMaxStack(), codeAttr.getMaxLocals(), codeAttr.getCode().length);
+
+            System.out.println("      bytecode disassembly:");
+            List<BytecodeParser.Instruction> instructions = BytecodeParser.parse(codeAttr.getCode());
+
+            for (BytecodeParser.Instruction insn : instructions) {
+
+                System.out.printf("        %04d: %s %s\n", insn.pc(), insn.mnemonic(), insn.operands());
+
+                for(Object operand : insn.operands()){
+                    if(operand instanceof Integer){
+                        var cpItem = report.getConstantPoolItem(((Integer) operand).intValue());
+
+
+                    }
+                }
+
+            }
+
+            if (!codeAttr.getExceptionTable().isEmpty()) {
+                System.out.printf("      exception_table_length: %d\n", codeAttr.getExceptionTable().size());
+                for (Code_attribute.ExceptionTableEntry entry : codeAttr.getExceptionTable()) {
+                    System.out.printf("        try: %d to %d, handler: %d, type: %d\n", 
+                        entry.startPc(), entry.endPc(), entry.handlerPc(), entry.catchType());
+                }
+            }
+
+            if (!codeAttr.getAttributes().isEmpty()) {
+                System.out.printf("      attributes_count: %d\n", codeAttr.getAttributes().size());
+                for (attribute_info attr : codeAttr.getAttributes()) {
+                    System.out.printf("        attr_index: %d, length: %d, data: %s\n", 
+                        attr.getAttribute_name_index(), attr.getAttribute_length(), HexFormat.of().formatHex(attr.getInfo()));
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error disassembling code: " + e.getMessage());
+        }
+    }
+
+    private static void displayMethodCode(xyz.metratrj.jbyteinspector.parser.classfile.CodeReport code) {
         try {
             System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n",
                               code.maxStack(), code.maxLocals(), code.codeLength());

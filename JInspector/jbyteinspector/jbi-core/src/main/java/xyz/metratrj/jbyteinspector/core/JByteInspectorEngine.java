@@ -1,6 +1,5 @@
 package xyz.metratrj.jbyteinspector.core;
 
-import xyz.metratrj.jbyteinspector.model.*;
 import xyz.metratrj.jbyteinspector.io.FileUtils;
 import xyz.metratrj.jbyteinspector.parser.classfile.*;
 import xyz.metratrj.jbyteinspector.parser.utils.AccessFlagUtils;
@@ -10,10 +9,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -293,7 +290,7 @@ public class JByteInspectorEngine implements AnalysisService {
             }
         }
 
-        return new ClassReport(className, superName, classFlags, methods, fields);
+        return new ClassReport(className, superName, classFlags,cf.getConstantPool(),  methods, fields);
     }
 
     private String resolveClassName(ClassFile cf, int index) {

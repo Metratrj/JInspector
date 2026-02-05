@@ -1,8 +1,8 @@
 package xyz.metratrj.jbyteinspector.tests;
 
 import org.junit.jupiter.api.Test;
-import xyz.metratrj.jbyteinspector.model.AnalysisService;
-import xyz.metratrj.jbyteinspector.model.ClassReport;
+import xyz.metratrj.jbyteinspector.parser.classfile.AnalysisService;
+import xyz.metratrj.jbyteinspector.parser.classfile.ClassReport;
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
 
 import java.io.IOException;

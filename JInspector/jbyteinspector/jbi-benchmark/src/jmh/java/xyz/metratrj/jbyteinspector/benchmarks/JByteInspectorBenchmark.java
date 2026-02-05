@@ -2,16 +2,12 @@ package xyz.metratrj.jbyteinspector.benchmarks;
 
 import org.openjdk.jmh.annotations.*;
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine; // Wait, I need to check if I can replace 3 lines at once or if they are separated.
-import xyz.metratrj.jbyteinspector.model.AnalysisService;
-import xyz.metratrj.jbyteinspector.model.ClassReport;
-import xyz.metratrj.jbyteinspector.parser.classfile.ClassFile;
+import xyz.metratrj.jbyteinspector.parser.classfile.AnalysisService;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
