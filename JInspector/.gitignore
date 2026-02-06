@@ -14,3 +14,7 @@ core-utils/build/
 build/
 bin/
 **/bin/**
+
+### Gradle ###
+**/build/
+!src/**/build/
