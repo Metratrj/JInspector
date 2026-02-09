@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-cli" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-core" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-examples" />
+            <option value="$PROJECT_DIR$/jbyteinspector/jbi-gui" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-io" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-model" />
             <option value="$PROJECT_DIR$/jbyteinspector/jbi-parser" />
