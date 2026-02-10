@@ -1,0 +1,4 @@
+--patch-module
+xyz.metratrj.jbyteinspector.io=_
+--add-reads
+xyz.metratrj.jbyteinspector.io=ALL-UNNAMED
