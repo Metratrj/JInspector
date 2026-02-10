@@ -1,8 +1,10 @@
 package xyz.metratrj.jbyteinspector.cli;
 
-import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
-import xyz.metratrj.jbyteinspector.parser.classfile.*;
+import xyz.metratrj.jbyteinspector.io.ParallelLoader;
+import xyz.metratrj.jbyteinspector.model.*;
+import xyz.metratrj.jbyteinspector.parser.ClassReader;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HexFormat;
@@ -15,139 +17,126 @@ public class Main {
             return;
         }
 
-        Path oPath  = Paths.get(args[0]);
-        //Path oPath = Paths.get("jbi-cli.jar");
-        //Path oPath = Paths.get("/home/metratrj/sources/JInspector/JInspector/out/production/TestModule/xyz/metratrj");
-
+        Path oPath = Paths.get(args[0]);
         System.out.println("Inspecting: " + oPath.toAbsolutePath());
 
-        AnalysisService   service = new JByteInspectorEngine();
-        List<ClassReport> reports = service.analyze(oPath);
-
-        for (ClassReport report : reports) {
-            System.out.println("--------------------------------------------------");
-            System.out.println("Class: " + report.className());
-            System.out.println("Super: " + report.superClassName());
-            System.out.println("Flags: " + report.flags());
-
-            if (!report.fields().isEmpty()) {
-                System.out.println("\nFields:");
-                for (FieldReport f : report.fields()) {
-                    System.out.printf("  %s %s\n", f.flags(), f.name());
+        ParallelLoader loader = new ParallelLoader();
+        try {
+            List<DataRecord> records = loader.load(oPath);
+            for (DataRecord record : records) {
+                System.out.println("--------------------------------------------------");
+                System.out.println("Source: " + record.path());
+                try {
+                    ClassReader reader = new ClassReader(record);
+                    reader.accept(new ConsoleClassVisitor());
+                } catch (Exception e) {
+                    System.err.println("Error parsing class " + record.path() + ": " + e.getMessage());
                 }
             }
-
-            if (!report.methods().isEmpty()) {
-                System.out.println("\nMethods:");
-                for (MethodReport m : report.methods()) {
-                    System.out.printf("  %s %s %s\n", m.flags(), m.name(), m.descriptor());
-                    m.attributes().forEach(a -> {
-                        System.out.printf("    %s\n", a.name());
-                        if (a.name().equals("Code")) {
-                            disassembleCode(a.data(), report);
-                        }
-                    });
-
-                }
-            }
-            System.out.println();
+        } catch (IOException e) {
+            System.err.println("Error loading files: " + e.getMessage());
+        } finally {
+            loader.shutdown();
         }
     }
 
-    private static void disassembleCode(byte[] data, ClassReport report) {
-        try {
-            Code_attribute codeAttr = new Code_attribute(0, data.length, data);
+    private static class ConsoleClassVisitor implements ClassVisitor {
+        @Override
+        public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
+            System.out.println("Class: " + name);
+            System.out.println("Super: " + superName);
+            System.out.println("Flags: 0x" + Integer.toHexString(access));
+        }
 
-            System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n",
-                              codeAttr.getMaxStack(), codeAttr.getMaxLocals(), codeAttr.getCode().length);
+        @Override
+        public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
+            System.out.printf("  Field: %s %s (Flags: 0x%s)\n", descriptor, name, Integer.toHexString(access));
+            return null;
+        }
 
-            System.out.println("      bytecode disassembly:");
-            List<BytecodeParser.Instruction> instructions = BytecodeParser.parse(codeAttr.getCode());
+        @Override
+        public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
+            System.out.printf("\n  Method: %s %s (Flags: 0x%s)\n", name, descriptor, Integer.toHexString(access));
+            return new ConsoleMethodVisitor();
+        }
 
-            for (BytecodeParser.Instruction insn : instructions) {
+        @Override
+        public void visitAttribute(String name, byte[] data) {
+            System.out.printf("  Attribute: %s (length: %d)\n", name, data.length);
+        }
 
-                System.out.printf("        %04d: %s %s\n", insn.pc(), insn.mnemonic(), insn.operands());
-
-                if (usesConstantPool(insn.opcode()) && !insn.operands().isEmpty()) {
-                    Object operand = insn.operands().getFirst();
-                    if (operand instanceof Integer index) {
-                        var cpItem = report.getConstantPoolItem(index);
-                        if (cpItem != null) {
-                            System.out.printf("          -> CP[%d]: %s\n", index, cpItem);
-                            switch (cpItem.tag) {
-                                case ICodes.CONSTANT_Methodref: {
-                                    var                       methodRef   = (CONSTANT_Methodref_info) cpItem;
-                                    CONSTANT_Class_info       classInfo   = report.getConstantPoolItem(methodRef.getClass_index(), CONSTANT_Class_info.class);
-                                    CONSTANT_NameAndType_info nameAndType = report.getConstantPoolItem(methodRef.getName_and_type_index(), CONSTANT_NameAndType_info.class);
-                                    if (classInfo != null && nameAndType != null) {
-                                        CONSTANT_Utf8_info name      = report.getConstantPoolItem(nameAndType.getName_index(), CONSTANT_Utf8_info.class);
-                                        CONSTANT_Utf8_info desc      = report.getConstantPoolItem(nameAndType.getDescriptor_index(), CONSTANT_Utf8_info.class);
-                                        CONSTANT_Utf8_info className = report.getConstantPoolItem(classInfo.name_index, CONSTANT_Utf8_info.class);
-
-                                        System.out.printf("            Resolved: %s.%s%s\n",
-                                                          className.getValue(),
-                                                          name.getValue(),
-                                                          desc.getValue());
-
-                                    }
-
-                                    break;
-                                }
-                                case ICodes.CONSTANT_String: {
-                                    var s   = (CONSTANT_String_info) cpItem;
-                                    var str = report.getConstantPoolItem(s.getString_index(), CONSTANT_Utf8_info.class);
-                                    System.out.printf("            Resolved: %s\n", str.getValue());
-
-
-                                    break;
-                                }
-                            }
-
-
-                        }
-                    }
-                }
-            }
-
-            if (!codeAttr.getExceptionTable().isEmpty()) {
-                System.out.printf("      exception_table_length: %d\n", codeAttr.getExceptionTable().size());
-                for (Code_attribute.ExceptionTableEntry entry : codeAttr.getExceptionTable()) {
-                    System.out.printf("        try: %d to %d, handler: %d, type: %d\n",
-                                      entry.startPc(), entry.endPc(), entry.handlerPc(), entry.catchType());
-                }
-            }
-
-            if (!codeAttr.getAttributes().isEmpty()) {
-                System.out.printf("      attributes_count: %d\n", codeAttr.getAttributes().size());
-                for (attribute_info attr : codeAttr.getAttributes()) {
-                    System.out.printf("        attr_index: %d, length: %d, data: %s\n",
-                                      attr.getAttribute_name_index(), attr.getAttribute_length(), HexFormat.of().formatHex(attr.getInfo()));
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error disassembling code: " + e.getMessage());
+        @Override
+        public void visitEnd() {
         }
     }
 
-    private static boolean usesConstantPool(int opcode) {
-        return switch (opcode) {
-            case ICodes.LDC, ICodes.LDC_W, ICodes.LDC2_W,
-                 ICodes.GETSTATIC, ICodes.PUTSTATIC, ICodes.GETFIELD, ICodes.PUTFIELD,
-                 ICodes.INVOKEVIRTUAL, ICodes.INVOKESPECIAL, ICodes.INVOKESTATIC, ICodes.INVOKEINTERFACE,
-                 ICodes.INVOKEDYNAMIC,
-                 ICodes.NEW, ICodes.ANEWARRAY, ICodes.CHECKCAST, ICodes.INSTANCEOF, ICodes.MULTIANEWARRAY -> true;
-            default -> false;
-        };
-    }
+    private static class ConsoleMethodVisitor implements MethodVisitor {
+        @Override
+        public void visitCode() {
+            System.out.println("    Code:");
+        }
 
-    @SuppressWarnings("unused")
-    private static void displayMethodCode(xyz.metratrj.jbyteinspector.parser.classfile.CodeReport code) {
-        try {
-            System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n",
-                              code.maxStack(), code.maxLocals(), code.codeLength());
-            System.out.println("      bytecode disassembly:");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        @Override
+        public void visitInsn(int opcode) {
+            System.out.printf("      %s\n", Integer.toHexString(opcode));
+        }
+
+        @Override
+        public void visitIntInsn(int opcode, int operand) {
+            System.out.printf("      %s %d\n", Integer.toHexString(opcode), operand);
+        }
+
+        @Override
+        public void visitVarInsn(int opcode, int varIndex) {
+            System.out.printf("      %s var %d\n", Integer.toHexString(opcode), varIndex);
+        }
+
+        @Override
+        public void visitTypeInsn(int opcode, String type) {
+            System.out.printf("      %s %s\n", Integer.toHexString(opcode), type);
+        }
+
+        @Override
+        public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
+            System.out.printf("      %s %s.%s %s\n", Integer.toHexString(opcode), owner, name, descriptor);
+        }
+
+        @Override
+        public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
+            System.out.printf("      %s %s.%s %s\n", Integer.toHexString(opcode), owner, name, descriptor);
+        }
+
+        @Override
+        public void visitJumpInsn(int opcode, Label label) {
+            System.out.printf("      %s %s\n", Integer.toHexString(opcode), label);
+        }
+
+        @Override
+        public void visitLabel(Label label) {
+            System.out.printf("    %s:\n", label);
+        }
+
+        @Override
+        public void visitFrame(int type, int numLocal, Object[] local, int numStack, Object[] stack) {
+        }
+
+        @Override
+        public void visitLineNumber(int line, Label start) {
+            System.out.printf("      line %d\n", line);
+        }
+
+        @Override
+        public void visitMaxs(int maxStack, int maxLocals) {
+            System.out.printf("    MaxStack: %d, MaxLocals: %d\n", maxStack, maxLocals);
+        }
+
+        @Override
+        public void visitAttribute(String name, byte[] data) {
+            System.out.printf("    Method Attribute: %s (length: %d)\n", name, data.length);
+        }
+
+        @Override
+        public void visitEnd() {
         }
     }
 }

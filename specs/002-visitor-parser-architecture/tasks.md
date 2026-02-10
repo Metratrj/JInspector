@@ -17,9 +17,9 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure for modules jbi-model, jbi-parser, jbi-io, and jbi-tests per implementation plan
-- [ ] T002 Update module-info.java for each module to ensure proper JPMS encapsulation and exports
-- [ ] T003 [P] Configure JMH benchmarking in jbi-benchmark/build.gradle for performance tracking
+- [x] T001 Create project structure for modules jbi-model, jbi-parser, jbi-io, and jbi-tests per implementation plan
+- [x] T002 Update module-info.java for each module to ensure proper JPMS encapsulation and exports
+- [x] T003 [P] Configure JMH benchmarking in jbi-benchmark/build.gradle for performance tracking
 
 ---
 
@@ -29,12 +29,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Implement `DataRecord` as a Java Record in jbi-model/src/main/java/xyz/jinspector/model/DataRecord.java
-- [ ] T005 Implement `Label` class with offset tracking in jbi-model/src/main/java/xyz/jinspector/model/Label.java
-- [ ] T006 [P] Create `ClassVisitor` interface in jbi-model/src/main/java/xyz/jinspector/model/ClassVisitor.java
-- [ ] T007 [P] Create `FieldVisitor` interface in jbi-model/src/main/java/xyz/jinspector/model/FieldVisitor.java
-- [ ] T008 [P] Create `MethodVisitor` interface in jbi-model/src/main/java/xyz/jinspector/model/MethodVisitor.java
-- [ ] T009 Implement base `BytecodeException` in jbi-model/src/main/java/xyz/jinspector/model/BytecodeException.java
+- [x] T004 Implement `DataRecord` as a Java Record in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/DataRecord.java
+- [x] T005 Implement `Label` class with offset tracking in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/Label.java
+- [x] T006 [P] Create `ClassVisitor` interface in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/ClassVisitor.java
+- [x] T007 [P] Create `FieldVisitor` interface in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/FieldVisitor.java
+- [x] T008 [P] Create `MethodVisitor` interface in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/MethodVisitor.java
+- [x] T009 Implement base `BytecodeException` in jbi-model/src/main/java/xyz/metratrj/jbyteinspector/model/BytecodeException.java
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -48,10 +48,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T010 [P] [US2] Implement `ParallelLoader` for file system walking in jbi-io/src/main/java/xyz/jinspector/io/ParallelLoader.java
-- [ ] T011 [US2] Add JAR/ZIP archive support to `ParallelLoader` in jbi-io/src/main/java/xyz/jinspector/io/ParallelLoader.java
-- [ ] T012 [US2] Implement unit tests for multi-source loading in jbi-tests/src/test/java/xyz/jinspector/io/ParallelLoaderTest.java
-- [ ] T013 [US2] Add JMH benchmark for loading throughput in jbi-benchmark/src/jmh/java/xyz/jinspector/benchmark/LoaderBenchmark.java
+- [x] T010 [P] [US2] Implement `ParallelLoader` for file system walking in jbi-io/src/main/java/xyz/metratrj/jbyteinspector/io/ParallelLoader.java
+- [x] T011 [US2] Add JAR/ZIP archive support to `ParallelLoader` in jbi-io/src/main/java/xyz/metratrj/jbyteinspector/io/ParallelLoader.java
+- [x] T012 [US2] Implement unit tests for multi-source loading in jbi-tests/src/test/java/xyz/metratrj/jbyteinspector/io/ParallelLoaderTest.java
+- [ ] T013 [US2] Add JMH benchmark for loading throughput in jbi-benchmark/src/jmh/java/xyz/metratrj/jbyteinspector/benchmark/LoaderBenchmark.java
 
 **Checkpoint**: User Story 2 is functional - files can be loaded into memory in parallel.
 
@@ -65,12 +65,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T014 [US1] Implement `ConstantPool` parser in jbi-parser/src/main/java/xyz/jinspector/parser/ConstantPool.java
-- [ ] T015 [US1] Implement class header parsing logic in `ClassReader.java` in jbi-parser/src/main/java/xyz/jinspector/parser/ClassReader.java
-- [ ] T016 [US1] Implement field parsing with attribute visiting in `ClassReader.java`
-- [ ] T017 [US1] Implement method metadata parsing (name, descriptor, etc.) in `ClassReader.java`
-- [ ] T018 [US1] Implement individual attribute visiting for class-level attributes in jbi-parser/src/main/java/xyz/jinspector/parser/AttributeParser.java
-- [ ] T019 [US1] Implement unit tests for class structure inspection in jbi-tests/src/test/java/xyz/jinspector/parser/ClassReaderTest.java
+- [x] T014 [US1] Implement `ConstantPool` parser in jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/ConstantPool.java
+- [x] T015 [US1] Implement class header parsing logic in `ClassReader.java` in jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/ClassReader.java
+- [x] T016 [US1] Implement field parsing with attribute visiting in `ClassReader.java`
+- [x] T017 [US1] Implement method metadata parsing (name, descriptor, etc.) in `ClassReader.java`
+- [x] T018 [US1] Implement individual attribute visiting for class-level attributes in jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/ClassReader.java
+- [x] T019 [US1] Implement unit tests for class structure inspection in jbi-tests/src/test/java/xyz/metratrj/jbyteinspector/parser/ClassReaderTest.java
 
 **Checkpoint**: User Story 1 is functional - class structure can be inspected via visitors.
 
@@ -84,12 +84,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T020 [US3] Implement lazy parsing of the `Code` attribute in `ClassReader.java` (deferring until `visitMethod`)
-- [ ] T021 [US3] Implement label pre-identification pass in `ClassReader.java` to find jump targets and handlers
-- [ ] T022 [US3] Implement the instruction parsing loop triggering `visitInsn`, `visitVarInsn`, etc., in `ClassReader.java`
-- [ ] T023 [US3] Implement triggering of `visitFrame`, `visitLabel`, and `visitLineNumber` at correct offsets in `ClassReader.java`
-- [ ] T024 [US3] Implement unit tests for method body and label inspection in jbi-tests/src/test/java/xyz/jinspector/parser/InstructionParsingTest.java
-- [ ] T025 [US3] Add JMH benchmark for instruction parsing performance in jbi-benchmark/src/jmh/java/xyz/jinspector/benchmark/ParserBenchmark.java
+- [x] T020 [US3] Implement lazy parsing of the `Code` attribute in `ClassReader.java` (deferring until `visitMethod`)
+- [x] T021 [US3] Implement label pre-identification pass in `ClassReader.java` to find jump targets and handlers
+- [x] T022 [US3] Implement the instruction parsing loop triggering `visitInsn`, `visitVarInsn`, etc., in `ClassReader.java`
+- [x] T023 [US3] Implement triggering of `visitFrame`, `visitLabel`, and `visitLineNumber` at correct offsets in `ClassReader.java`
+- [x] T024 [US3] Implement unit tests for method body and label inspection in jbi-tests/src/test/java/xyz/metratrj/jbyteinspector/parser/InstructionParsingTest.java
+- [ ] T025 [US3] Add JMH benchmark for instruction parsing performance in jbi-benchmark/src/jmh/java/xyz/metratrj/jbyteinspector/benchmark/ParserBenchmark.java
 
 **Checkpoint**: All user stories are functional.
 

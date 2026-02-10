@@ -3,4 +3,5 @@ dependencies {
     testImplementation project(':jbi-parser')
     testImplementation project(':jbi-core')
     testImplementation project(':jbi-model')
+    testImplementation project(':jbi-io')
 }

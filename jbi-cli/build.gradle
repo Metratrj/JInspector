@@ -7,6 +7,7 @@ dependencies {
     implementation project(':jbi-model')
     implementation project(':jbi-utils')
     implementation project(':jbi-parser')
+    implementation project(':jbi-io')
 }
 
 application {

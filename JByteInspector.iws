@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9b566eba-0d82-4023-ac34-7688c992b319" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/JByteInspector.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/JByteInspector.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JByteInspector.iws" beforeDir="false" afterPath="$PROJECT_DIR$/JByteInspector.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/classes/module-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/classes/xyz/metratrj/jbyteinspector/cli/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/jbi-cli-0.1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jbi-cli/target/original-jbi-cli-0.1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-benchmark/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-benchmark/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-cli/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-cli/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-cli/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-cli/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-cli/src/main/java/xyz/metratrj/jbyteinspector/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-cli/src/main/java/xyz/metratrj/jbyteinspector/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-io/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-io/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-io/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-io/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-model/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-model/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-tests/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-tests/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/002-visitor-parser-architecture/tasks.md" beforeDir="false" afterPath="$PROJECT_DIR$/specs/002-visitor-parser-architecture/tasks.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +69,51 @@
     <ui_properties converted="true" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="378" />
+    <option name="cachedIndexableFilesCount" value="267" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JByteInspector" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JByteInspector" type="f1a62948:ProjectNode" />
+                <item name="jbi-cli" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JByteInspector" type="f1a62948:ProjectNode" />
+                <item name="jbi-cli" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JByteInspector" type="f1a62948:ProjectNode" />
+                <item name="jbi-cli" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,25 +154,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;001-repository-refactor-cleanup&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/metratrj/sources/JInspector/Code/JByteInspector.ipr&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Code [:jbi-cli:run].executor": "Run",
+    "Gradle.Tests in 'JByteInspector.jbi-tests.test'.executor": "Run",
+    "Gradle.Tests in 'xyz.metratrj.jbyteinspector'.executor": "Debug",
+    "JUnit.All in jbi-tests.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "002-visitor-parser-architecture",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/metratrj/sources/JInspector/Code/JByteInspector.ipr",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Gradle.Code [:jbi-cli:run]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -144,6 +203,99 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Code [:jbi-cli:run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jbi-cli:run" />
+            <option value="--args" />
+            <option value="&quot;jbi-cli.jar&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'JByteInspector.jbi-tests.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jbi-tests:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'xyz.metratrj.jbyteinspector'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jbi-tests:test" />
+            <option value="--tests" />
+            <option value="&quot;xyz.metratrj.jbyteinspector.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="All in jbi-tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jbi-tests" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <method v="2">
         <option name="BuildArtifacts" enabled="false" />
         <option name="Make" enabled="true" />
@@ -172,6 +324,20 @@
         <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.Code [:jbi-cli:run]" />
+      <item itemvalue="Gradle.Tests in 'JByteInspector.jbi-tests.test'" />
+      <item itemvalue="Gradle.Tests in 'xyz.metratrj.jbyteinspector'" />
+      <item itemvalue="JUnit.All in jbi-tests" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Code [:jbi-cli:run]" />
+        <item itemvalue="Gradle.Tests in 'JByteInspector.jbi-tests.test'" />
+        <item itemvalue="Gradle.Tests in 'xyz.metratrj.jbyteinspector'" />
+        <item itemvalue="JUnit.All in jbi-tests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500">
     <option name="USER" value="" />
@@ -197,6 +363,7 @@
       <workItem from="1770717042265" duration="159000" />
       <workItem from="1770717288641" duration="373000" />
       <workItem from="1770717853780" duration="16000" />
+      <workItem from="1770725401677" duration="1693000" />
     </task>
     <servers />
   </component>
