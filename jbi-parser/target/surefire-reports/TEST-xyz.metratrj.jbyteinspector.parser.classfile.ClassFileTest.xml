@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.23" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.454" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk/lib"/>
-    <property name="sun.java.command" value="/home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire/surefirebooter-20260210090758359_3.jar /home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire 2026-02-10T09-07-55_755-jvmRun1 surefire-20260210090758359_1tmp surefire_0-20260210090758359_2tmp"/>
+    <property name="sun.java.command" value="/home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire/surefirebooter-20260210093621800_3.jar /home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire 2026-02-10T09-36-16_471-jvmRun1 surefire-20260210093621800_1tmp surefire_0-20260210093621800_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-parser/target/test-classes:/home/metratrj/sources/JInspector/Code/jbi-parser/target/classes:/home/metratrj/sources/JInspector/Code/jbi-utils/target/jbi-utils-0.1.0-SNAPSHOT.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter/5.11.0/junit-jupiter-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.0/junit-jupiter-api-5.11.0.jar:/home/metratrj/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-commons/1.11.0/junit-platform-commons-1.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.0/junit-jupiter-params-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.11.0/junit-jupiter-engine-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-engine/1.11.0/junit-platform-engine-1.11.0.jar:/home/metratrj/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire/surefirebooter-20260210090758359_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-parser/target/surefire/surefirebooter-20260210093621800_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2"/>
     <property name="user.name" value="metratrj"/>
@@ -55,17 +55,17 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testParseExampleClass" classname="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.148">
-    <system-err><![CDATA[Feb 10, 2026 9:07:59 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+  <testcase name="testParseExampleClass" classname="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.272">
+    <system-err><![CDATA[Feb 10, 2026 9:36:24 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-parser/target/test-classes/fixtures/Example.class
-Feb 10, 2026 9:07:59 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:24 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-parser/target/test-classes/fixtures/Example.class
 ]]></system-err>
   </testcase>
-  <testcase name="testParseInvalidFile" classname="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.02">
-    <system-err><![CDATA[Feb 10, 2026 9:07:59 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+  <testcase name="testParseInvalidFile" classname="xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest" time="0.059">
+    <system-err><![CDATA[Feb 10, 2026 9:36:24 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: non_existent_file.class
-Feb 10, 2026 9:07:59 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:24 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 SEVERE: Error parsing class file: non_existent_file.class
 java.nio.file.NoSuchFileException: non_existent_file.class
 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)

@@ -16,6 +16,17 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-report/JByteInspector.jbyteinspector.jbi-report.iml" filepath="$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-report/JByteInspector.jbyteinspector.jbi-report.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-tests/JByteInspector.jbyteinspector.jbi-tests.iml" filepath="$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-tests/JByteInspector.jbyteinspector.jbi-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-utils/JByteInspector.jbyteinspector.jbi-utils.iml" filepath="$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-utils/JByteInspector.jbyteinspector.jbi-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-benchmark/jbi-benchmark.iml" filepath="$PROJECT_DIR$/jbi-benchmark/jbi-benchmark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-cli/jbi-cli.iml" filepath="$PROJECT_DIR$/jbi-cli/jbi-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-core/jbi-core.iml" filepath="$PROJECT_DIR$/jbi-core/jbi-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-examples/jbi-examples.iml" filepath="$PROJECT_DIR$/jbi-examples/jbi-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-io/jbi-io.iml" filepath="$PROJECT_DIR$/jbi-io/jbi-io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-model/jbi-model.iml" filepath="$PROJECT_DIR$/jbi-model/jbi-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-parser/jbi-parser.iml" filepath="$PROJECT_DIR$/jbi-parser/jbi-parser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-report/jbi-report.iml" filepath="$PROJECT_DIR$/jbi-report/jbi-report.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-tests/jbi-tests.iml" filepath="$PROJECT_DIR$/jbi-tests/jbi-tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-utils/jbi-utils.iml" filepath="$PROJECT_DIR$/jbi-utils/jbi-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbyteinspector-parent.iml" filepath="$PROJECT_DIR$/jbyteinspector-parent.iml" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.230 s -- in xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.454 s -- in xyz.metratrj.jbyteinspector.parser.classfile.ClassFileTest

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="1.26" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="1.794" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk/lib"/>
-    <property name="sun.java.command" value="/home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire/surefirebooter-20260210090805226_12.jar /home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire 2026-02-10T09-07-55_755-jvmRun1 surefire-20260210090805226_10tmp surefire_2-20260210090805226_11tmp"/>
+    <property name="sun.java.command" value="/home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire/surefirebooter-20260210093635084_12.jar /home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire 2026-02-10T09-36-16_471-jvmRun1 surefire-20260210093635084_10tmp surefire_2-20260210093635084_11tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes:/home/metratrj/sources/JInspector/Code/jbi-tests/target/classes:/home/metratrj/sources/JInspector/Code/jbi-utils/target/jbi-utils-0.1.0-SNAPSHOT.jar:/home/metratrj/sources/JInspector/Code/jbi-parser/target/jbi-parser-0.1.0-SNAPSHOT.jar:/home/metratrj/sources/JInspector/Code/jbi-core/target/jbi-core-0.1.0-SNAPSHOT.jar:/home/metratrj/sources/JInspector/Code/jbi-io/target/jbi-io-0.1.0-SNAPSHOT.jar:/home/metratrj/sources/JInspector/Code/jbi-model/target/jbi-model-0.1.0-SNAPSHOT.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter/5.11.0/junit-jupiter-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.11.0/junit-jupiter-api-5.11.0.jar:/home/metratrj/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-commons/1.11.0/junit-platform-commons-1.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.11.0/junit-jupiter-params-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.11.0/junit-jupiter-engine-5.11.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-launcher/1.11.0/junit-platform-launcher-1.11.0.jar:/home/metratrj/.m2/repository/org/junit/platform/junit-platform-engine/1.11.0/junit-platform-engine-1.11.0.jar:/home/metratrj/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire/surefirebooter-20260210090805226_12.jar"/>
+    <property name="surefire.real.class.path" value="/home/metratrj/sources/JInspector/Code/jbi-tests/target/surefire/surefirebooter-20260210093635084_12.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2"/>
     <property name="user.name" value="metratrj"/>
@@ -55,21 +55,17 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testJarAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.874">
+  <testcase name="testJarAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="1.112">
     <system-out><![CDATA[Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -78,17 +74,11 @@
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: BA -> UNKNOWN (Opcode 186)
-        0005: 00 -> NOP
-        0006: 0D -> FCONST_2
-        0007: 00 -> NOP
-        0008: 00 -> NOP
-        0009: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, FCONST_2, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: BA -> INVOKEDYNAMIC [13]
+        0009: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -97,32 +87,21 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 3, max_locals: 3, code_length: 26
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: BB -> UNKNOWN (Opcode 187)
-        0016: 00 -> NOP
-        0017: 10 -> UNKNOWN (Opcode 16)
-        0018: 59 -> UNKNOWN (Opcode 89)
-        0019: B7 -> UNKNOWN (Opcode 183)
-        0020: 00 -> NOP
-        0021: 12 -> LDC #181
-        0023: 00 -> NOP
-        0024: 13 -> UNKNOWN (Opcode 19)
-        0025: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, LDC, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: BB -> NEW [16]
+        0018: 59 -> DUP []
+        0019: B7 -> INVOKESPECIAL [18]
+        0022: B5 -> PUTFIELD [19]
+        0025: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, NEW, DUP, INVOKESPECIAL, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -131,27 +110,19 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 4, code_length: 20
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: 2D -> UNKNOWN (Opcode 45)
-        0016: B5 -> UNKNOWN (Opcode 181)
-        0017: 00 -> NOP
-        0018: 13 -> UNKNOWN (Opcode 19)
-        0019: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: 2D -> ALOAD_3 []
+        0016: B5 -> PUTFIELD [19]
+        0019: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, ALOAD_3, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -162,47 +133,29 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 4, max_locals: 4, code_length: 40
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: BB -> UNKNOWN (Opcode 187)
-        0016: 00 -> NOP
-        0017: 10 -> UNKNOWN (Opcode 16)
-        0018: 59 -> UNKNOWN (Opcode 89)
-        0019: 2D -> UNKNOWN (Opcode 45)
-        0020: BE -> UNKNOWN (Opcode 190)
-        0021: B7 -> UNKNOWN (Opcode 183)
-        0022: 00 -> NOP
-        0023: 17 -> UNKNOWN (Opcode 23)
-        0024: B5 -> UNKNOWN (Opcode 181)
-        0025: 00 -> NOP
-        0026: 13 -> UNKNOWN (Opcode 19)
-        0027: 2A -> UNKNOWN (Opcode 42)
-        0028: B4 -> UNKNOWN (Opcode 180)
-        0029: 00 -> NOP
-        0030: 13 -> UNKNOWN (Opcode 19)
-        0031: 2D -> UNKNOWN (Opcode 45)
-        0032: B8 -> UNKNOWN (Opcode 184)
-        0033: 00 -> NOP
-        0034: 1A -> UNKNOWN (Opcode 26)
-        0035: B6 -> UNKNOWN (Opcode 182)
-        0036: 00 -> NOP
-        0037: 20 -> UNKNOWN (Opcode 32)
-        0038: 57 -> UNKNOWN (Opcode 87)
-        0039: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: BB -> NEW [16]
+        0018: 59 -> DUP []
+        0019: 2D -> ALOAD_3 []
+        0020: BE -> ARRAYLENGTH []
+        0021: B7 -> INVOKESPECIAL [23]
+        0024: B5 -> PUTFIELD [19]
+        0027: 2A -> ALOAD_0 []
+        0028: B4 -> GETFIELD [19]
+        0031: 2D -> ALOAD_3 []
+        0032: B8 -> INVOKESTATIC [26]
+        0035: B6 -> INVOKEVIRTUAL [32]
+        0038: 57 -> POP []
+        0039: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, NEW, DUP, ALOAD_3, ARRAYLENGTH, INVOKESPECIAL, PUTFIELD, ALOAD_0, GETFIELD, ALOAD_3, INVOKESTATIC, INVOKEVIRTUAL, POP, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -211,31 +164,17 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 3, max_locals: 1, code_length: 24
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: B4 -> UNKNOWN (Opcode 180)
-        0006: 00 -> NOP
-        0007: 0D -> FCONST_2
-        0008: 2A -> UNKNOWN (Opcode 42)
-        0009: B4 -> UNKNOWN (Opcode 180)
-        0010: 00 -> NOP
-        0011: 13 -> UNKNOWN (Opcode 19)
-        0012: B8 -> UNKNOWN (Opcode 184)
-        0013: 00 -> NOP
-        0014: 24 -> UNKNOWN (Opcode 36)
-        0015: B8 -> UNKNOWN (Opcode 184)
-        0016: 00 -> NOP
-        0017: 27 -> UNKNOWN (Opcode 39)
-        0018: BA -> UNKNOWN (Opcode 186)
-        0019: 00 -> NOP
-        0020: 2D -> UNKNOWN (Opcode 45)
-        0021: 00 -> NOP
-        0022: 00 -> NOP
-        0023: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: 2A -> ALOAD_0 []
+        0005: B4 -> GETFIELD [13]
+        0008: 2A -> ALOAD_0 []
+        0009: B4 -> GETFIELD [19]
+        0012: B8 -> INVOKESTATIC [36]
+        0015: B8 -> INVOKESTATIC [39]
+        0018: BA -> INVOKEDYNAMIC [45]
+        0023: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ALOAD_0, GETFIELD, ALOAD_0, GETFIELD, INVOKESTATIC, INVOKESTATIC, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -244,58 +183,32 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 3, code_length: 51
       bytecode disassembly:
-        0000: 2B -> UNKNOWN (Opcode 43)
-        0001: C1 -> UNKNOWN (Opcode 193)
-        0002: 00 -> NOP
-        0003: 08 -> ICONST_5
-        0004: 99 -> UNKNOWN (Opcode 153)
-        0005: 00 -> NOP
-        0006: 0B -> FCONST_0
-        0007: 2B -> UNKNOWN (Opcode 43)
-        0008: C0 -> UNKNOWN (Opcode 192)
-        0009: 00 -> NOP
-        0010: 08 -> ICONST_5
-        0011: 4D -> UNKNOWN (Opcode 77)
-        0012: A7 -> UNKNOWN (Opcode 167)
-        0013: 00 -> NOP
-        0014: 05 -> ICONST_2
-        0015: 03 -> ICONST_0
-        0016: AC -> UNKNOWN (Opcode 172)
-        0017: 2A -> UNKNOWN (Opcode 42)
-        0018: B6 -> UNKNOWN (Opcode 182)
-        0019: 00 -> NOP
-        0020: 31 -> UNKNOWN (Opcode 49)
-        0021: 2C -> UNKNOWN (Opcode 44)
-        0022: B6 -> UNKNOWN (Opcode 182)
-        0023: 00 -> NOP
-        0024: 31 -> UNKNOWN (Opcode 49)
-        0025: B8 -> UNKNOWN (Opcode 184)
-        0026: 00 -> NOP
-        0027: 35 -> UNKNOWN (Opcode 53)
-        0028: 99 -> UNKNOWN (Opcode 153)
-        0029: 00 -> NOP
-        0030: 15 -> UNKNOWN (Opcode 21)
-        0031: 2A -> UNKNOWN (Opcode 42)
-        0032: B6 -> UNKNOWN (Opcode 182)
-        0033: 00 -> NOP
-        0034: 3B -> UNKNOWN (Opcode 59)
-        0035: 2C -> UNKNOWN (Opcode 44)
-        0036: B6 -> UNKNOWN (Opcode 182)
-        0037: 00 -> NOP
-        0038: 3B -> UNKNOWN (Opcode 59)
-        0039: B8 -> UNKNOWN (Opcode 184)
-        0040: 00 -> NOP
-        0041: 35 -> UNKNOWN (Opcode 53)
-        0042: 99 -> UNKNOWN (Opcode 153)
-        0043: 00 -> NOP
-        0044: 07 -> ICONST_4
-        0045: 04 -> ICONST_1
-        0046: A7 -> UNKNOWN (Opcode 167)
-        0047: 00 -> NOP
-        0048: 04 -> ICONST_1
-        0049: 03 -> ICONST_0
-        0050: AC -> UNKNOWN (Opcode 172)
-[NOP, ICONST_5, NOP, FCONST_0, NOP, ICONST_5, NOP, ICONST_2, ICONST_0, NOP, NOP, NOP, NOP, NOP, NOP, NOP, NOP, ICONST_4, ICONST_1, NOP, ICONST_1, ICONST_0]
+        0000: 2B -> ALOAD_1 []
+        0001: C1 -> INSTANCEOF [8]
+        0004: 99 -> IFEQ [15]
+        0007: 2B -> ALOAD_1 []
+        0008: C0 -> CHECKCAST [8]
+        0011: 4D -> ASTORE_2 []
+        0012: A7 -> GOTO [17]
+        0015: 03 -> ICONST_0 []
+        0016: AC -> IRETURN []
+        0017: 2A -> ALOAD_0 []
+        0018: B6 -> INVOKEVIRTUAL [49]
+        0021: 2C -> ALOAD_2 []
+        0022: B6 -> INVOKEVIRTUAL [49]
+        0025: B8 -> INVOKESTATIC [53]
+        0028: 99 -> IFEQ [49]
+        0031: 2A -> ALOAD_0 []
+        0032: B6 -> INVOKEVIRTUAL [59]
+        0035: 2C -> ALOAD_2 []
+        0036: B6 -> INVOKEVIRTUAL [59]
+        0039: B8 -> INVOKESTATIC [53]
+        0042: 99 -> IFEQ [49]
+        0045: 04 -> ICONST_1 []
+        0046: A7 -> GOTO [50]
+        0049: 03 -> ICONST_0 []
+        0050: AC -> IRETURN []
+[ALOAD_1, INSTANCEOF, IFEQ, ALOAD_1, CHECKCAST, ASTORE_2, GOTO, ICONST_0, IRETURN, ALOAD_0, INVOKEVIRTUAL, ALOAD_2, INVOKEVIRTUAL, INVOKESTATIC, IFEQ, ALOAD_0, INVOKEVIRTUAL, ALOAD_2, INVOKEVIRTUAL, INVOKESTATIC, IFEQ, ICONST_1, GOTO, ICONST_0, IRETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -305,29 +218,21 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 4, max_locals: 1, code_length: 22
       bytecode disassembly:
-        0000: 05 -> ICONST_2
-        0001: BD -> UNKNOWN (Opcode 189)
-        0002: 00 -> NOP
-        0003: 02 -> ICONST_M1
-        0004: 59 -> UNKNOWN (Opcode 89)
-        0005: 03 -> ICONST_0
-        0006: 2A -> UNKNOWN (Opcode 42)
-        0007: B6 -> UNKNOWN (Opcode 182)
-        0008: 00 -> NOP
-        0009: 31 -> UNKNOWN (Opcode 49)
-        0010: 53 -> UNKNOWN (Opcode 83)
-        0011: 59 -> UNKNOWN (Opcode 89)
-        0012: 04 -> ICONST_1
-        0013: 2A -> UNKNOWN (Opcode 42)
-        0014: B6 -> UNKNOWN (Opcode 182)
-        0015: 00 -> NOP
-        0016: 3B -> UNKNOWN (Opcode 59)
-        0017: 53 -> UNKNOWN (Opcode 83)
-        0018: B8 -> UNKNOWN (Opcode 184)
-        0019: 00 -> NOP
-        0020: 3E -> UNKNOWN (Opcode 62)
-        0021: AC -> UNKNOWN (Opcode 172)
-[ICONST_2, NOP, ICONST_M1, ICONST_0, NOP, ICONST_1, NOP, NOP]
+        0000: 05 -> ICONST_2 []
+        0001: BD -> ANEWARRAY [2]
+        0004: 59 -> DUP []
+        0005: 03 -> ICONST_0 []
+        0006: 2A -> ALOAD_0 []
+        0007: B6 -> INVOKEVIRTUAL [49]
+        0010: 53 -> AASTORE []
+        0011: 59 -> DUP []
+        0012: 04 -> ICONST_1 []
+        0013: 2A -> ALOAD_0 []
+        0014: B6 -> INVOKEVIRTUAL [59]
+        0017: 53 -> AASTORE []
+        0018: B8 -> INVOKESTATIC [62]
+        0021: AC -> IRETURN []
+[ICONST_2, ANEWARRAY, DUP, ICONST_0, ALOAD_0, INVOKEVIRTUAL, AASTORE, DUP, ICONST_1, ALOAD_0, INVOKEVIRTUAL, AASTORE, INVOKESTATIC, IRETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -336,12 +241,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -350,13 +253,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 07 -> ICONST_4
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [7]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -365,12 +266,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 0D -> FCONST_2
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP, FCONST_2]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [13]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -379,13 +278,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 0D -> FCONST_2
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, FCONST_2]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [13]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -394,12 +291,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 13 -> UNKNOWN (Opcode 19)
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [19]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -409,13 +304,11 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 13 -> UNKNOWN (Opcode 19)
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [19]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -426,17 +319,13 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 13 -> UNKNOWN (Opcode 19)
-        0004: 2B -> UNKNOWN (Opcode 43)
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 42 -> UNKNOWN (Opcode 66)
-        0008: 57 -> UNKNOWN (Opcode 87)
-        0009: B1 -> UNKNOWN (Opcode 177)
-[NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [19]
+        0004: 2B -> ALOAD_1 []
+        0005: B6 -> INVOKEVIRTUAL [66]
+        0008: 57 -> POP []
+        0009: B1 -> RETURN []
+[ALOAD_0, GETFIELD, ALOAD_1, INVOKEVIRTUAL, POP, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -445,12 +334,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -459,135 +346,77 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 4, max_locals: 8, code_length: 148
       bytecode disassembly:
-        0000: BB -> UNKNOWN (Opcode 187)
-        0001: 00 -> NOP
-        0002: 07 -> ICONST_4
-        0003: 59 -> UNKNOWN (Opcode 89)
-        0004: 12 -> LDC #9
-        0006: 12 -> LDC #11
-        0008: B7 -> UNKNOWN (Opcode 183)
-        0009: 00 -> NOP
-        0010: 0D -> FCONST_2
-        0011: 4C -> UNKNOWN (Opcode 76)
-        0012: BB -> UNKNOWN (Opcode 187)
-        0013: 00 -> NOP
-        0014: 07 -> ICONST_4
-        0015: 59 -> UNKNOWN (Opcode 89)
-        0016: 12 -> LDC #16
-        0018: 12 -> LDC #18
-        0020: B7 -> UNKNOWN (Opcode 183)
-        0021: 00 -> NOP
-        0022: 0D -> FCONST_2
-        0023: 4D -> UNKNOWN (Opcode 77)
-        0024: BB -> UNKNOWN (Opcode 187)
-        0025: 00 -> NOP
-        0026: 07 -> ICONST_4
-        0027: 59 -> UNKNOWN (Opcode 89)
-        0028: 12 -> LDC #9
-        0030: 12 -> LDC #11
-        0032: B7 -> UNKNOWN (Opcode 183)
-        0033: 00 -> NOP
-        0034: 0D -> FCONST_2
-        0035: 4E -> UNKNOWN (Opcode 78)
-        0036: BB -> UNKNOWN (Opcode 187)
-        0037: 00 -> NOP
-        0038: 14 -> UNKNOWN (Opcode 20)
-        0039: 59 -> UNKNOWN (Opcode 89)
-        0040: 12 -> LDC #22
-        0042: B7 -> UNKNOWN (Opcode 183)
-        0043: 00 -> NOP
-        0044: 18 -> UNKNOWN (Opcode 24)
-        0045: 3A -> UNKNOWN (Opcode 58)
-        0046: 04 -> ICONST_1
-        0047: BB -> UNKNOWN (Opcode 187)
-        0048: 00 -> NOP
-        0049: 14 -> UNKNOWN (Opcode 20)
-        0050: 59 -> UNKNOWN (Opcode 89)
-        0051: 12 -> LDC #27
-        0053: B7 -> UNKNOWN (Opcode 183)
-        0054: 00 -> NOP
-        0055: 18 -> UNKNOWN (Opcode 24)
-        0056: 3A -> UNKNOWN (Opcode 58)
-        0057: 05 -> ICONST_2
-        0058: BB -> UNKNOWN (Opcode 187)
-        0059: 00 -> NOP
-        0060: 1D -> UNKNOWN (Opcode 29)
-        0061: 59 -> UNKNOWN (Opcode 89)
-        0062: 12 -> LDC #31
-        0064: B7 -> UNKNOWN (Opcode 183)
-        0065: 00 -> NOP
-        0066: 21 -> UNKNOWN (Opcode 33)
-        0067: 3A -> UNKNOWN (Opcode 58)
-        0068: 06 -> ICONST_3
-        0069: BB -> UNKNOWN (Opcode 187)
-        0070: 00 -> NOP
-        0071: 1D -> UNKNOWN (Opcode 29)
-        0072: 59 -> UNKNOWN (Opcode 89)
-        0073: 12 -> LDC #34
-        0075: B7 -> UNKNOWN (Opcode 183)
-        0076: 00 -> NOP
-        0077: 21 -> UNKNOWN (Opcode 33)
-        0078: 3A -> UNKNOWN (Opcode 58)
-        0079: 07 -> ICONST_4
-        0080: 2B -> UNKNOWN (Opcode 43)
-        0081: 19 -> UNKNOWN (Opcode 25)
-        0082: 04 -> ICONST_1
-        0083: B6 -> UNKNOWN (Opcode 182)
-        0084: 00 -> NOP
-        0085: 24 -> UNKNOWN (Opcode 36)
-        0086: 2B -> UNKNOWN (Opcode 43)
-        0087: 19 -> UNKNOWN (Opcode 25)
-        0088: 07 -> ICONST_4
-        0089: B6 -> UNKNOWN (Opcode 182)
-        0090: 00 -> NOP
-        0091: 24 -> UNKNOWN (Opcode 36)
-        0092: 2C -> UNKNOWN (Opcode 44)
-        0093: 19 -> UNKNOWN (Opcode 25)
-        0094: 05 -> ICONST_2
-        0095: B6 -> UNKNOWN (Opcode 182)
-        0096: 00 -> NOP
-        0097: 24 -> UNKNOWN (Opcode 36)
-        0098: 2D -> UNKNOWN (Opcode 45)
-        0099: 19 -> UNKNOWN (Opcode 25)
-        0100: 06 -> ICONST_3
-        0101: B6 -> UNKNOWN (Opcode 182)
-        0102: 00 -> NOP
-        0103: 24 -> UNKNOWN (Opcode 36)
-        0104: B2 -> GETSTATIC #40
-        0107: 2B -> UNKNOWN (Opcode 43)
-        0108: B6 -> UNKNOWN (Opcode 182)
-        0109: 00 -> NOP
-        0110: 2E -> UNKNOWN (Opcode 46)
-        0111: B2 -> GETSTATIC #40
-        0114: 2C -> UNKNOWN (Opcode 44)
-        0115: B6 -> UNKNOWN (Opcode 182)
-        0116: 00 -> NOP
-        0117: 2E -> UNKNOWN (Opcode 46)
-        0118: B2 -> GETSTATIC #40
-        0121: 2D -> UNKNOWN (Opcode 45)
-        0122: B6 -> UNKNOWN (Opcode 182)
-        0123: 00 -> NOP
-        0124: 2E -> UNKNOWN (Opcode 46)
-        0125: B2 -> GETSTATIC #40
-        0128: 2B -> UNKNOWN (Opcode 43)
-        0129: 2C -> UNKNOWN (Opcode 44)
-        0130: B6 -> UNKNOWN (Opcode 182)
-        0131: 00 -> NOP
-        0132: 34 -> UNKNOWN (Opcode 52)
-        0133: B6 -> UNKNOWN (Opcode 182)
-        0134: 00 -> NOP
-        0135: 38 -> UNKNOWN (Opcode 56)
-        0136: B2 -> GETSTATIC #40
-        0139: 2B -> UNKNOWN (Opcode 43)
-        0140: 2D -> UNKNOWN (Opcode 45)
-        0141: B6 -> UNKNOWN (Opcode 182)
-        0142: 00 -> NOP
-        0143: 34 -> UNKNOWN (Opcode 52)
-        0144: B6 -> UNKNOWN (Opcode 182)
-        0145: 00 -> NOP
-        0146: 38 -> UNKNOWN (Opcode 56)
-        0147: B1 -> UNKNOWN (Opcode 177)
-[NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, LDC, NOP, ICONST_1, NOP, LDC, NOP, ICONST_2, NOP, LDC, NOP, ICONST_3, NOP, LDC, NOP, ICONST_4, ICONST_1, NOP, ICONST_4, NOP, ICONST_2, NOP, ICONST_3, NOP, GETSTATIC, NOP, GETSTATIC, NOP, GETSTATIC, NOP, GETSTATIC, NOP, NOP, GETSTATIC, NOP, NOP]
+        0000: BB -> NEW [7]
+        0003: 59 -> DUP []
+        0004: 12 -> LDC [9]
+        0006: 12 -> LDC [11]
+        0008: B7 -> INVOKESPECIAL [13]
+        0011: 4C -> ASTORE_1 []
+        0012: BB -> NEW [7]
+        0015: 59 -> DUP []
+        0016: 12 -> LDC [16]
+        0018: 12 -> LDC [18]
+        0020: B7 -> INVOKESPECIAL [13]
+        0023: 4D -> ASTORE_2 []
+        0024: BB -> NEW [7]
+        0027: 59 -> DUP []
+        0028: 12 -> LDC [9]
+        0030: 12 -> LDC [11]
+        0032: B7 -> INVOKESPECIAL [13]
+        0035: 4E -> ASTORE_3 []
+        0036: BB -> NEW [20]
+        0039: 59 -> DUP []
+        0040: 12 -> LDC [22]
+        0042: B7 -> INVOKESPECIAL [24]
+        0045: 3A -> ASTORE [4]
+        0047: BB -> NEW [20]
+        0050: 59 -> DUP []
+        0051: 12 -> LDC [27]
+        0053: B7 -> INVOKESPECIAL [24]
+        0056: 3A -> ASTORE [5]
+        0058: BB -> NEW [29]
+        0061: 59 -> DUP []
+        0062: 12 -> LDC [31]
+        0064: B7 -> INVOKESPECIAL [33]
+        0067: 3A -> ASTORE [6]
+        0069: BB -> NEW [29]
+        0072: 59 -> DUP []
+        0073: 12 -> LDC [34]
+        0075: B7 -> INVOKESPECIAL [33]
+        0078: 3A -> ASTORE [7]
+        0080: 2B -> ALOAD_1 []
+        0081: 19 -> ALOAD [4]
+        0083: B6 -> INVOKEVIRTUAL [36]
+        0086: 2B -> ALOAD_1 []
+        0087: 19 -> ALOAD [7]
+        0089: B6 -> INVOKEVIRTUAL [36]
+        0092: 2C -> ALOAD_2 []
+        0093: 19 -> ALOAD [5]
+        0095: B6 -> INVOKEVIRTUAL [36]
+        0098: 2D -> ALOAD_3 []
+        0099: 19 -> ALOAD [6]
+        0101: B6 -> INVOKEVIRTUAL [36]
+        0104: B2 -> GETSTATIC [40]
+        0107: 2B -> ALOAD_1 []
+        0108: B6 -> INVOKEVIRTUAL [46]
+        0111: B2 -> GETSTATIC [40]
+        0114: 2C -> ALOAD_2 []
+        0115: B6 -> INVOKEVIRTUAL [46]
+        0118: B2 -> GETSTATIC [40]
+        0121: 2D -> ALOAD_3 []
+        0122: B6 -> INVOKEVIRTUAL [46]
+        0125: B2 -> GETSTATIC [40]
+        0128: 2B -> ALOAD_1 []
+        0129: 2C -> ALOAD_2 []
+        0130: B6 -> INVOKEVIRTUAL [52]
+        0133: B6 -> INVOKEVIRTUAL [56]
+        0136: B2 -> GETSTATIC [40]
+        0139: 2B -> ALOAD_1 []
+        0140: 2D -> ALOAD_3 []
+        0141: B6 -> INVOKEVIRTUAL [52]
+        0144: B6 -> INVOKEVIRTUAL [56]
+        0147: B1 -> RETURN []
+[NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_1, NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_2, NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_3, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, ALOAD_1, ALOAD, INVOKEVIRTUAL, ALOAD_1, ALOAD, INVOKEVIRTUAL, ALOAD_2, ALOAD, INVOKEVIRTUAL, ALOAD_3, ALOAD, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, INVOKEVIRTUAL, GETSTATIC, ALOAD_2, INVOKEVIRTUAL, GETSTATIC, ALOAD_3, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, ALOAD_2, INVOKEVIRTUAL, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, ALOAD_3, INVOKEVIRTUAL, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -596,19 +425,14 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 12
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B7 -> UNKNOWN (Opcode 183)
-        0003: 00 -> NOP
-        0004: 01 -> ACONST_NULL
-        0005: 2A -> UNKNOWN (Opcode 42)
-        0006: 10 -> UNKNOWN (Opcode 16)
-        0007: 09 -> UNKNOWN (Opcode 9)
-        0008: B5 -> UNKNOWN (Opcode 181)
-        0009: 00 -> NOP
-        0010: 07 -> ICONST_4
-        0011: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B7 -> INVOKESPECIAL [1]
+        0005: 2A -> ALOAD_0 []
+        0006: 10 -> BIPUSH [9]
+        0008: B5 -> PUTFIELD [7]
+        0011: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, INVOKESPECIAL, ALOAD_0, BIPUSH, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -617,13 +441,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #13
-        0003: 12 -> LDC #19
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 15 -> UNKNOWN (Opcode 21)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [13]
+        0003: 12 -> LDC [19]
+        0005: B6 -> INVOKEVIRTUAL [21]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -632,21 +454,13 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 14
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: B7 -> UNKNOWN (Opcode 183)
-        0006: 00 -> NOP
-        0007: 1A -> UNKNOWN (Opcode 26)
-        0008: BA -> UNKNOWN (Opcode 186)
-        0009: 00 -> NOP
-        0010: 1E -> UNKNOWN (Opcode 30)
-        0011: 00 -> NOP
-        0012: 00 -> NOP
-        0013: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: 2A -> ALOAD_0 []
+        0005: B7 -> INVOKESPECIAL [26]
+        0008: BA -> INVOKEDYNAMIC [30]
+        0013: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ALOAD_0, INVOKESPECIAL, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -655,13 +469,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B7 -> UNKNOWN (Opcode 183)
-        0003: 00 -> NOP
-        0004: 01 -> ACONST_NULL
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B7 -> INVOKESPECIAL [1]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -670,13 +482,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #7
-        0003: 12 -> LDC #13
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 0F -> UNKNOWN (Opcode 15)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [7]
+        0003: 12 -> LDC [13]
+        0005: B6 -> INVOKEVIRTUAL [15]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -685,17 +495,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 14 -> UNKNOWN (Opcode 20)
-        0004: BA -> UNKNOWN (Opcode 186)
-        0005: 00 -> NOP
-        0006: 18 -> UNKNOWN (Opcode 24)
-        0007: 00 -> NOP
-        0008: 00 -> NOP
-        0009: B0 -> UNKNOWN (Opcode 176)
-[NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [20]
+        0004: BA -> INVOKEDYNAMIC [24]
+        0009: B0 -> ARETURN []
+[ALOAD_0, INVOKESPECIAL, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -704,12 +508,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -718,77 +520,73 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #7
-        0003: 12 -> LDC #13
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 0F -> UNKNOWN (Opcode 15)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [7]
+        0003: 12 -> LDC [13]
+        0005: B6 -> INVOKEVIRTUAL [15]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
         attr_index: 24, length: 10, data: 00020000000500080006
         attr_index: 25, length: 12, data: 000100000009001a001b0000
 ]]></system-out>
-    <system-err><![CDATA[Feb 10, 2026 9:08:07 AM xyz.metratrj.jbyteinspector.core.JByteInspectorEngine analyzeJar
+    <system-err><![CDATA[Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.core.JByteInspectorEngine analyzeJar
 INFO: Analyzing JAR: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures.jar/jbi-examples-1.0.0.jar
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
 INFO: Starting recursive file search in: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/animals/Tier.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/animals/Tier.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/animals/Person.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:38 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/animals/Person.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/animals/Main.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/animals/Main.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/animals/Katze.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/animals/Katze.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /xyz/metratrj/jbyteinspector/examples/Example.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /xyz/metratrj/jbyteinspector/examples/Example.class
 ]]></system-err>
   </testcase>
-  <testcase name="testEmptyDirectoryAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.105">
-    <system-err><![CDATA[Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
-INFO: Starting recursive file search in: /tmp/empty-classes15410207640471923996
+  <testcase name="testEmptyDirectoryAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.13">
+    <system-err><![CDATA[Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
+INFO: Starting recursive file search in: /tmp/empty-classes10432293468124973029
 ]]></system-err>
   </testcase>
-  <testcase name="testSingleFileAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.06">
+  <testcase name="testSingleFileAnalysis" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.059">
     <system-out><![CDATA[Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B7 -> UNKNOWN (Opcode 183)
-        0003: 00 -> NOP
-        0004: 01 -> ACONST_NULL
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B7 -> INVOKESPECIAL [1]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -797,13 +595,11 @@ INFO: Starting recursive file search in: /tmp/empty-classes15410207640471923996
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #7
-        0003: 12 -> LDC #13
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 0F -> UNKNOWN (Opcode 15)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [7]
+        0003: 12 -> LDC [13]
+        0005: B6 -> INVOKEVIRTUAL [15]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -812,44 +608,36 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 14 -> UNKNOWN (Opcode 20)
-        0004: BA -> UNKNOWN (Opcode 186)
-        0005: 00 -> NOP
-        0006: 18 -> UNKNOWN (Opcode 24)
-        0007: 00 -> NOP
-        0008: 00 -> NOP
-        0009: B0 -> UNKNOWN (Opcode 176)
-[NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [20]
+        0004: BA -> INVOKEDYNAMIC [24]
+        0009: B0 -> ARETURN []
+[ALOAD_0, INVOKESPECIAL, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
         attr_index: 31, length: 6, data: 000100000010
         attr_index: 32, length: 12, data: 00010000000a002100220000
 ]]></system-out>
-    <system-err><![CDATA[Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
+    <system-err><![CDATA[Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
 INFO: Starting recursive file search in: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
 ]]></system-err>
   </testcase>
-  <testcase name="testFullPipelineWithAnimalExamples" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.097">
+  <testcase name="testFullPipelineWithAnimalExamples" classname="xyz.metratrj.jbyteinspector.tests.PipelineIntegrationTest" time="0.285">
     <system-out><![CDATA[Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B7 -> UNKNOWN (Opcode 183)
-        0003: 00 -> NOP
-        0004: 01 -> ACONST_NULL
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B7 -> INVOKESPECIAL [1]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -858,13 +646,11 @@ INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #7
-        0003: 12 -> LDC #13
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 0F -> UNKNOWN (Opcode 15)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [7]
+        0003: 12 -> LDC [13]
+        0005: B6 -> INVOKEVIRTUAL [15]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -873,17 +659,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 14 -> UNKNOWN (Opcode 20)
-        0004: BA -> UNKNOWN (Opcode 186)
-        0005: 00 -> NOP
-        0006: 18 -> UNKNOWN (Opcode 24)
-        0007: 00 -> NOP
-        0008: 00 -> NOP
-        0009: B0 -> UNKNOWN (Opcode 176)
-[NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [20]
+        0004: BA -> INVOKEDYNAMIC [24]
+        0009: B0 -> ARETURN []
+[ALOAD_0, INVOKESPECIAL, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -892,19 +672,14 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 12
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B7 -> UNKNOWN (Opcode 183)
-        0003: 00 -> NOP
-        0004: 01 -> ACONST_NULL
-        0005: 2A -> UNKNOWN (Opcode 42)
-        0006: 10 -> UNKNOWN (Opcode 16)
-        0007: 09 -> UNKNOWN (Opcode 9)
-        0008: B5 -> UNKNOWN (Opcode 181)
-        0009: 00 -> NOP
-        0010: 07 -> ICONST_4
-        0011: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B7 -> INVOKESPECIAL [1]
+        0005: 2A -> ALOAD_0 []
+        0006: 10 -> BIPUSH [9]
+        0008: B5 -> PUTFIELD [7]
+        0011: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, INVOKESPECIAL, ALOAD_0, BIPUSH, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -913,13 +688,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 9
       bytecode disassembly:
-        0000: B2 -> GETSTATIC #13
-        0003: 12 -> LDC #19
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 15 -> UNKNOWN (Opcode 21)
-        0008: B1 -> UNKNOWN (Opcode 177)
-[GETSTATIC, LDC, NOP]
+        0000: B2 -> GETSTATIC [13]
+        0003: 12 -> LDC [19]
+        0005: B6 -> INVOKEVIRTUAL [21]
+        0008: B1 -> RETURN []
+[GETSTATIC, LDC, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -928,21 +701,13 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 1, code_length: 14
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: B7 -> UNKNOWN (Opcode 183)
-        0006: 00 -> NOP
-        0007: 1A -> UNKNOWN (Opcode 26)
-        0008: BA -> UNKNOWN (Opcode 186)
-        0009: 00 -> NOP
-        0010: 1E -> UNKNOWN (Opcode 30)
-        0011: 00 -> NOP
-        0012: 00 -> NOP
-        0013: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: 2A -> ALOAD_0 []
+        0005: B7 -> INVOKESPECIAL [26]
+        0008: BA -> INVOKEDYNAMIC [30]
+        0013: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ALOAD_0, INVOKESPECIAL, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -951,12 +716,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -965,135 +728,77 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 4, max_locals: 8, code_length: 148
       bytecode disassembly:
-        0000: BB -> UNKNOWN (Opcode 187)
-        0001: 00 -> NOP
-        0002: 07 -> ICONST_4
-        0003: 59 -> UNKNOWN (Opcode 89)
-        0004: 12 -> LDC #9
-        0006: 12 -> LDC #11
-        0008: B7 -> UNKNOWN (Opcode 183)
-        0009: 00 -> NOP
-        0010: 0D -> FCONST_2
-        0011: 4C -> UNKNOWN (Opcode 76)
-        0012: BB -> UNKNOWN (Opcode 187)
-        0013: 00 -> NOP
-        0014: 07 -> ICONST_4
-        0015: 59 -> UNKNOWN (Opcode 89)
-        0016: 12 -> LDC #16
-        0018: 12 -> LDC #18
-        0020: B7 -> UNKNOWN (Opcode 183)
-        0021: 00 -> NOP
-        0022: 0D -> FCONST_2
-        0023: 4D -> UNKNOWN (Opcode 77)
-        0024: BB -> UNKNOWN (Opcode 187)
-        0025: 00 -> NOP
-        0026: 07 -> ICONST_4
-        0027: 59 -> UNKNOWN (Opcode 89)
-        0028: 12 -> LDC #9
-        0030: 12 -> LDC #11
-        0032: B7 -> UNKNOWN (Opcode 183)
-        0033: 00 -> NOP
-        0034: 0D -> FCONST_2
-        0035: 4E -> UNKNOWN (Opcode 78)
-        0036: BB -> UNKNOWN (Opcode 187)
-        0037: 00 -> NOP
-        0038: 14 -> UNKNOWN (Opcode 20)
-        0039: 59 -> UNKNOWN (Opcode 89)
-        0040: 12 -> LDC #22
-        0042: B7 -> UNKNOWN (Opcode 183)
-        0043: 00 -> NOP
-        0044: 18 -> UNKNOWN (Opcode 24)
-        0045: 3A -> UNKNOWN (Opcode 58)
-        0046: 04 -> ICONST_1
-        0047: BB -> UNKNOWN (Opcode 187)
-        0048: 00 -> NOP
-        0049: 14 -> UNKNOWN (Opcode 20)
-        0050: 59 -> UNKNOWN (Opcode 89)
-        0051: 12 -> LDC #27
-        0053: B7 -> UNKNOWN (Opcode 183)
-        0054: 00 -> NOP
-        0055: 18 -> UNKNOWN (Opcode 24)
-        0056: 3A -> UNKNOWN (Opcode 58)
-        0057: 05 -> ICONST_2
-        0058: BB -> UNKNOWN (Opcode 187)
-        0059: 00 -> NOP
-        0060: 1D -> UNKNOWN (Opcode 29)
-        0061: 59 -> UNKNOWN (Opcode 89)
-        0062: 12 -> LDC #31
-        0064: B7 -> UNKNOWN (Opcode 183)
-        0065: 00 -> NOP
-        0066: 21 -> UNKNOWN (Opcode 33)
-        0067: 3A -> UNKNOWN (Opcode 58)
-        0068: 06 -> ICONST_3
-        0069: BB -> UNKNOWN (Opcode 187)
-        0070: 00 -> NOP
-        0071: 1D -> UNKNOWN (Opcode 29)
-        0072: 59 -> UNKNOWN (Opcode 89)
-        0073: 12 -> LDC #34
-        0075: B7 -> UNKNOWN (Opcode 183)
-        0076: 00 -> NOP
-        0077: 21 -> UNKNOWN (Opcode 33)
-        0078: 3A -> UNKNOWN (Opcode 58)
-        0079: 07 -> ICONST_4
-        0080: 2B -> UNKNOWN (Opcode 43)
-        0081: 19 -> UNKNOWN (Opcode 25)
-        0082: 04 -> ICONST_1
-        0083: B6 -> UNKNOWN (Opcode 182)
-        0084: 00 -> NOP
-        0085: 24 -> UNKNOWN (Opcode 36)
-        0086: 2B -> UNKNOWN (Opcode 43)
-        0087: 19 -> UNKNOWN (Opcode 25)
-        0088: 07 -> ICONST_4
-        0089: B6 -> UNKNOWN (Opcode 182)
-        0090: 00 -> NOP
-        0091: 24 -> UNKNOWN (Opcode 36)
-        0092: 2C -> UNKNOWN (Opcode 44)
-        0093: 19 -> UNKNOWN (Opcode 25)
-        0094: 05 -> ICONST_2
-        0095: B6 -> UNKNOWN (Opcode 182)
-        0096: 00 -> NOP
-        0097: 24 -> UNKNOWN (Opcode 36)
-        0098: 2D -> UNKNOWN (Opcode 45)
-        0099: 19 -> UNKNOWN (Opcode 25)
-        0100: 06 -> ICONST_3
-        0101: B6 -> UNKNOWN (Opcode 182)
-        0102: 00 -> NOP
-        0103: 24 -> UNKNOWN (Opcode 36)
-        0104: B2 -> GETSTATIC #40
-        0107: 2B -> UNKNOWN (Opcode 43)
-        0108: B6 -> UNKNOWN (Opcode 182)
-        0109: 00 -> NOP
-        0110: 2E -> UNKNOWN (Opcode 46)
-        0111: B2 -> GETSTATIC #40
-        0114: 2C -> UNKNOWN (Opcode 44)
-        0115: B6 -> UNKNOWN (Opcode 182)
-        0116: 00 -> NOP
-        0117: 2E -> UNKNOWN (Opcode 46)
-        0118: B2 -> GETSTATIC #40
-        0121: 2D -> UNKNOWN (Opcode 45)
-        0122: B6 -> UNKNOWN (Opcode 182)
-        0123: 00 -> NOP
-        0124: 2E -> UNKNOWN (Opcode 46)
-        0125: B2 -> GETSTATIC #40
-        0128: 2B -> UNKNOWN (Opcode 43)
-        0129: 2C -> UNKNOWN (Opcode 44)
-        0130: B6 -> UNKNOWN (Opcode 182)
-        0131: 00 -> NOP
-        0132: 34 -> UNKNOWN (Opcode 52)
-        0133: B6 -> UNKNOWN (Opcode 182)
-        0134: 00 -> NOP
-        0135: 38 -> UNKNOWN (Opcode 56)
-        0136: B2 -> GETSTATIC #40
-        0139: 2B -> UNKNOWN (Opcode 43)
-        0140: 2D -> UNKNOWN (Opcode 45)
-        0141: B6 -> UNKNOWN (Opcode 182)
-        0142: 00 -> NOP
-        0143: 34 -> UNKNOWN (Opcode 52)
-        0144: B6 -> UNKNOWN (Opcode 182)
-        0145: 00 -> NOP
-        0146: 38 -> UNKNOWN (Opcode 56)
-        0147: B1 -> UNKNOWN (Opcode 177)
-[NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, ICONST_4, LDC, LDC, NOP, FCONST_2, NOP, LDC, NOP, ICONST_1, NOP, LDC, NOP, ICONST_2, NOP, LDC, NOP, ICONST_3, NOP, LDC, NOP, ICONST_4, ICONST_1, NOP, ICONST_4, NOP, ICONST_2, NOP, ICONST_3, NOP, GETSTATIC, NOP, GETSTATIC, NOP, GETSTATIC, NOP, GETSTATIC, NOP, NOP, GETSTATIC, NOP, NOP]
+        0000: BB -> NEW [7]
+        0003: 59 -> DUP []
+        0004: 12 -> LDC [9]
+        0006: 12 -> LDC [11]
+        0008: B7 -> INVOKESPECIAL [13]
+        0011: 4C -> ASTORE_1 []
+        0012: BB -> NEW [7]
+        0015: 59 -> DUP []
+        0016: 12 -> LDC [16]
+        0018: 12 -> LDC [18]
+        0020: B7 -> INVOKESPECIAL [13]
+        0023: 4D -> ASTORE_2 []
+        0024: BB -> NEW [7]
+        0027: 59 -> DUP []
+        0028: 12 -> LDC [9]
+        0030: 12 -> LDC [11]
+        0032: B7 -> INVOKESPECIAL [13]
+        0035: 4E -> ASTORE_3 []
+        0036: BB -> NEW [20]
+        0039: 59 -> DUP []
+        0040: 12 -> LDC [22]
+        0042: B7 -> INVOKESPECIAL [24]
+        0045: 3A -> ASTORE [4]
+        0047: BB -> NEW [20]
+        0050: 59 -> DUP []
+        0051: 12 -> LDC [27]
+        0053: B7 -> INVOKESPECIAL [24]
+        0056: 3A -> ASTORE [5]
+        0058: BB -> NEW [29]
+        0061: 59 -> DUP []
+        0062: 12 -> LDC [31]
+        0064: B7 -> INVOKESPECIAL [33]
+        0067: 3A -> ASTORE [6]
+        0069: BB -> NEW [29]
+        0072: 59 -> DUP []
+        0073: 12 -> LDC [34]
+        0075: B7 -> INVOKESPECIAL [33]
+        0078: 3A -> ASTORE [7]
+        0080: 2B -> ALOAD_1 []
+        0081: 19 -> ALOAD [4]
+        0083: B6 -> INVOKEVIRTUAL [36]
+        0086: 2B -> ALOAD_1 []
+        0087: 19 -> ALOAD [7]
+        0089: B6 -> INVOKEVIRTUAL [36]
+        0092: 2C -> ALOAD_2 []
+        0093: 19 -> ALOAD [5]
+        0095: B6 -> INVOKEVIRTUAL [36]
+        0098: 2D -> ALOAD_3 []
+        0099: 19 -> ALOAD [6]
+        0101: B6 -> INVOKEVIRTUAL [36]
+        0104: B2 -> GETSTATIC [40]
+        0107: 2B -> ALOAD_1 []
+        0108: B6 -> INVOKEVIRTUAL [46]
+        0111: B2 -> GETSTATIC [40]
+        0114: 2C -> ALOAD_2 []
+        0115: B6 -> INVOKEVIRTUAL [46]
+        0118: B2 -> GETSTATIC [40]
+        0121: 2D -> ALOAD_3 []
+        0122: B6 -> INVOKEVIRTUAL [46]
+        0125: B2 -> GETSTATIC [40]
+        0128: 2B -> ALOAD_1 []
+        0129: 2C -> ALOAD_2 []
+        0130: B6 -> INVOKEVIRTUAL [52]
+        0133: B6 -> INVOKEVIRTUAL [56]
+        0136: B2 -> GETSTATIC [40]
+        0139: 2B -> ALOAD_1 []
+        0140: 2D -> ALOAD_3 []
+        0141: B6 -> INVOKEVIRTUAL [52]
+        0144: B6 -> INVOKEVIRTUAL [56]
+        0147: B1 -> RETURN []
+[NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_1, NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_2, NEW, DUP, LDC, LDC, INVOKESPECIAL, ASTORE_3, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, NEW, DUP, LDC, INVOKESPECIAL, ASTORE, ALOAD_1, ALOAD, INVOKEVIRTUAL, ALOAD_1, ALOAD, INVOKEVIRTUAL, ALOAD_2, ALOAD, INVOKEVIRTUAL, ALOAD_3, ALOAD, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, INVOKEVIRTUAL, GETSTATIC, ALOAD_2, INVOKEVIRTUAL, GETSTATIC, ALOAD_3, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, ALOAD_2, INVOKEVIRTUAL, INVOKEVIRTUAL, GETSTATIC, ALOAD_1, ALOAD_3, INVOKEVIRTUAL, INVOKEVIRTUAL, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1102,32 +807,21 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 3, max_locals: 3, code_length: 26
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: BB -> UNKNOWN (Opcode 187)
-        0016: 00 -> NOP
-        0017: 10 -> UNKNOWN (Opcode 16)
-        0018: 59 -> UNKNOWN (Opcode 89)
-        0019: B7 -> UNKNOWN (Opcode 183)
-        0020: 00 -> NOP
-        0021: 12 -> LDC #181
-        0023: 00 -> NOP
-        0024: 13 -> UNKNOWN (Opcode 19)
-        0025: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, LDC, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: BB -> NEW [16]
+        0018: 59 -> DUP []
+        0019: B7 -> INVOKESPECIAL [18]
+        0022: B5 -> PUTFIELD [19]
+        0025: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, NEW, DUP, INVOKESPECIAL, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1136,27 +830,19 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 4, code_length: 20
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: 2D -> UNKNOWN (Opcode 45)
-        0016: B5 -> UNKNOWN (Opcode 181)
-        0017: 00 -> NOP
-        0018: 13 -> UNKNOWN (Opcode 19)
-        0019: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: 2D -> ALOAD_3 []
+        0016: B5 -> PUTFIELD [19]
+        0019: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, ALOAD_3, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -1167,47 +853,29 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 4, max_locals: 4, code_length: 40
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: 2A -> UNKNOWN (Opcode 42)
-        0010: 2C -> UNKNOWN (Opcode 44)
-        0011: B5 -> UNKNOWN (Opcode 181)
-        0012: 00 -> NOP
-        0013: 0D -> FCONST_2
-        0014: 2A -> UNKNOWN (Opcode 42)
-        0015: BB -> UNKNOWN (Opcode 187)
-        0016: 00 -> NOP
-        0017: 10 -> UNKNOWN (Opcode 16)
-        0018: 59 -> UNKNOWN (Opcode 89)
-        0019: 2D -> UNKNOWN (Opcode 45)
-        0020: BE -> UNKNOWN (Opcode 190)
-        0021: B7 -> UNKNOWN (Opcode 183)
-        0022: 00 -> NOP
-        0023: 17 -> UNKNOWN (Opcode 23)
-        0024: B5 -> UNKNOWN (Opcode 181)
-        0025: 00 -> NOP
-        0026: 13 -> UNKNOWN (Opcode 19)
-        0027: 2A -> UNKNOWN (Opcode 42)
-        0028: B4 -> UNKNOWN (Opcode 180)
-        0029: 00 -> NOP
-        0030: 13 -> UNKNOWN (Opcode 19)
-        0031: 2D -> UNKNOWN (Opcode 45)
-        0032: B8 -> UNKNOWN (Opcode 184)
-        0033: 00 -> NOP
-        0034: 1A -> UNKNOWN (Opcode 26)
-        0035: B6 -> UNKNOWN (Opcode 182)
-        0036: 00 -> NOP
-        0037: 20 -> UNKNOWN (Opcode 32)
-        0038: 57 -> UNKNOWN (Opcode 87)
-        0039: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: 2A -> ALOAD_0 []
+        0010: 2C -> ALOAD_2 []
+        0011: B5 -> PUTFIELD [13]
+        0014: 2A -> ALOAD_0 []
+        0015: BB -> NEW [16]
+        0018: 59 -> DUP []
+        0019: 2D -> ALOAD_3 []
+        0020: BE -> ARRAYLENGTH []
+        0021: B7 -> INVOKESPECIAL [23]
+        0024: B5 -> PUTFIELD [19]
+        0027: 2A -> ALOAD_0 []
+        0028: B4 -> GETFIELD [19]
+        0031: 2D -> ALOAD_3 []
+        0032: B8 -> INVOKESTATIC [26]
+        0035: B6 -> INVOKEVIRTUAL [32]
+        0038: 57 -> POP []
+        0039: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, ALOAD_0, ALOAD_2, PUTFIELD, ALOAD_0, NEW, DUP, ALOAD_3, ARRAYLENGTH, INVOKESPECIAL, PUTFIELD, ALOAD_0, GETFIELD, ALOAD_3, INVOKESTATIC, INVOKEVIRTUAL, POP, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1216,31 +884,17 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 3, max_locals: 1, code_length: 24
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: B4 -> UNKNOWN (Opcode 180)
-        0006: 00 -> NOP
-        0007: 0D -> FCONST_2
-        0008: 2A -> UNKNOWN (Opcode 42)
-        0009: B4 -> UNKNOWN (Opcode 180)
-        0010: 00 -> NOP
-        0011: 13 -> UNKNOWN (Opcode 19)
-        0012: B8 -> UNKNOWN (Opcode 184)
-        0013: 00 -> NOP
-        0014: 24 -> UNKNOWN (Opcode 36)
-        0015: B8 -> UNKNOWN (Opcode 184)
-        0016: 00 -> NOP
-        0017: 27 -> UNKNOWN (Opcode 39)
-        0018: BA -> UNKNOWN (Opcode 186)
-        0019: 00 -> NOP
-        0020: 2D -> UNKNOWN (Opcode 45)
-        0021: 00 -> NOP
-        0022: 00 -> NOP
-        0023: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, FCONST_2, NOP, NOP, NOP, NOP, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: 2A -> ALOAD_0 []
+        0005: B4 -> GETFIELD [13]
+        0008: 2A -> ALOAD_0 []
+        0009: B4 -> GETFIELD [19]
+        0012: B8 -> INVOKESTATIC [36]
+        0015: B8 -> INVOKESTATIC [39]
+        0018: BA -> INVOKEDYNAMIC [45]
+        0023: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ALOAD_0, GETFIELD, ALOAD_0, GETFIELD, INVOKESTATIC, INVOKESTATIC, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1249,58 +903,32 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 3, code_length: 51
       bytecode disassembly:
-        0000: 2B -> UNKNOWN (Opcode 43)
-        0001: C1 -> UNKNOWN (Opcode 193)
-        0002: 00 -> NOP
-        0003: 08 -> ICONST_5
-        0004: 99 -> UNKNOWN (Opcode 153)
-        0005: 00 -> NOP
-        0006: 0B -> FCONST_0
-        0007: 2B -> UNKNOWN (Opcode 43)
-        0008: C0 -> UNKNOWN (Opcode 192)
-        0009: 00 -> NOP
-        0010: 08 -> ICONST_5
-        0011: 4D -> UNKNOWN (Opcode 77)
-        0012: A7 -> UNKNOWN (Opcode 167)
-        0013: 00 -> NOP
-        0014: 05 -> ICONST_2
-        0015: 03 -> ICONST_0
-        0016: AC -> UNKNOWN (Opcode 172)
-        0017: 2A -> UNKNOWN (Opcode 42)
-        0018: B6 -> UNKNOWN (Opcode 182)
-        0019: 00 -> NOP
-        0020: 31 -> UNKNOWN (Opcode 49)
-        0021: 2C -> UNKNOWN (Opcode 44)
-        0022: B6 -> UNKNOWN (Opcode 182)
-        0023: 00 -> NOP
-        0024: 31 -> UNKNOWN (Opcode 49)
-        0025: B8 -> UNKNOWN (Opcode 184)
-        0026: 00 -> NOP
-        0027: 35 -> UNKNOWN (Opcode 53)
-        0028: 99 -> UNKNOWN (Opcode 153)
-        0029: 00 -> NOP
-        0030: 15 -> UNKNOWN (Opcode 21)
-        0031: 2A -> UNKNOWN (Opcode 42)
-        0032: B6 -> UNKNOWN (Opcode 182)
-        0033: 00 -> NOP
-        0034: 3B -> UNKNOWN (Opcode 59)
-        0035: 2C -> UNKNOWN (Opcode 44)
-        0036: B6 -> UNKNOWN (Opcode 182)
-        0037: 00 -> NOP
-        0038: 3B -> UNKNOWN (Opcode 59)
-        0039: B8 -> UNKNOWN (Opcode 184)
-        0040: 00 -> NOP
-        0041: 35 -> UNKNOWN (Opcode 53)
-        0042: 99 -> UNKNOWN (Opcode 153)
-        0043: 00 -> NOP
-        0044: 07 -> ICONST_4
-        0045: 04 -> ICONST_1
-        0046: A7 -> UNKNOWN (Opcode 167)
-        0047: 00 -> NOP
-        0048: 04 -> ICONST_1
-        0049: 03 -> ICONST_0
-        0050: AC -> UNKNOWN (Opcode 172)
-[NOP, ICONST_5, NOP, FCONST_0, NOP, ICONST_5, NOP, ICONST_2, ICONST_0, NOP, NOP, NOP, NOP, NOP, NOP, NOP, NOP, ICONST_4, ICONST_1, NOP, ICONST_1, ICONST_0]
+        0000: 2B -> ALOAD_1 []
+        0001: C1 -> INSTANCEOF [8]
+        0004: 99 -> IFEQ [15]
+        0007: 2B -> ALOAD_1 []
+        0008: C0 -> CHECKCAST [8]
+        0011: 4D -> ASTORE_2 []
+        0012: A7 -> GOTO [17]
+        0015: 03 -> ICONST_0 []
+        0016: AC -> IRETURN []
+        0017: 2A -> ALOAD_0 []
+        0018: B6 -> INVOKEVIRTUAL [49]
+        0021: 2C -> ALOAD_2 []
+        0022: B6 -> INVOKEVIRTUAL [49]
+        0025: B8 -> INVOKESTATIC [53]
+        0028: 99 -> IFEQ [49]
+        0031: 2A -> ALOAD_0 []
+        0032: B6 -> INVOKEVIRTUAL [59]
+        0035: 2C -> ALOAD_2 []
+        0036: B6 -> INVOKEVIRTUAL [59]
+        0039: B8 -> INVOKESTATIC [53]
+        0042: 99 -> IFEQ [49]
+        0045: 04 -> ICONST_1 []
+        0046: A7 -> GOTO [50]
+        0049: 03 -> ICONST_0 []
+        0050: AC -> IRETURN []
+[ALOAD_1, INSTANCEOF, IFEQ, ALOAD_1, CHECKCAST, ASTORE_2, GOTO, ICONST_0, IRETURN, ALOAD_0, INVOKEVIRTUAL, ALOAD_2, INVOKEVIRTUAL, INVOKESTATIC, IFEQ, ALOAD_0, INVOKEVIRTUAL, ALOAD_2, INVOKEVIRTUAL, INVOKESTATIC, IFEQ, ICONST_1, GOTO, ICONST_0, IRETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -1310,29 +938,21 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 4, max_locals: 1, code_length: 22
       bytecode disassembly:
-        0000: 05 -> ICONST_2
-        0001: BD -> UNKNOWN (Opcode 189)
-        0002: 00 -> NOP
-        0003: 02 -> ICONST_M1
-        0004: 59 -> UNKNOWN (Opcode 89)
-        0005: 03 -> ICONST_0
-        0006: 2A -> UNKNOWN (Opcode 42)
-        0007: B6 -> UNKNOWN (Opcode 182)
-        0008: 00 -> NOP
-        0009: 31 -> UNKNOWN (Opcode 49)
-        0010: 53 -> UNKNOWN (Opcode 83)
-        0011: 59 -> UNKNOWN (Opcode 89)
-        0012: 04 -> ICONST_1
-        0013: 2A -> UNKNOWN (Opcode 42)
-        0014: B6 -> UNKNOWN (Opcode 182)
-        0015: 00 -> NOP
-        0016: 3B -> UNKNOWN (Opcode 59)
-        0017: 53 -> UNKNOWN (Opcode 83)
-        0018: B8 -> UNKNOWN (Opcode 184)
-        0019: 00 -> NOP
-        0020: 3E -> UNKNOWN (Opcode 62)
-        0021: AC -> UNKNOWN (Opcode 172)
-[ICONST_2, NOP, ICONST_M1, ICONST_0, NOP, ICONST_1, NOP, NOP]
+        0000: 05 -> ICONST_2 []
+        0001: BD -> ANEWARRAY [2]
+        0004: 59 -> DUP []
+        0005: 03 -> ICONST_0 []
+        0006: 2A -> ALOAD_0 []
+        0007: B6 -> INVOKEVIRTUAL [49]
+        0010: 53 -> AASTORE []
+        0011: 59 -> DUP []
+        0012: 04 -> ICONST_1 []
+        0013: 2A -> ALOAD_0 []
+        0014: B6 -> INVOKEVIRTUAL [59]
+        0017: 53 -> AASTORE []
+        0018: B8 -> INVOKESTATIC [62]
+        0021: AC -> IRETURN []
+[ICONST_2, ANEWARRAY, DUP, ICONST_0, ALOAD_0, INVOKEVIRTUAL, AASTORE, DUP, ICONST_1, ALOAD_0, INVOKEVIRTUAL, AASTORE, INVOKESTATIC, IRETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1341,12 +961,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1355,13 +973,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 07 -> ICONST_4
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [7]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1370,12 +986,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 0D -> FCONST_2
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP, FCONST_2]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [13]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1384,13 +998,11 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 0D -> FCONST_2
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP, FCONST_2]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [13]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1399,12 +1011,10 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 5
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 13 -> UNKNOWN (Opcode 19)
-        0004: B0 -> UNKNOWN (Opcode 176)
-[NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [19]
+        0004: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1414,13 +1024,11 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 6
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: 2B -> UNKNOWN (Opcode 43)
-        0002: B5 -> UNKNOWN (Opcode 181)
-        0003: 00 -> NOP
-        0004: 13 -> UNKNOWN (Opcode 19)
-        0005: B1 -> UNKNOWN (Opcode 177)
-[NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: 2B -> ALOAD_1 []
+        0002: B5 -> PUTFIELD [19]
+        0005: B1 -> RETURN []
+[ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 3
@@ -1431,17 +1039,13 @@ Attribute NameSignature
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 13 -> UNKNOWN (Opcode 19)
-        0004: 2B -> UNKNOWN (Opcode 43)
-        0005: B6 -> UNKNOWN (Opcode 182)
-        0006: 00 -> NOP
-        0007: 42 -> UNKNOWN (Opcode 66)
-        0008: 57 -> UNKNOWN (Opcode 87)
-        0009: B1 -> UNKNOWN (Opcode 177)
-[NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [19]
+        0004: 2B -> ALOAD_1 []
+        0005: B6 -> INVOKEVIRTUAL [66]
+        0008: 57 -> POP []
+        0009: B1 -> RETURN []
+[ALOAD_0, GETFIELD, ALOAD_1, INVOKEVIRTUAL, POP, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1450,17 +1054,13 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 2, max_locals: 2, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B7 -> UNKNOWN (Opcode 183)
-        0002: 00 -> NOP
-        0003: 01 -> ACONST_NULL
-        0004: 2A -> UNKNOWN (Opcode 42)
-        0005: 2B -> UNKNOWN (Opcode 43)
-        0006: B5 -> UNKNOWN (Opcode 181)
-        0007: 00 -> NOP
-        0008: 07 -> ICONST_4
-        0009: B1 -> UNKNOWN (Opcode 177)
-[NOP, ACONST_NULL, NOP, ICONST_4]
+        0000: 2A -> ALOAD_0 []
+        0001: B7 -> INVOKESPECIAL [1]
+        0004: 2A -> ALOAD_0 []
+        0005: 2B -> ALOAD_1 []
+        0006: B5 -> PUTFIELD [7]
+        0009: B1 -> RETURN []
+[ALOAD_0, INVOKESPECIAL, ALOAD_0, ALOAD_1, PUTFIELD, RETURN]
 
       exception_table_length: 0
       attributes_count: 2
@@ -1469,54 +1069,48 @@ Attribute NameCode
 Attribute NameCode
       max_stack: 1, max_locals: 1, code_length: 10
       bytecode disassembly:
-        0000: 2A -> UNKNOWN (Opcode 42)
-        0001: B4 -> UNKNOWN (Opcode 180)
-        0002: 00 -> NOP
-        0003: 07 -> ICONST_4
-        0004: BA -> UNKNOWN (Opcode 186)
-        0005: 00 -> NOP
-        0006: 0D -> FCONST_2
-        0007: 00 -> NOP
-        0008: 00 -> NOP
-        0009: B0 -> UNKNOWN (Opcode 176)
-[NOP, ICONST_4, NOP, FCONST_2, NOP, NOP]
+        0000: 2A -> ALOAD_0 []
+        0001: B4 -> GETFIELD [7]
+        0004: BA -> INVOKEDYNAMIC [13]
+        0009: B0 -> ARETURN []
+[ALOAD_0, GETFIELD, INVOKEDYNAMIC, ARETURN]
 
       exception_table_length: 0
       attributes_count: 2
         attr_index: 19, length: 6, data: 00010000000e
         attr_index: 20, length: 12, data: 00010000000a001500160000
 ]]></system-out>
-    <system-err><![CDATA[Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
+    <system-err><![CDATA[Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils findFiles
 INFO: Starting recursive file search in: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.io.FileUtils$1 visitFile
 INFO: Found file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Esel.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Katze.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Katze.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Main.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Main.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Person.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Person.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Starting to parse class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Tier.class
-Feb 10, 2026 9:08:08 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
+Feb 10, 2026 9:36:39 AM xyz.metratrj.jbyteinspector.parser.classfile.ClassFile parse
 INFO: Successfully parsed class file: /home/metratrj/sources/JInspector/Code/jbi-tests/target/test-classes/fixtures/animals/Tier.class
 ]]></system-err>
   </testcase>
