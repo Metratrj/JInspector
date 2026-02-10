@@ -1,6 +1,6 @@
 dependencies {
-    testImplementation project(':jbyteinspector:jbi-utils')
-    testImplementation project(':jbyteinspector:jbi-parser')
-    testImplementation project(':jbyteinspector:jbi-core')
-    testImplementation project(':jbyteinspector:jbi-model')
+    testImplementation project(':jbi-utils')
+    testImplementation project(':jbi-parser')
+    testImplementation project(':jbi-core')
+    testImplementation project(':jbi-model')
 }

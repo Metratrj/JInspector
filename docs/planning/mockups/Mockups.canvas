@@ -1,0 +1,8 @@
+{
+	"nodes":[
+		{"id":"d394c5e56e1a8687","x":-540,"y":-280,"width":400,"height":320,"type":"file","file":"mockups/class_hierarchy_explorer/screen.png"},
+		{"id":"d6650a888f7183c2","x":-100,"y":-280,"width":400,"height":320,"type":"file","file":"mockups/bytecode_analysis_dashboard/screen.png"},
+		{"id":"2f0930fa366e02e3","x":-540,"y":80,"width":400,"height":320,"type":"file","file":"mockups/call_tree_&_bytecode_inspector/screen.png"}
+	],
+	"edges":[]
+}

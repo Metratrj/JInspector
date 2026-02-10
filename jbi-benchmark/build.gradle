@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation project(':jbyteinspector:jbi-core')
-    implementation project(':jbyteinspector:jbi-parser')
+    implementation project(':jbi-core')
+    implementation project(':jbi-parser')
 
     jmh 'org.openjdk.jmh:jmh-core:1.37'
     jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'

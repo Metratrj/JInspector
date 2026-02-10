@@ -1,0 +1,12 @@
+rootProject.name = 'JByteInspector'
+
+include 'jbi-model'
+include 'jbi-parser'
+include 'jbi-core'
+include 'jbi-io'
+include 'jbi-utils'
+include 'jbi-cli'
+include 'jbi-report'
+include 'jbi-benchmark'
+include 'jbi-examples'
+include 'jbi-tests'

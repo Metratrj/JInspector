@@ -3,10 +3,10 @@ plugins {
 }
 
 dependencies {
-    implementation project(':jbyteinspector:jbi-core')
-    implementation project(':jbyteinspector:jbi-model')
-    implementation project(':jbyteinspector:jbi-utils')
-    implementation project(':jbyteinspector:jbi-parser')
+    implementation project(':jbi-core')
+    implementation project(':jbi-model')
+    implementation project(':jbi-utils')
+    implementation project(':jbi-parser')
 }
 
 application {

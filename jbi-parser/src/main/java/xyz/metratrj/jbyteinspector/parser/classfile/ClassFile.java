@@ -7,12 +7,14 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents a Java class file structure as defined by the Java Virtual Machine Specification (JVMS).
+ * This class handles the parsing of binary .class files and provides access to their constituent parts
+ * such as the constant pool, fields, methods, and attributes.
+ */
 public class ClassFile implements ICodes{
 
-
-
     private static final Logger LOGGER = Logger.getLogger(ClassFile.class.getName());
-
 
     private int                   magic;
     private int                   minorVersion;
@@ -34,6 +36,13 @@ public class ClassFile implements ICodes{
     private ClassFile() {
     }
 
+    /**
+     * Parses a Java class file from the specified path.
+     *
+     * @param path The path to the .class file.
+     * @return A parsed {@link ClassFile} object.
+     * @throws IOException If an I/O error occurs or the file is not a valid class file.
+     */
     public static ClassFile parse(Path path) throws IOException {
         LOGGER.info("Starting to parse class file: " + path);
         try (DataInputStream in = new DataInputStream(Files.newInputStream(path))) {
@@ -54,26 +63,52 @@ public class ClassFile implements ICodes{
         }
     }
 
+    /**
+     * Gets the magic number of the class file (should be 0xCAFEBABE).
+     * @return the magic number.
+     */
     public int getMagic() {
         return magic;
     }
 
+    /**
+     * Gets the minor version of the class file.
+     * @return the minor version.
+     */
     public int getMinorVersion() {
         return minorVersion;
     }
 
+    /**
+     * Gets the major version of the class file.
+     * @return the major version.
+     */
     public int getMajorVersion() {
         return majorVersion;
     }
 
+    /**
+     * Gets the number of entries in the constant pool plus one.
+     * @return the constant pool count.
+     */
     public int getConstantPoolCount() {
         return constantPoolCount;
     }
 
+    /**
+     * Gets the raw constant pool array.
+     * @return the array of {@link cp_info}.
+     */
     public cp_info[] getConstantPool() {
         return constantPool;
     }
 
+    /**
+     * Retrieves a specific item from the constant pool by its index.
+     *
+     * @param index The 1-based index into the constant pool.
+     * @return The {@link cp_info} entry, or null if the index is invalid.
+     */
     public cp_info getConstantPoolItem(int index) {
         if (constantPool != null && index > 0 && index < constantPool.length) {
             return constantPool[index];
@@ -81,6 +116,14 @@ public class ClassFile implements ICodes{
         return null;
     }
 
+    /**
+     * Retrieves a specific item from the constant pool and casts it to the expected type.
+     *
+     * @param index The 1-based index into the constant pool.
+     * @param type  The expected class of the entry.
+     * @param <T>   The type of the entry.
+     * @return The cast entry, or null if the index is invalid or the type doesn't match.
+     */
     public <T extends cp_info> T getConstantPoolItem(int index, Class<T> type) {
         cp_info item = getConstantPoolItem(index);
         if (type.isInstance(item)) {
@@ -89,6 +132,12 @@ public class ClassFile implements ICodes{
         return null;
     }
 
+    /**
+     * Gets the tag byte for a constant pool entry.
+     *
+     * @param index The 1-based index into the constant pool.
+     * @return The tag value, or 0 if the index is invalid.
+     */
     public int getConstantPoolTag(int index) {
         cp_info item = getConstantPoolItem(index);
         if (item != null) {
@@ -97,46 +146,90 @@ public class ClassFile implements ICodes{
         return 0;
     }
 
+    /**
+     * Gets the access flags for this class.
+     * @return the access flags mask.
+     */
     public int getAccessFlags() {
         return accessFlags;
     }
 
+    /**
+     * Gets the constant pool index of the {@link CONSTANT_Class_info} representing this class.
+     * @return the index.
+     */
     public int getThisClass() {
         return thisClass;
     }
 
+    /**
+     * Gets the constant pool index of the {@link CONSTANT_Class_info} representing the superclass.
+     * @return the index, or 0 if this class is {@link Object}.
+     */
     public int getSuperClass() {
         return superClass;
     }
 
+    /**
+     * Gets the number of interfaces directly implemented by this class.
+     * @return the interfaces count.
+     */
     public int getInterfacesCount() {
         return interfacesCount;
     }
 
+    /**
+     * Gets the array of interface information.
+     * @return the array of {@link CONSTANT_Class_info}.
+     */
     public CONSTANT_Class_info[] getInterfaces() {
         return interfaces;
     }
 
+    /**
+     * Gets the number of fields declared by this class.
+     * @return the fields count.
+     */
     public int getFieldsCount() {
         return fieldsCount;
     }
 
+    /**
+     * Gets the array of field information.
+     * @return the array of {@link field_info}.
+     */
     public field_info[] getFields() {
         return fields;
     }
 
+    /**
+     * Gets the number of methods declared by this class.
+     * @return the methods count.
+     */
     public int getMethodsCount() {
         return methodsCount;
     }
 
+    /**
+     * Gets the array of method information.
+     * @return the array of {@link method_info}.
+     */
     public method_info[] getMethods() {
         return methods;
     }
 
+    /**
+     * Gets the number of attributes of this class.
+     * @return the attributes count.
+     */
     public int getAttributesCount() {
         return attributesCount;
     }
 
+    /**
+     * Gets the array of class attributes.
+     * @return the array of {@link attribute_info}.
+     */
     public attribute_info[] getAttributes() {
         return attributes;
     }

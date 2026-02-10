@@ -1,6 +1,6 @@
 dependencies {
-    api project(':jbyteinspector:jbi-model')
-    implementation project(':jbyteinspector:jbi-parser')
-    implementation project(':jbyteinspector:jbi-utils')
-    implementation project(':jbyteinspector:jbi-io')
+    api project(':jbi-model')
+    implementation project(':jbi-parser')
+    implementation project(':jbi-utils')
+    implementation project(':jbi-io')
 }

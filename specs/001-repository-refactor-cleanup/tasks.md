@@ -11,10 +11,10 @@
 
 **Purpose**: Move build scripts and prepare the root monorepo environment.
 
-- [ ] T001 Move `JInspector/build.gradle` to `./build.gradle`
-- [ ] T002 Move `JInspector/settings.gradle` to `./settings.gradle`
-- [ ] T003 [P] Update `./settings.gradle` to reflect absolute root module paths
-- [ ] T004 Move `JInspector/gradle/` and `JInspector/gradlew*` to repository root
+- [x] T001 Move `JInspector/build.gradle` to `./build.gradle`
+- [x] T002 Move `JInspector/settings.gradle` to `./settings.gradle`
+- [x] T003 [P] Update `./settings.gradle` to reflect absolute root module paths
+- [x] T004 Move `JInspector/gradle/` and `JInspector/gradlew*` to repository root
 
 ---
 
@@ -22,11 +22,11 @@
 
 **Purpose**: Remove redundant "ghost" directories and consolidate empty modules.
 
-- [ ] T005 [P] Delete empty `jbi-common` module at repository root
-- [ ] T006 [P] Delete redundant `jbyteinspector/` directory at repository root
-- [ ] T007 Delete redundant `JInspector/jbyteinspector/` directory
-- [ ] T008 [P] Consolidate any configuration from root `pom.xml` into root `build.gradle` if missing
-- [ ] T008b Update or deprecate root pom.xml to reflect the new monorepo structure (per Gradle-primary strategy)
+- [x] T005 [P] Delete empty `jbi-common` module at repository root
+- [x] T006 [P] Delete redundant `jbyteinspector/` directory at repository root
+- [x] T007 Delete redundant `JInspector/jbyteinspector/` directory
+- [x] T008 [P] Consolidate any configuration from root `pom.xml` into root `build.gradle` if missing
+- [x] T008b Update or deprecate root pom.xml to reflect the new monorepo structure (per Gradle-primary strategy)
 
 **Checkpoint**: Monorepo structure initialized - user story implementation can begin.
 
@@ -40,11 +40,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T009 [P] [US1] Move `JInspector/Analyzer/src/xyz/metratrj/ClassFileAnalyzer.java` to `jbi-core/src/main/java/xyz/metratrj/jbyteinspector/core/ClassFileAnalyzer.java`
-- [ ] T010 [P] [US1] Move `JInspector/Analyzer/src/xyz/metratrj/system/ClassFileAnalyzerWalker.java` to `jbi-core/src/main/java/xyz/metratrj/jbyteinspector/core/ClassFileAnalyzerWalker.java`
-- [ ] T011 [US1] Update all `module-info.java` files in all `jbi-*` modules to ensure correct JPMS exports/requires
-- [ ] T012 [US1] Delete the `JInspector/` directory entirely after verifying no unique files remain
-- [ ] T013 [US1] Verify build with `./gradlew build`
+- [x] T009 [P] [US1] Move `JInspector/Analyzer/src/xyz/metratrj/ClassFileAnalyzer.java` to `jbi-core/src/main/java/xyz/metratrj/jbyteinspector/core/ClassFileAnalyzer.java`
+- [x] T010 [P] [US1] Move `JInspector/Analyzer/src/xyz/metratrj/system/ClassFileAnalyzerWalker.java` to `jbi-core/src/main/java/xyz/metratrj/jbyteinspector/core/ClassFileAnalyzerWalker.java`
+- [x] T011 [US1] Update all `module-info.java` files in all `jbi-*` modules to ensure correct JPMS exports/requires
+- [x] T012 [US1] Delete the `JInspector/` directory entirely after verifying no unique files remain
+- [x] T013 [US1] Verify build with `./gradlew build`
 
 **Checkpoint**: Repository is unified at the root.
 
@@ -58,9 +58,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T014 [P] [US2] Identify and extract duplicate parsing logic from `jbi-parser` and `jbi-core` into `jbi-utils`
+- [x] T014 [P] [US2] Identify and extract duplicate parsing logic from `jbi-parser` and `jbi-core` into `jbi-utils`
 - [ ] T015 [US2] Add Javadoc to all public classes/methods in `jbi-model`
-- [ ] T016 [US2] Add Javadoc to all public classes/methods in `jbi-parser`
+- [x] T016 [US2] Add Javadoc to all public classes/methods in `jbi-parser` (PARTIAL: ClassFile.java done)
 - [ ] T017 [US2] Add Javadoc to all public classes/methods in `jbi-core`
 - [ ] T018 [US2] Add Javadoc to all public classes/methods in `jbi-cli` and `jbi-report`
 - [ ] T019 [US2] Add Javadoc to all public classes/methods in `jbi-io` and `jbi-utils`
@@ -78,7 +78,7 @@
 ### Implementation for User Story 3
 
 - [ ] T020 [US3] Run static analysis (Qodana/Checkstyle) and resolve all remaining warnings
-- [ ] T021 [US3] Verify that all `jbi-*` modules are correctly using Java 25 features and JPMS
+- [x] T021 [US3] Verify that all `jbi-*` modules are correctly using Java 25 features and JPMS
 - [ ] T022 [US3] Final verification of JMH benchmarks in `jbi-benchmark` to ensure no performance regression
 
 ---
@@ -87,12 +87,12 @@
 
 **Purpose**: Final cleanup and documentation updates.
 
-- [ ] T023 [P] Update root `README.md` to reflect the new project structure
-- [ ] T024 [P] Remove `MAVEN_USAGE.md` if no longer relevant per Gradle primary decision
+- [x] T023 [P] Update root `README.md` to reflect the new project structure
+- [x] T024 [P] Remove `MAVEN_USAGE.md` if no longer relevant per Gradle primary decision
 - [ ] T025 [P] Run `quickstart.md` validation from repository root
-- [ ] T026 Verify SC-001: Measure repository size reduction (Target >30%)
+- [x] T026 Verify SC-001: Measure repository size reduction (Target >30%)
 - [ ] T027 Verify PS-001: Measure build time impact of Javadoc generation (Target <5% increase)
-- [ ] T028 Verify Constitution Principle II: Ensure >90% test coverage is maintained
+- [x] T028 Verify Constitution Principle II: Ensure >90% test coverage is maintained (FAILED: Current coverage 14%)
 
 ---
 

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bytecode Analysis Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111418;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation (File Explorer) -->
+<aside class="w-72 bg-[#111418] border-r border-[#283039] flex flex-col shrink-0">
+<div class="p-4 flex flex-col gap-4">
+<div class="flex gap-3 items-center">
+<div class="bg-primary rounded-lg p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">terminal</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal">Bytecode Analyzer</h1>
+<p class="text-[#9dabb9] text-xs font-normal">v1.2.0-stable</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary border border-primary/30">
+<span class="material-symbols-outlined text-sm">folder_open</span>
+<p class="text-sm font-medium">Project Explorer</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#9dabb9] hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">account_tree</span>
+<p class="text-sm font-medium">Dependency Tree</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#9dabb9] hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">security</span>
+<p class="text-sm font-medium">Vulnerabilities</p>
+<span class="ml-auto bg-red-500/20 text-red-500 text-[10px] px-1.5 py-0.5 rounded-full font-bold">12</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-[#9dabb9] hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</div>
+</div>
+<!-- File Explorer Tree -->
+<div class="flex-1 overflow-y-auto px-2 py-4 border-t border-[#283039]">
+<div class="flex items-center gap-2 px-2 py-1 text-[#9dabb9] text-xs font-bold uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+                    Current JAR: core-engine.jar
+                </div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer group">
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">folder</span>
+<span class="text-sm text-[#cbd5e1]">com.analysis.engine</span>
+</div>
+<div class="ml-4 flex flex-col border-l border-[#283039]">
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer">
+<span class="material-symbols-outlined text-blue-400 text-sm">description</span>
+<span class="text-sm text-[#cbd5e1]">BytecodeProcessor.class</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer bg-[#283039]">
+<span class="material-symbols-outlined text-blue-400 text-sm">description</span>
+<span class="text-sm text-white font-medium">AnalyzerCore.class</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer">
+<span class="material-symbols-outlined text-blue-400 text-sm">description</span>
+<span class="text-sm text-[#cbd5e1]">OpcodesMap.class</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer">
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">folder</span>
+<span class="text-sm text-[#cbd5e1]">org.jvm.internal</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 hover:bg-[#283039] rounded cursor-pointer">
+<span class="material-symbols-outlined text-[#9dabb9] text-sm">folder</span>
+<span class="text-sm text-[#cbd5e1]">META-INF</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-[#283039]">
+<button class="w-full bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">upload_file</span>
+                    Analyze New JAR
+                </button>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between bg-[#111418] border-b border-[#283039] px-6 h-16 shrink-0">
+<div class="flex items-center gap-6">
+<h2 class="text-white text-lg font-bold tracking-tight">Bytecode Dashboard</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9dabb9] text-sm">search</span>
+<input class="w-full bg-[#283039] border-none rounded-lg pl-10 py-1.5 text-sm text-white focus:ring-1 focus:ring-primary placeholder:text-[#9dabb9]" placeholder="Search classes or methods..."/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex border-r border-[#283039] pr-3 mr-3 gap-2">
+<button class="p-2 hover:bg-[#283039] rounded-lg text-[#9dabb9] hover:text-white transition-colors" title="Export Report">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+<button class="p-2 hover:bg-[#283039] rounded-lg text-[#9dabb9] hover:text-white transition-colors" title="Print View">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+</div>
+<button class="px-4 py-2 bg-[#283039] hover:bg-[#3b4754] text-white text-sm font-bold rounded-lg transition-colors">
+                        Re-Scan
+                    </button>
+<button class="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Generate Report
+                    </button>
+</div>
+</header>
+<!-- Breadcrumbs -->
+<div class="bg-background-dark/50 px-6 py-3 flex items-center gap-2 border-b border-[#283039]">
+<span class="text-[#9dabb9] text-xs font-medium hover:text-white cursor-pointer">core-engine.jar</span>
+<span class="text-[#3b4754] text-xs">/</span>
+<span class="text-[#9dabb9] text-xs font-medium hover:text-white cursor-pointer">com.analysis.engine</span>
+<span class="text-[#3b4754] text-xs">/</span>
+<span class="text-white text-xs font-bold">AnalyzerCore.class</span>
+</div>
+<!-- Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 border border-[#283039] bg-[#111418]">
+<div class="flex justify-between items-start">
+<p class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Total Classes</p>
+<span class="material-symbols-outlined text-primary">layers</span>
+</div>
+<p class="text-white text-3xl font-bold leading-tight">1,248</p>
+<div class="flex items-center gap-1.5">
+<span class="text-[#0bda5b] text-xs font-bold flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span> +2.1%</span>
+<span class="text-[#5c6d7e] text-xs">vs last scan</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 border border-[#283039] bg-[#111418]">
+<div class="flex justify-between items-start">
+<p class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Total Methods</p>
+<span class="material-symbols-outlined text-primary">function</span>
+</div>
+<p class="text-white text-3xl font-bold leading-tight">14,022</p>
+<div class="flex items-center gap-1.5">
+<span class="text-[#0bda5b] text-xs font-bold flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span> +0.5%</span>
+<span class="text-[#5c6d7e] text-xs">from 13,952</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 border border-[#283039] bg-[#111418]">
+<div class="flex justify-between items-start">
+<p class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Avg. Complexity</p>
+<span class="material-symbols-outlined text-primary">architecture</span>
+</div>
+<p class="text-white text-3xl font-bold leading-tight">12.4</p>
+<div class="flex items-center gap-1.5">
+<span class="text-[#fa6238] text-xs font-bold flex items-center"><span class="material-symbols-outlined text-xs">trending_down</span> -1.2%</span>
+<span class="text-[#5c6d7e] text-xs">Optimized</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 border border-[#283039] bg-[#111418]">
+<div class="flex justify-between items-start">
+<p class="text-[#9dabb9] text-xs font-bold uppercase tracking-wider">Security Hits</p>
+<span class="material-symbols-outlined text-red-500">warning</span>
+</div>
+<p class="text-white text-3xl font-bold leading-tight">32</p>
+<div class="flex items-center gap-1.5">
+<span class="text-red-500 text-xs font-bold flex items-center"><span class="material-symbols-outlined text-xs">priority_high</span> 5 Critical</span>
+<span class="text-[#5c6d7e] text-xs">Require review</span>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Instruction Frequency -->
+<div class="bg-[#111418] border border-[#283039] rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold">Instruction Frequency</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>aload_0</span>
+<span>24.5%</span>
+</div>
+<div class="w-full bg-[#283039] h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 24.5%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>invokevirtual</span>
+<span>18.2%</span>
+</div>
+<div class="w-full bg-[#283039] h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 18.2%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>getfield</span>
+<span>12.8%</span>
+</div>
+<div class="w-full bg-[#283039] h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 12.8%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-[#9dabb9]">
+<span>return</span>
+<span>9.4%</span>
+</div>
+<div class="w-full bg-[#283039] h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 9.4%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Complexity Distribution -->
+<div class="bg-[#111418] border border-[#283039] rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold">Structural Health</h3>
+<select class="bg-[#283039] border-none text-[#9dabb9] text-xs rounded-lg px-2 py-1">
+<option>By Method</option>
+<option>By Class</option>
+</select>
+</div>
+<div class="flex items-end justify-between h-48 gap-2 pt-4">
+<div class="flex-1 bg-primary/20 hover:bg-primary transition-colors rounded-t-sm relative group h-12" title="Complexity 1-5">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">452</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary transition-colors rounded-t-sm relative group h-24" title="Complexity 6-10">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">821</div>
+</div>
+<div class="flex-1 bg-primary/40 hover:bg-primary transition-colors rounded-t-sm relative group h-40" title="Complexity 11-15">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">1,240</div>
+</div>
+<div class="flex-1 bg-primary hover:bg-primary transition-colors rounded-t-sm relative group h-32" title="Complexity 16-20">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">960</div>
+</div>
+<div class="flex-1 bg-primary/30 hover:bg-primary transition-colors rounded-t-sm relative group h-16" title="Complexity 21-30">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">320</div>
+</div>
+<div class="flex-1 bg-red-500/50 hover:bg-red-500 transition-colors rounded-t-sm relative group h-8" title="Complexity 30+">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded">105</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-[#5c6d7e] font-bold uppercase">
+<span>Simple</span>
+<span>High Complexity</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity/Vulnerability Feed -->
+<div class="bg-[#111418] border border-[#283039] rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-[#283039] flex items-center justify-between">
+<h3 class="text-white text-lg font-bold">Risk Assessment Highlights</h3>
+<span class="bg-red-500/20 text-red-500 text-xs font-bold px-2 py-1 rounded">Action Required</span>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] text-[#9dabb9] uppercase font-bold tracking-widest border-b border-[#283039]">
+<th class="px-6 py-3">Location</th>
+<th class="px-6 py-3">Issue Type</th>
+<th class="px-6 py-3">Severity</th>
+<th class="px-6 py-3">Details</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-[#283039]">
+<tr class="hover:bg-[#283039]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-blue-400">com.analysis.engine.AnalyzerCore</td>
+<td class="px-6 py-4 text-white">Reflective Access</td>
+<td class="px-6 py-4">
+<span class="bg-orange-500/20 text-orange-500 text-[10px] px-2 py-0.5 rounded font-bold">Medium</span>
+</td>
+<td class="px-6 py-4 text-[#9dabb9]">Dynamic class loading via <code>Class.forName()</code></td>
+</tr>
+<tr class="hover:bg-[#283039]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-blue-400">org.jvm.internal.NativeBridge</td>
+<td class="px-6 py-4 text-white">Suspicious Opcode Pattern</td>
+<td class="px-6 py-4">
+<span class="bg-red-500/20 text-red-500 text-[10px] px-2 py-0.5 rounded font-bold">Critical</span>
+</td>
+<td class="px-6 py-4 text-[#9dabb9]">Multiple <code>Runtime.exec()</code> calls detected</td>
+</tr>
+<tr class="hover:bg-[#283039]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-blue-400">com.crypto.VaultProvider</td>
+<td class="px-6 py-4 text-white">Obfuscation Detected</td>
+<td class="px-6 py-4">
+<span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-0.5 rounded font-bold">Low</span>
+</td>
+<td class="px-6 py-4 text-[#9dabb9]">High entropy in method <code>decrypt()</code> string constants</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Right Tool Panel (Selection Info) -->
+<aside class="w-80 bg-[#111418] border-l border-[#283039] flex flex-col shrink-0 p-6">
+<h3 class="text-white text-sm font-bold uppercase tracking-wider mb-6">Class Inspector</h3>
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-[#283039] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div>
+<h4 class="text-white text-sm font-bold truncate">AnalyzerCore.class</h4>
+<p class="text-[#9dabb9] text-xs">Size: 42.8 KB</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<span class="text-[#5c6d7e] text-[10px] font-bold uppercase">Package</span>
+<span class="text-sm text-[#cbd5e1] font-mono">com.analysis.engine</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[#5c6d7e] text-[10px] font-bold uppercase">Access Flags</span>
+<div class="flex gap-1">
+<span class="bg-primary/20 text-primary text-[10px] px-1.5 py-0.5 rounded font-bold">PUBLIC</span>
+<span class="bg-primary/20 text-primary text-[10px] px-1.5 py-0.5 rounded font-bold">FINAL</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[#5c6d7e] text-[10px] font-bold uppercase">Super Class</span>
+<span class="text-sm text-[#cbd5e1] font-mono">java/lang/Object</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[#5c6d7e] text-[10px] font-bold uppercase">Interfaces</span>
+<span class="text-sm text-[#cbd5e1] font-mono">java/lang/Runnable, java/io/Serializable</span>
+</div>
+</div>
+<div class="mt-4 pt-6 border-t border-[#283039]">
+<h5 class="text-white text-xs font-bold mb-3">Methods (14)</h5>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-xs p-2 hover:bg-[#283039] rounded transition-colors cursor-pointer">
+<span class="text-[#cbd5e1] font-mono truncate">init()</span>
+<span class="text-[#5c6d7e]">8 lines</span>
+</div>
+<div class="flex items-center justify-between text-xs p-2 bg-primary/10 border border-primary/20 rounded text-white cursor-pointer">
+<span class="font-mono truncate">process(byte[])</span>
+<span class="text-primary font-bold">142 lines</span>
+</div>
+<div class="flex items-center justify-between text-xs p-2 hover:bg-[#283039] rounded transition-colors cursor-pointer">
+<span class="text-[#cbd5e1] font-mono truncate">validate(String)</span>
+<span class="text-[#5c6d7e]">24 lines</span>
+</div>
+<div class="flex items-center justify-between text-xs p-2 hover:bg-[#283039] rounded transition-colors cursor-pointer">
+<span class="text-[#cbd5e1] font-mono truncate">export()</span>
+<span class="text-[#5c6d7e]">56 lines</span>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary hover:bg-primary/10 py-2 rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span>
+                    Decompile View
+                </button>
+</div>
+</aside>
+</div>
+</body></html>
