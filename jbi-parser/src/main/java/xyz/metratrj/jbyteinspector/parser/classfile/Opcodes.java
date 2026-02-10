@@ -25,6 +25,26 @@ public enum Opcodes {
     FLOAD,// -
     DLOAD,// -
     ALOAD,// -
+    ILOAD_0,
+    ILOAD_1,
+    ILOAD_2,
+    ILOAD_3,
+    LLOAD_0,
+    LLOAD_1,
+    LLOAD_2,
+    LLOAD_3,
+    FLOAD_0,
+    FLOAD_1,
+    FLOAD_2,
+    FLOAD_3,
+    DLOAD_0,
+    DLOAD_1,
+    DLOAD_2,
+    DLOAD_3,
+    ALOAD_0,
+    ALOAD_1,
+    ALOAD_2,
+    ALOAD_3,
     IALOAD,// visitInsn
     LALOAD,// -
     FALOAD,// -
@@ -38,6 +58,26 @@ public enum Opcodes {
     FSTORE,// -
     DSTORE,// -
     ASTORE,// -
+    ISTORE_0,
+    ISTORE_1,
+    ISTORE_2,
+    ISTORE_3,
+    LSTORE_0,
+    LSTORE_1,
+    LSTORE_2,
+    LSTORE_3,
+    FSTORE_0,
+    FSTORE_1,
+    FSTORE_2,
+    FSTORE_3,
+    DSTORE_0,
+    DSTORE_1,
+    DSTORE_2,
+    DSTORE_3,
+    ASTORE_0,
+    ASTORE_1,
+    ASTORE_2,
+    ASTORE_3,
     IASTORE,// visitInsn
     LASTORE,// -
     FASTORE,// -
@@ -158,4 +198,6 @@ public enum Opcodes {
     MULTIANEWARRAY,// visitMultiANewArrayInsn
     IFNULL ,// visitJumpInsn
     IFNONNULL ,// -
+    GOTO_W,
+    JSR_W
 }

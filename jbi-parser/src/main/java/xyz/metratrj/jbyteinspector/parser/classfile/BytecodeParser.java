@@ -109,6 +109,8 @@ public class BytecodeParser {
                     int padding    = (4 - (currentPos % 4)) % 4;
                     for (int k = 0; k < padding; k++)
                          bb.get();
+
+
                     int defaultOffset = bb.getInt();
                     int low           = bb.getInt();
                     int high          = bb.getInt();
@@ -122,10 +124,16 @@ public class BytecodeParser {
                 }
 
                 case ClassFile.LOOKUPSWITCH -> {
+                    // 1. Padding berechnen
+                    // Wir sind jetzt bei (pc +1). Das Padding füllt bis zur nächsten 4-Byte Grenze auf
                     int currentPos = bb.position();
                     int padding    = (4 - (currentPos % 4)) % 4;
+
+                    // 2. Padding im Buffer überspringen
                     for (int k = 0; k < padding; k++)
                          bb.get();
+
+                    // 3. Die 32-Bit Werte lesen
                     int defaultOffset = bb.getInt();
                     int npairs        = bb.getInt();
                     operands.add(pc + defaultOffset);
