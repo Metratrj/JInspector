@@ -1,4 +1,0 @@
---patch-module
-xyz.metratrj.jbyteinspector.parser=_
---add-reads
-xyz.metratrj.jbyteinspector.parser=ALL-UNNAMED
