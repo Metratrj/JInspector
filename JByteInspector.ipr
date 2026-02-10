@@ -32,6 +32,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -43,6 +44,7 @@
             <option value="$PROJECT_DIR$/jbi-cli" />
             <option value="$PROJECT_DIR$/jbi-core" />
             <option value="$PROJECT_DIR$/jbi-examples" />
+            <option value="$PROJECT_DIR$/jbi-gui" />
             <option value="$PROJECT_DIR$/jbi-io" />
             <option value="$PROJECT_DIR$/jbi-model" />
             <option value="$PROJECT_DIR$/jbi-parser" />
@@ -100,6 +102,9 @@
       <module fileurl="file://$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.iml" filepath="$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.main.iml" filepath="$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.test.iml" filepath="$PROJECT_DIR$/jbi-examples/JByteInspector.jbi-examples.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.iml" filepath="$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.main.iml" filepath="$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.test.iml" filepath="$PROJECT_DIR$/jbi-gui/JByteInspector.jbi-gui.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.iml" filepath="$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.main.iml" filepath="$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.test.iml" filepath="$PROJECT_DIR$/jbi-io/JByteInspector.jbi-io.test.iml" />
@@ -308,6 +313,46 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjdk.jmh/jmh-generator-reflection/1.37/2037efe8d992836889455e5621f4833e919256a8/jmh-generator-reflection-1.37-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.openjfx:javafx-base:linux:25" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.openjfx" artifactId="javafx-base" version="25" baseVersion="25" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/25/1f52994bfed549d07ef52a5fa4603db17ea44fbe/javafx-base-25-linux.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/25/19e2522c5d0e970fdcdd40d5631532e895e4d1a9/javafx-base-25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.openjfx:javafx-controls:linux:25" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.openjfx" artifactId="javafx-controls" version="25" baseVersion="25" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/25/d2a1bb11a5fb507ed5da975eee949d8f78a75d9a/javafx-controls-25-linux.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/25/ae06477c02a456cc576e06ef65b257cd798ceb48/javafx-controls-25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.openjfx:javafx-fxml:linux:25" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.openjfx" artifactId="javafx-fxml" version="25" baseVersion="25" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-fxml/25/88f86d5e0de073d5a5718c0d200a969186f4dfdf/javafx-fxml-25-linux.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-fxml/25/a071bf1fe0c2fac3ff31756bca926f2bb33a7c25/javafx-fxml-25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.openjfx:javafx-graphics:linux:25" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.openjfx" artifactId="javafx-graphics" version="25" baseVersion="25" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/25/dd1b0cfb56cec5fb3434cbdc030c02b1c8e773b2/javafx-graphics-25-linux.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/25/22adaac5bc9e3a53f523e1763ae32d00d24cba45/javafx-graphics-25-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.opentest4j:opentest4j:1.3.0" type="java-imported" external-system-id="GRADLE">

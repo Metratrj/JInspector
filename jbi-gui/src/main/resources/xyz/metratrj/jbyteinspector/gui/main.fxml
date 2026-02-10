@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.metratrj.jbyteinspector.gui.BaseController">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="800.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Add File" onAction="#selectFile"/>
+                                <MenuItem mnemonicParsing="false" text="Close" onAction="#closeWindow"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <center>
+                <SplitPane fx:id="mainSplitPane" dividerPositions="0.2">
+                    <!--LEFT Pane-->
+                    <SplitPane fx:id="leftSplitPane" maxWidth="400" minWidth="200" orientation="VERTICAL" prefWidth="200">
+                        <StackPane fx:id="resourcePaneContainer" minHeight="50">
+                            <BorderPane>
+                                <!-- Toolbar oben -->
+                                <top>
+                                    <ToolBar fx:id="resourceToolbar">
+                                        <Button fx:id="expandAll" onAction="#expandAll" text="+" />
+                                        <Button fx:id="collapseAll" onAction="#collapseAll" text="-" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <TextField fx:id="filterField" prefWidth="150" promptText="filter_resources" />
+                                    </ToolBar>
+                                </top>
+
+                                <!-- Resource Tree in der Mitte -->
+                                <center>
+                                    <TreeView fx:id="resourceTree" VBox.vgrow="ALWAYS">
+                                        <contextMenu>
+                                            <ContextMenu fx:id="resourceContextMenu">
+                                                <items>
+                                                    <MenuItem fx:id="openItem" onAction="#openResource" text="open" />
+                                                    <MenuItem fx:id="openInNewTab" onAction="#openInNewTab" text="open_in_new_tab" />
+                                                    <SeparatorMenuItem />
+                                                    <MenuItem fx:id="removeResource" onAction="#removeResource" text="remove" />
+                                                    <MenuItem fx:id="reloadResource" onAction="#reloadResource" text="reload" />
+                                                    <SeparatorMenuItem />
+                                                    <Menu fx:id="exportAsMenu" text="export_as">
+                                                        <MenuItem onAction="#exportAsJava" text="java" />
+                                                        <MenuItem onAction="#exportAsBytecode" text="bytecode" />
+                                                        <MenuItem onAction="#exportAsSmali" text="smali" />
+                                                    </Menu>
+                                                    <SeparatorMenuItem />
+                                                    <MenuItem fx:id="copyPath" onAction="#copyPath" text="copy_path" />
+                                                    <MenuItem fx:id="copyFqn" onAction="#copyFqn" text="copy_fqn" />
+                                                </items>
+                                            </ContextMenu>
+                                        </contextMenu>
+                                    </TreeView>
+                                </center>
+
+                                <!-- Status unten -->
+                                <bottom>
+                                    <HBox spacing="5" style="-fx-padding: 5;">
+                                        <Label fx:id="resourceCountLabel" text="0 resources" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="selectedResourceLabel" text="" />
+                                    </HBox>
+                                </bottom>
+
+                            </BorderPane>
+                            <!--<fx:include source="ResourceList.fxml" fx:id="ResourceList"/>-->
+                        </StackPane>
+                    </SplitPane>
+
+                    <!--RIGHT Pane-->
+                    <StackPane fx:id="workPaneContainer" minWidth="400" prefWidth="459.0">
+                        <fx:include fx:id="workspace" source="workspace.fxml" />
+                    </StackPane>
+                </SplitPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

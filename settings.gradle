@@ -10,3 +10,5 @@ include 'jbi-report'
 include 'jbi-benchmark'
 include 'jbi-examples'
 include 'jbi-tests'
+
+include 'jbi-gui'

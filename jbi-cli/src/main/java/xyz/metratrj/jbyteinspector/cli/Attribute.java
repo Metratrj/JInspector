@@ -1,0 +1,15 @@
+package xyz.metratrj.jbyteinspector.cli;
+
+
+/*
+* attribute_info {
+    u2 attribute_name_index;
+    u4 attribute_length;
+    u1 info[attribute_length];
+}
+* */
+public abstract class Attribute extends Entity {
+    int AttributeNameIndex;
+    int AttributeLength;
+    byte[] Info;
+}
