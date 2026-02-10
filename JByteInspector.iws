@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9b566eba-0d82-4023-ac34-7688c992b319" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/planning/Architektur.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Erste Schritte - Dokumentation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Ist-Analyse.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Java Projekt.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Kanban.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Opcodes.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Soll-Konzept.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/Welcome.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-01-26.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-01-27.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-01-28.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-01-29.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-02-02.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/daylies/2026-02-04.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/diagrams/Klassendiagramme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/diagrams/Use Cases &amp; User Stories.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/Mockups.canvas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/bytecode_analysis_dashboard/code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/bytecode_analysis_dashboard/screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/call_tree_&amp;_bytecode_inspector/code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/call_tree_&amp;_bytecode_inspector/screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/class_hierarchy_explorer/code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/planning/mockups/class_hierarchy_explorer/screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/JInspector.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/JunieProjectTechnologies.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/jpa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/out/production/TestModule/xyz/metratrj/Esel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/out/production/TestModule/xyz/metratrj/Katze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/out/production/TestModule/xyz/metratrj/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/out/production/TestModule/xyz/metratrj/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/out/production/TestModule/xyz/metratrj/Tier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/src/xyz/metratrj/ClassFileAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-core/src/main/java/xyz/metratrj/jbyteinspector/core/ClassFileAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/Analyzer/src/xyz/metratrj/system/ClassFileAnalyzerWalker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/docs/ARCHITECTURE.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ARCHITECTURE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/docs/planning" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/AttributeNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/ClassNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/FieldNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/MethodNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/Programm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/Programm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/AccessFlags.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Class_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Double_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Fieldref_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Float_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Integer_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_InterfaceMethodref_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_InvokeDynamic_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Long_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_MethodHandle_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_MethodType_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Methodref_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_NameAndType_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_String_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/CONSTANT_Utf8_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/ClassFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/attribute_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/cp_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/field_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/Analyzer/xyz/metratrj/system/method_info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/TestModule/xyz/metratrj/Esel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/TestModule/xyz/metratrj/Katze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/TestModule/xyz/metratrj/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/TestModule/xyz/metratrj/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/out/production/TestModule/xyz/metratrj/Tier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JInspector/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-benchmark/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-benchmark/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-benchmark/jbi-benchmark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-benchmark/jbi-benchmark.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-cli/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-cli/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-cli/jbi-cli.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-cli/jbi-cli.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-core/jbi-core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-core/jbi-core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-examples/jbi-examples.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-examples/jbi-examples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-io/jbi-io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-io/jbi-io.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-model/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-model/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-model/jbi-model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-model/jbi-model.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/jbi-parser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/jbi-parser.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/classfile/ClassFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/classfile/ClassFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/model/ClassVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-parser/src/main/java/xyz/metratrj/jbyteinspector/parser/model/ClassVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-report/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-report/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-report/jbi-report.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-report/jbi-report.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-tests/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-tests/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-tests/jbi-tests.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-tests/jbi-tests.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbi-utils/jbi-utils.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jbi-utils/jbi-utils.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbyteinspector-parent.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/001-repository-refactor-cleanup/tasks.md" beforeDir="false" afterPath="$PROJECT_DIR$/specs/001-repository-refactor-cleanup/tasks.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+    <option name="REVERSE_PATCH" value="false" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="378" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Metratrj"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Metratrj/JInspector.git",
+    "accountId": "3709c992-1099-4674-953f-92c6dc57b8fc"
+  }
+}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ModuleEditorState">
+    <option name="LAST_EDITED_MODULE_NAME" />
+    <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="39TPMEhkdXH1XZs5LZVqgbIZFTK" />
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state />
+    </entry>
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "001-repository-refactor-cleanup",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/metratrj/sources/JInspector/Code/JByteInspector.ipr",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="UPDATE_RUN_STATUS" value="false" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b566eba-0d82-4023-ac34-7688c992b319" name="Changes" comment="" />
+      <created>1770717042194</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770717042194</updated>
+      <workItem from="1770717042265" duration="159000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+  </component>
+</project>

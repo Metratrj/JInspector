@@ -1,10 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
-  <component name="AdditionalModuleElements">
-    <content url="file://$MODULE_DIR$" dumb="true">
-      <excludeFolder url="file://$MODULE_DIR$/bin/main" />
-      <excludeFolder url="file://$MODULE_DIR$/build/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/resources" />
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output/>
+    <orderEntry type="inheritedJdk"/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+      <excludeFolder url="file://$MODULE_DIR$/build"/>
     </content>
+    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="module" module-name="jbi-model"/>
+    <orderEntry type="module" module-name="jbi-utils"/>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.11.0/7ded0835a2522be8e559ac09baff3e9fb2607b27/junit-jupiter-5.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.11.0/4e79ee610aff59d79b5f229252ded392b7d48fd1/junit-jupiter-5.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.11.0/97068da5f462c9a9212516ab58aee632a93c349f/junit-jupiter-params-5.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.11.0/7f884b4510c564db7d8b2416ce834a3e9796420a/junit-jupiter-params-5.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.11.0/2093fd814e940224cfa5a1882d87cc9d81e25c3/junit-jupiter-api-5.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.11.0/9229115c1811a5a7b3c8c617b8ca6b70e9b27d13/junit-jupiter-api-5.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.11.0/9bb41eff52781584798c487b68782ae3b4126f14/junit-platform-commons-1.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.11.0/2ae6ca14c1e110fe57184c20831457ed9156005b/junit-platform-commons-1.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/afb8ff23cffb021c56f333953aebfe6e8818568e/opentest4j-1.3.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/e0787a997746ac32639e0bf3cb27af8dce8a3428/apiguardian-api-1.1.2-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.11.0/605624a277ab3b02317765e1111ad577676648e1/junit-platform-launcher-1.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.11.0/d705f6b0d147036b7d84dca5eaad35b41d64592a/junit-platform-launcher-1.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.11.0/e0ef3a2222e000e0b5ab76fda0d38d011526f54c/junit-jupiter-engine-5.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.11.0/e7ab87b12f0a7fdf54dff3eb4b328f748dcbd9a4/junit-jupiter-engine-5.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.11.0/b981f322be92fe343d4a79f28208bb4475806019/junit-platform-engine-1.11.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/metratrj/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.11.0/9e0c6d3fbc852b5c5a6d8a3fb42eec7abd63c7d4/junit-platform-engine-1.11.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
+  <component name="ModuleRootManager"/>
 </module>
