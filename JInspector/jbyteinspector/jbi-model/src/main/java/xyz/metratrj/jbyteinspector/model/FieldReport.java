@@ -1,4 +1,4 @@
-package xyz.metratrj.jbyteinspector.parser.classfile;
+package xyz.metratrj.jbyteinspector.model;
 
 import java.util.Set;
 

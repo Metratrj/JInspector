@@ -13,9 +13,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import xyz.metratrj.jbyteinspector.api.AnalysisService;
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
-import xyz.metratrj.jbyteinspector.parser.classfile.AnalysisService;
-import xyz.metratrj.jbyteinspector.parser.classfile.ClassReport;
+import xyz.metratrj.jbyteinspector.model.ClassReport;
 
 import java.io.File;
 import java.util.List;
@@ -87,6 +87,7 @@ public class MainController {
 
                 cell.setOnMouseClicked(event -> {
                     ResourceItem ri = cell.getItem();
+                    if (ri == null) return;
                     ClassReport cr = ri.cr();
                     Tab tab = new Tab(cr.className());
 

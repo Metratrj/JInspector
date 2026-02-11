@@ -1,4 +1,6 @@
-package xyz.metratrj.jbyteinspector.parser.classfile;
+package xyz.metratrj.jbyteinspector.api;
+
+import xyz.metratrj.jbyteinspector.model.ClassReport;
 
 import java.nio.file.Path;
 import java.util.List;

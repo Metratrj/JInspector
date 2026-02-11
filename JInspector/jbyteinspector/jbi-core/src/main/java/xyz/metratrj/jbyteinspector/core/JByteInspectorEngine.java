@@ -1,21 +1,17 @@
 package xyz.metratrj.jbyteinspector.core;
 
+import xyz.metratrj.jbyteinspector.api.AnalysisService;
 import xyz.metratrj.jbyteinspector.io.FileUtils;
+import xyz.metratrj.jbyteinspector.model.*;
 import xyz.metratrj.jbyteinspector.parser.classfile.*;
 import xyz.metratrj.jbyteinspector.parser.utils.AccessFlagUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JByteInspectorEngine implements AnalysisService {
     private static final Logger logger = Logger.getLogger(JByteInspectorEngine.class.getName());
@@ -28,35 +24,11 @@ public class JByteInspectorEngine implements AnalysisService {
         return analyzePath(inputPath);
     }
 
-    record ClassData(String name, byte[] content) { }
-
-    private List<ClassData> scan(Path path) throws IOException {
-        try (Stream<Path> walk = Files.walk(path, Integer.MAX_VALUE)) {
-            return walk
-                    .parallel()
-                    .filter(p -> p.toString().endsWith(".class"))
-                    .map(p -> {
-                        try {
-                            return new ClassData(p.getFileName().toString(), Files.readAllBytes(p));
-                        } catch (IOException e) {
-                            return null;
-                        }
-                    })
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
-        }
-    }
-
     private List<ClassReport> analyzePath(Path path) {
         List<ClassReport> reports = new ArrayList<>();
         try {
             List<Path> classFiles = FileUtils.findFiles(path, p -> p.toString().endsWith(".class") && !p.endsWith("module-info.class") && !p.endsWith("package-info.class"));
             for (Path file : classFiles) {
-                // TODO: Look at the module-info structure. Something is off with the parser when we try to parse it. So for now we need to skip util I come up with a better solution.
-                if (file.endsWith("module-info.class")) {
-                    logger.log(Level.INFO, "Skipping module-info.class: " + file);
-                    continue;
-                }
                 try {
                     ClassFile cf = ClassFile.parse(file);
                     reports.add(generateReport(cf));
@@ -81,14 +53,12 @@ public class JByteInspectorEngine implements AnalysisService {
     }
 
     private ClassReport generateReport(ClassFile cf) {
-        // Resolve Class Name
         String className = resolveClassName(cf, cf.getThisClass());
         String superName = resolveClassName(cf, cf.getSuperClass());
 
         Set<String> classFlags = AccessFlagUtils.extract(cf.getAccessFlags()).stream()
                                                 .map(Enum::name).collect(Collectors.toSet());
 
-        // Methods
         List<MethodReport> methods = new ArrayList<>();
         if (cf.getMethods() != null) {
             for (method_info m : cf.getMethods()) {
@@ -96,198 +66,16 @@ public class JByteInspectorEngine implements AnalysisService {
                 String desc = resolveUtf8(cf, m.getDescriptionIndex());
                 Set<String> mFlags = AccessFlagUtils.extractForMethod(m.getAccessFlags()).stream()
                                                     .map(Enum::name).collect(Collectors.toSet());
+                
+                Set<AttributeReport> attributes = Arrays.stream(m.getAttributes())
+                        .map(a -> new AttributeReport(resolveUtf8(cf, a.getAttribute_name_index()), a.getAttribute_length(), a.getInfo()))
+                        .collect(Collectors.toSet());
+
                 CodeReport codeReport = null;
-
-                Set<AttributeReport> attributes = new HashSet<>();
-                attributes = Arrays.stream(m.getAttributes()).map(attribute_info -> {
-                    String attribute_name = resolveUtf8(cf, attribute_info.getAttribute_name_index());
-                    return new AttributeReport(attribute_name, attribute_info.getAttribute_length(), attribute_info.getInfo());
-                }).collect(Collectors.toSet());
-
                 for (attribute_info a : m.getAttributes()) {
-                    String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
-                    System.out.printf("Attribute Name: %s\n", attribute_name);
-                    if (attribute_name.equals("Code")) {
-                        try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
-                            // 1. Header lesen
-                            int maxStack   = inputStream.readUnsignedShort();
-                            int maxLocals  = inputStream.readUnsignedShort();
-                            int codeLength = inputStream.readInt();
-                            System.out.printf("      max_stack: %d, max_locals: %d, code_length: %d\n", maxStack, maxLocals, codeLength);
-
-                            // 1,5. Code lesen
-                            byte[] code = new byte[codeLength];
-                            inputStream.readFully(code);
-
-                            // 2. Bytecode Parsen mit ByteBuffer (WICHTIG für Alignments)
-                            System.out.println("      bytecode disassembly:");
-                            ByteBuffer bb = ByteBuffer.wrap(code);
-                            bb.order(ByteOrder.BIG_ENDIAN); // Java Classfiles are always big endian
-
-
-                            ArrayList<Opcodes> opcodes = new ArrayList<>();
-                            int                pc      = 0; // Program Counter (position in Array)
-                            while (bb.hasRemaining()) {
-                                pc = bb.position(); // aktuelle Position merken für Ausgabe
-                                int opcode = bb.get() & 0xFF; // Receive unsinged opcode
-                                System.out.printf("        %04d: %02X -> ", pc, opcode);
-
-                                switch (opcode) {
-                                    // --- Einfache Instructionen (1 Byte) ---
-                                    case ClassFile.NOP -> {
-                                        opcodes.add(Opcodes.NOP);
-                                        System.out.println("NOP");
-                                    }
-                                    case ClassFile.ACONST_NULL -> {
-                                        opcodes.add(Opcodes.ACONST_NULL);
-                                        System.out.println("ACONST_NULL");
-                                    }
-                                    case ClassFile.ICONST_M1 -> {
-                                        opcodes.add(Opcodes.ICONST_M1);
-                                        System.out.println("ICONST_M1");
-                                    }
-                                    case ClassFile.ICONST_0 -> {
-                                        opcodes.add(Opcodes.ICONST_0);
-                                        System.out.println("ICONST_0");
-                                    }
-                                    case ClassFile.ICONST_1 -> {
-                                        opcodes.add(Opcodes.ICONST_1);
-                                        System.out.println("ICONST_1");
-                                    }
-                                    case ClassFile.ICONST_2 -> {
-                                        opcodes.add(Opcodes.ICONST_2);
-                                        System.out.println("ICONST_2");
-                                    }
-                                    case ClassFile.ICONST_3 -> {
-                                        opcodes.add(Opcodes.ICONST_3);
-                                        System.out.println("ICONST_3");
-                                    }
-                                    case ClassFile.ICONST_4 -> {
-                                        opcodes.add(Opcodes.ICONST_4);
-                                        System.out.println("ICONST_4");
-                                    }
-                                    case ClassFile.ICONST_5 -> {
-                                        opcodes.add(Opcodes.ICONST_5);
-                                        System.out.println("ICONST_5");
-                                    }
-                                    case ClassFile.FCONST_0 -> {
-                                        opcodes.add(Opcodes.FCONST_0);
-                                        System.out.println("FCONST_0");
-                                    }
-                                    case ClassFile.FCONST_1 -> {
-                                        opcodes.add(Opcodes.FCONST_1);
-                                        System.out.println("FCONST_1");
-                                    }
-                                    case ClassFile.FCONST_2 -> {
-                                        opcodes.add(Opcodes.FCONST_2);
-                                        System.out.println("FCONST_2");
-                                    }
-
-                                    // --- Instruktionen mit Argumenten ---
-                                    case ClassFile.LDC -> {
-                                        // Nimmt 1 Byte Index
-                                        int index = bb.get() & 0xFF;
-                                        System.out.printf("LDC #%d\n", index);
-                                        opcodes.add(Opcodes.LDC);
-
-
-                                        break;
-                                    }
-                                    case ClassFile.GETSTATIC -> {
-                                        // Nimmt 2 Bytes Index
-                                        int index = bb.getShort() & 0xFFFF;
-                                        System.out.printf("GETSTATIC #%d\n", index);
-                                        opcodes.add(Opcodes.GETSTATIC);
-                                        break;
-                                    }
-
-                                    // --- TABLE SWITCH Handling ---
-                                    case ClassFile.TABLESWITCH -> {
-                                        System.out.println("TABLESWITCH");
-                                        // 1. Padding berechnen
-                                        // Wir sind jetzt bei (pc +1). Das Padding füllt bis zur nächsten 4-Byte Grenze auf
-                                        int currentPos = bb.position();
-                                        int padding    = (4 - (currentPos % 4)) % 4;
-
-                                        // Padding im Buffer überspringen
-                                        for (int k = 0; k < padding; k++)
-                                             bb.get();
-
-                                        // 2. Die 32-Bit Werte lesen
-                                        int defaultOffset = bb.getInt();
-                                        int low           = bb.getInt();
-                                        int high          = bb.getInt();
-                                        int numPairs      = high - low + 1;
-                                        System.out.printf("low=%d, high=%d, default=%d\n", low, high, defaultOffset);
-
-                                        // 3. Sprungziel lesen
-                                        for (int k = 0; k < numPairs; k++) {
-                                            int offset = bb.getInt();
-                                            System.out.printf("              %d: %d\n", (low + k), (pc + offset));
-                                        }
-                                        break;
-                                    }
-
-                                    default -> {
-                                        System.out.printf("UNKNOWN (Opcode %d)\n", opcode);
-                                        // ACHTUNG: Wenn wir den Opcode nicht kennen, wissen wir nicht,
-                                        // wie viele Bytes Argumente er hat. Der Parser wird hier wahrscheinlich crashen/falsch laufen.
-                                        break;
-                                    }
-                                }
-                            }
-
-                            System.out.println(opcodes);
-
-                            System.out.println();
-                            int exception_table_length = inputStream.readUnsignedShort();
-
-                            System.out.printf("      exception_table_length: %d\n", exception_table_length);
-
-                            ExceptionTableEntry[] tableEntries = new ExceptionTableEntry[exception_table_length];
-                            for (int i = 0; i < exception_table_length; i++) {
-                                int start_pc   = inputStream.readUnsignedShort();
-                                int end_pc     = inputStream.readUnsignedShort();
-                                int handler_pc = inputStream.readUnsignedShort();
-                                int catch_type = inputStream.readUnsignedShort();
-                                System.out.printf("        try: %d to %d, handler: %d, type: %d\n", start_pc, end_pc, handler_pc, catch_type);
-                                tableEntries[i] = new ExceptionTableEntry(start_pc, end_pc, handler_pc, catch_type);
-                            }
-
-
-                            int attributes_count = inputStream.readUnsignedShort();
-                            System.out.printf("      attributes_count: %d\n", attributes_count);
-                            AttributeReport[] attributeReports = new AttributeReport[attributes_count];
-                            for (int i = 0; i < attributes_count; i++) {
-                                int    attribute_name_index = inputStream.readUnsignedShort();
-                                String attributeName        = resolveUtf8(cf, attribute_name_index);
-                                int    attribute_length     = inputStream.readInt();
-                                byte[] info                 = new byte[attribute_length];
-                                inputStream.readFully(info);
-                                System.out.printf("        attr_index: %d, name: %s, length: %d, data: %s\n", attribute_name_index, attributeName, attribute_length, HexFormat.of().formatHex(info));
-                                if (attributeName.equals("LocalVariableTable")) {
-                                    System.out.printf("\t\t\t\tLocalVariableTable");
-                                    ByteBuffer atBB = ByteBuffer.wrap(info);
-                                    atBB.order(ByteOrder.BIG_ENDIAN);
-                                    int localVariableTableLength = atBB.getShort() & 0xFFFF;
-                                    for (int k =0; k < localVariableTableLength; k++) {
-                                        int startPC = atBB.getShort() & 0xFFFF;
-                                        int length  = atBB.getShort() & 0xFFFF;
-                                        int nameIndex = atBB.getShort() & 0xFFFF;
-                                        String variableName = resolveUtf8(cf, nameIndex);
-                                        int descriptionIndex = atBB.getShort() & 0xFFFF;
-                                        String description = resolveUtf8(cf, descriptionIndex);
-                                        int index = atBB.getShort() & 0xFFFF;
-                                        System.out.printf("          lvtEntry: %d, name: %s, desc: %s, index: %d\n", startPC, variableName, description, index);
-                                    }
-                                }
-                                attributeReports[i] = new AttributeReport(attributeName, attribute_length, info);
-                            }
-                            codeReport = new CodeReport(maxStack, maxLocals, codeLength, code, exception_table_length, tableEntries, attributes_count, attributeReports);
-
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                    if (resolveUtf8(cf, a.getAttribute_name_index()).equals("Code")) {
+                        codeReport = parseCodeReport(cf, a);
+                        break;
                     }
                 }
 
@@ -295,7 +83,6 @@ public class JByteInspectorEngine implements AnalysisService {
             }
         }
 
-        // Fields
         List<FieldReport> fields = new ArrayList<>();
         if (cf.getFields() != null) {
             for (field_info f : cf.getFields()) {
@@ -306,12 +93,106 @@ public class JByteInspectorEngine implements AnalysisService {
             }
         }
 
-        return new ClassReport(className, superName, classFlags, cf.getConstantPool(), methods, fields);
+        return new ClassReport(className, superName, classFlags, methods, fields);
+    }
+
+    private CodeReport parseCodeReport(ClassFile cf, attribute_info codeAttr) {
+        try (java.io.DataInputStream in = new java.io.DataInputStream(new java.io.ByteArrayInputStream(codeAttr.getInfo()))) {
+            int maxStack = in.readUnsignedShort();
+            int maxLocals = in.readUnsignedShort();
+            int codeLength = in.readInt();
+            byte[] code = new byte[codeLength];
+            in.readFully(code);
+
+            List<BytecodeParser.Instruction> rawInstructions = BytecodeParser.parse(code);
+            List<InstructionReport> instructions = rawInstructions.stream()
+                    .map(insn -> createInstructionReport(cf, insn))
+                    .collect(Collectors.toList());
+
+            int exceptionTableLength = in.readUnsignedShort();
+            ExceptionTableEntry[] exceptionTable = new ExceptionTableEntry[exceptionTableLength];
+            for (int i = 0; i < exceptionTableLength; i++) {
+                exceptionTable[i] = new ExceptionTableEntry(in.readUnsignedShort(), in.readUnsignedShort(), in.readUnsignedShort(), in.readUnsignedShort());
+            }
+
+            int attributesCount = in.readUnsignedShort();
+            AttributeReport[] attributes = new AttributeReport[attributesCount];
+            for (int i = 0; i < attributesCount; i++) {
+                int nameIndex = in.readUnsignedShort();
+                int length = in.readInt();
+                byte[] info = new byte[length];
+                in.readFully(info);
+                attributes[i] = new AttributeReport(resolveUtf8(cf, nameIndex), length, info);
+            }
+
+            return new CodeReport(maxStack, maxLocals, codeLength, code, instructions, exceptionTableLength, exceptionTable, attributesCount, attributes);
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to parse Code attribute", e);
+            return null;
+        }
+    }
+
+    private InstructionReport createInstructionReport(ClassFile cf, BytecodeParser.Instruction insn) {
+        List<String> operands = insn.operands().stream().map(Object::toString).collect(Collectors.toList());
+        String comment = "";
+
+        if (usesConstantPool(insn.opcode()) && !insn.operands().isEmpty()) {
+            Object firstOp = insn.operands().getFirst();
+            if (firstOp instanceof Integer index) {
+                comment = resolveConstantPoolEntry(cf, index);
+            }
+        }
+
+        return new InstructionReport(insn.pc(), insn.mnemonic(), operands, comment);
+    }
+
+    private boolean usesConstantPool(int opcode) {
+        return switch (opcode) {
+            case ICodes.LDC, ICodes.LDC_W, ICodes.LDC2_W,
+                 ICodes.GETSTATIC, ICodes.PUTSTATIC, ICodes.GETFIELD, ICodes.PUTFIELD,
+                 ICodes.INVOKEVIRTUAL, ICodes.INVOKESPECIAL, ICodes.INVOKESTATIC, ICodes.INVOKEINTERFACE,
+                 ICodes.INVOKEDYNAMIC,
+                 ICodes.NEW, ICodes.ANEWARRAY, ICodes.CHECKCAST, ICodes.INSTANCEOF, ICodes.MULTIANEWARRAY -> true;
+            default -> false;
+        };
+    }
+
+    private String resolveConstantPoolEntry(ClassFile cf, int index) {
+        cp_info item = cf.getConstantPoolItem(index);
+        if (item == null) return "";
+
+        return switch (item.tag) {
+            case ICodes.CONSTANT_Utf8 -> ((CONSTANT_Utf8_info) item).getValue();
+            case ICodes.CONSTANT_Class -> resolveUtf8(cf, ((CONSTANT_Class_info) item).name_index);
+            case ICodes.CONSTANT_String -> resolveUtf8(cf, ((CONSTANT_String_info) item).getString_index());
+            case ICodes.CONSTANT_Fieldref -> {
+                var ref = (CONSTANT_Fieldref_info) item;
+                yield resolveClassName(cf, ref.getClass_index()) + "." + resolveNameAndType(cf, ref.getName_and_type_index());
+            }
+            case ICodes.CONSTANT_Methodref -> {
+                var ref = (CONSTANT_Methodref_info) item;
+                yield resolveClassName(cf, ref.getClass_index()) + "." + resolveNameAndType(cf, ref.getName_and_type_index());
+            }
+            case ICodes.CONSTANT_InterfaceMethodref -> {
+                var ref = (CONSTANT_InterfaceMethodref_info) item;
+                yield resolveClassName(cf, ref.getClass_index()) + "." + resolveNameAndType(cf, ref.getName_and_type_index());
+            }
+            case ICodes.CONSTANT_NameandType -> resolveNameAndType(cf, index);
+            default -> item.toString();
+        };
+    }
+
+    private String resolveNameAndType(ClassFile cf, int index) {
+        var nt = cf.getConstantPoolItem(index, CONSTANT_NameAndType_info.class);
+        if (nt != null) {
+            return resolveUtf8(cf, nt.getName_index()) + nt.getDescriptor_index(); // Simplified, should resolve descriptor too
+        }
+        return "???";
     }
 
     private String resolveClassName(ClassFile cf, int index) {
         if (index == 0) {
-            return "java/lang/Object"; // or null
+            return "java/lang/Object";
         }
         var classInfo = cf.getConstantPoolItem(index, CONSTANT_Class_info.class);
         if (classInfo != null) {

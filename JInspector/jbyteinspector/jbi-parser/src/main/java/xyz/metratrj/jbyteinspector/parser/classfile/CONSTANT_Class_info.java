@@ -8,6 +8,10 @@ public class CONSTANT_Class_info extends cp_info {
         this.name_index = name_index;
     }
 
+    public int getName_index() {
+        return name_index;
+    }
+
     @Override
     public String toString() {
         return "CONSTANT_Class_info{" +
