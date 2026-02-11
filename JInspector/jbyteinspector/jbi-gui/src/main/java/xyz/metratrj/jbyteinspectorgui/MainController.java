@@ -1,5 +1,6 @@
 package xyz.metratrj.jbyteinspectorgui;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import xyz.metratrj.jbyteinspector.api.AnalysisService;
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine;
-import xyz.metratrj.jbyteinspector.model.ClassReport;
+import xyz.metratrj.jbyteinspector.model.*;
 
 import java.io.File;
 import java.util.List;
@@ -28,10 +29,10 @@ public class MainController {
     @FXML
     private TreeView<ResourceItem> resourceTree;
 
-    private static record ResourceItem(ClassReport cr, String name){}
+    private static record ResourceItem(ClassReport cr, MethodReport mr, String name){}
 
 
-    private static final String BG_DARK        = "#0d1117";
+    private static final String BG_DARK        = "#ececec";
     private static final String BG_PANEL       = "#161b22";
     private static final String BG_CARD        = "#21262d";
     private static final String BORDER_COLOR   = "#30363d";
@@ -61,9 +62,9 @@ public class MainController {
 
             for (ClassReport report : reports) {
                 System.out.println(report.className());
-                TreeItem<ResourceItem> branch = new TreeItem<>(new ResourceItem(report, report.className()));
+                TreeItem<ResourceItem> branch = new TreeItem<>(new ResourceItem(report, null, report.className()));
                 report.methods().forEach(method -> {
-                    TreeItem<ResourceItem> leaf = new TreeItem<>(new ResourceItem(report, method.name()));
+                    TreeItem<ResourceItem> leaf = new TreeItem<>(new ResourceItem(report, method, method.name()));
                     branch.getChildren().add(leaf);
                 });
 
@@ -72,70 +73,174 @@ public class MainController {
             resourceTree.setRoot(rootItem);
 
             resourceTree.setCellFactory(param -> {
-                TreeCell<ResourceItem> cell =  new TreeCell<ResourceItem>(){
+                TreeCell<ResourceItem> cell =  new TreeCell<>(){
                     @Override
                     protected void updateItem(ResourceItem item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty || item == null ) {
                             setText(null);
-                            setStyle("");
-                        }else {
+                        } else {
                             setText(item.name());
                         }
                     }
                 };
 
                 cell.setOnMouseClicked(event -> {
-                    ResourceItem ri = cell.getItem();
-                    if (ri == null) return;
-                    ClassReport cr = ri.cr();
-                    Tab tab = new Tab(cr.className());
+                    if (event.getClickCount() == 2 && !cell.isEmpty()) {
+                        ResourceItem ri = cell.getItem();
+                        if (ri == null || ri.mr() == null) return;
+                        
+                        MethodReport mr = ri.mr();
+                        ClassReport cr = ri.cr();
+                        
+                        String tabTitle = cr.className().substring(cr.className().lastIndexOf('/') + 1) + "." + mr.name();
+                        Tab tab = new Tab(tabTitle);
 
-                    SplitPane split = new SplitPane();
-                    split.setDividerPositions(0.5);
+                        SplitPane split = new SplitPane();
+                        split.setDividerPositions(0.5);
 
-                    // Left: Bytecode instructions
-                    VBox leftPane = new VBox(10);
-                    leftPane.setPadding(new Insets(10));
+                        // Left: Bytecode instructions
+                        VBox leftPane = new VBox(10);
+                        leftPane.setPadding(new Insets(10));
+                        //leftPane.setStyle("-fx-background-color: " + BG_DARK + ";");
 
-                    HBox toolbar = new HBox(10);
-                    toolbar.setAlignment(Pos.CENTER_LEFT);
+                        HBox toolbar = new HBox(10);
+                        toolbar.setAlignment(Pos.CENTER_LEFT);
 
-                    ToggleGroup viewGroup   = new ToggleGroup();
-                    RadioButton mnemonicBtn = new RadioButton("Bytecode Mnemonics");
-                    mnemonicBtn.setToggleGroup(viewGroup);
-                    mnemonicBtn.setSelected(true);
-                    mnemonicBtn.setTextFill(Color.web(TEXT_PRIMARY));
+                        Label methodLabel = new Label(mr.name() + mr.descriptor());
+                        methodLabel.setTextFill(Color.web(ACCENT_GREEN));
+                        methodLabel.setStyle("-fx-font-weight: bold; -fx-font-family: 'Monospaced';");
 
-                    RadioButton hexBtn = new RadioButton("Hex View");
-                    hexBtn.setToggleGroup(viewGroup);
-                    hexBtn.setTextFill(Color.web(TEXT_PRIMARY));
+                        Region spacer = new Region();
+                        HBox.setHgrow(spacer, Priority.ALWAYS);
 
-                    Region spacer = new Region();
-                    HBox.setHgrow(spacer, Priority.ALWAYS);
+                        toolbar.getChildren().addAll(methodLabel, spacer);
 
-                    Label offsetLabel = new Label("Offsets");
-                    offsetLabel.setTextFill(Color.web(ACCENT_BLUE));
-                    offsetLabel.setUnderline(true);
+                        ObservableList<BytecodeInstruction> instructions = FXCollections.observableArrayList();
 
-                    toolbar.getChildren().addAll(mnemonicBtn, hexBtn, spacer, offsetLabel);
+                        if (mr.code() != null && mr.code().instructions() != null) {
+                            for (InstructionReport ir : mr.code().instructions()) {
+                                String args = String.join(", ", ir.operands());
+                                if (!ir.resolvedComment().isEmpty()) {
+                                    args += " // " + ir.resolvedComment();
+                                }
+                                instructions.add(new BytecodeInstruction(
+                                    String.format("%04d", ir.pc()),
+                                    ir.mnemonic(),
+                                    args
+                                ));
+                            }
+                        }
 
+                        TableView<BytecodeInstruction> table = new TableView<>(instructions);
+                        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+                        VBox.setVgrow(table, Priority.ALWAYS);
+                        //table.setStyle("-fx-control-inner-background: " + BG_PANEL + "; -fx-text-fill: " + TEXT_PRIMARY + ";");
 
-                    ObservableList<BytecodeInstruction> instructions = FXCollections.observableArrayList();
+                        TableColumn<BytecodeInstruction, String> offsetCol = new TableColumn<>("Offset");
+                        offsetCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().offset()));
+                        offsetCol.setPrefWidth(60);
 
-                    cr.methods().forEach(methodReport -> {
+                        TableColumn<BytecodeInstruction, String> mnemonicCol = new TableColumn<>("Mnemonic");
+                        mnemonicCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().mnemonic()));
+                        mnemonicCol.setPrefWidth(120);
 
-                    });
+                        TableColumn<BytecodeInstruction, String> argsCol = new TableColumn<>("Description / Arguments");
+                        argsCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().arguments()));
+                        
+                        table.getColumns().addAll(offsetCol, mnemonicCol, argsCol);
 
-                    TableView<BytecodeInstruction>      table = new TableView<>(instructions);
+                        leftPane.getChildren().addAll(toolbar, table);
 
-                    leftPane.getChildren().addAll(toolbar, table);
+                        // Right pane for attributes or details
+                        TabPane detailsTabPane = new TabPane();
+                        VBox.setVgrow(detailsTabPane, Priority.ALWAYS);
 
-                    split.getItems().addAll(leftPane);
+                        // Tab 1: Basic Details
+                        Tab basicDetailsTab = new Tab("General");
+                        basicDetailsTab.setClosable(false);
+                        VBox basicDetailsPane = new VBox(10);
+                        basicDetailsPane.setPadding(new Insets(10));
+                        
+                        if (mr.code() != null) {
+                            Label stackLabel = new Label("Max Stack: " + mr.code().maxStack());
+                            Label localsLabel = new Label("Max Locals: " + mr.code().maxLocals());
+                            Label lengthLabel = new Label("Code Length: " + mr.code().codeLength());
+                            
+                            stackLabel.setTextFill(Color.web(TEXT_SECONDARY));
+                            localsLabel.setTextFill(Color.web(TEXT_SECONDARY));
+                            lengthLabel.setTextFill(Color.web(TEXT_SECONDARY));
+                            
+                            basicDetailsPane.getChildren().addAll(stackLabel, localsLabel, lengthLabel);
+                        }
+                        basicDetailsTab.setContent(basicDetailsPane);
 
-                    tab.setContent(split);
+                        // Tab 2: Exception Table
+                        Tab exceptionTab = new Tab("Exceptions");
+                        exceptionTab.setClosable(false);
+                        if (mr.code() != null && mr.code().exceptionTable() != null && mr.code().exceptionTable().length > 0) {
+                            TableView<ExceptionTableEntry> exceptionTable = new TableView<>(FXCollections.observableArrayList(mr.code().exceptionTable()));
+                            exceptionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
-                    tabs.getTabs().add(tab);
+                            TableColumn<ExceptionTableEntry, String> startCol = new TableColumn<>("Start");
+                            startCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().startPc())));
+                            
+                            TableColumn<ExceptionTableEntry, String> endCol = new TableColumn<>("End");
+                            endCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().endPc())));
+
+                            TableColumn<ExceptionTableEntry, String> handlerCol = new TableColumn<>("Handler");
+                            handlerCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().handlerPc())));
+
+                            TableColumn<ExceptionTableEntry, String> typeCol = new TableColumn<>("Catch Type");
+                            typeCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().catchType()));
+
+                            exceptionTable.getColumns().addAll(startCol, endCol, handlerCol, typeCol);
+                            exceptionTab.setContent(exceptionTable);
+                        } else {
+                            Label noExcLabel = new Label("No exception handlers defined.");
+                            noExcLabel.setPadding(new Insets(10));
+                            noExcLabel.setTextFill(Color.web(TEXT_SECONDARY));
+                            exceptionTab.setContent(noExcLabel);
+                        }
+
+                        // Tab 3: Local Variable Table
+                        Tab lvtTab = new Tab("Local Variables");
+                        lvtTab.setClosable(false);
+                        if (mr.code() != null && mr.code().localVariableTable() != null && !mr.code().localVariableTable().isEmpty()) {
+                            TableView<LocalVariableEntry> lvtTable = new TableView<>(FXCollections.observableArrayList(mr.code().localVariableTable()));
+                            lvtTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+
+                            TableColumn<LocalVariableEntry, String> startCol = new TableColumn<>("Start");
+                            startCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().startPc())));
+
+                            TableColumn<LocalVariableEntry, String> lenCol = new TableColumn<>("Length");
+                            lenCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().length())));
+
+                            TableColumn<LocalVariableEntry, String> nameCol = new TableColumn<>("Name");
+                            nameCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().name()));
+
+                            TableColumn<LocalVariableEntry, String> descCol = new TableColumn<>("Descriptor");
+                            descCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().descriptor()));
+
+                            TableColumn<LocalVariableEntry, String> indexCol = new TableColumn<>("Index");
+                            indexCol.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().index())));
+
+                            lvtTable.getColumns().addAll(startCol, lenCol, nameCol, descCol, indexCol);
+                            lvtTab.setContent(lvtTable);
+                        } else {
+                            Label noLvtLabel = new Label("No local variable table available.");
+                            noLvtLabel.setPadding(new Insets(10));
+                            noLvtLabel.setTextFill(Color.web(TEXT_SECONDARY));
+                            lvtTab.setContent(noLvtLabel);
+                        }
+
+                        detailsTabPane.getTabs().addAll(basicDetailsTab, exceptionTab, lvtTab);
+
+                        split.getItems().addAll(leftPane, detailsTabPane);
+                        tab.setContent(split);
+                        tabs.getTabs().add(tab);
+                        tabs.getSelectionModel().select(tab);
+                    }
                 });
                 return cell;
             });

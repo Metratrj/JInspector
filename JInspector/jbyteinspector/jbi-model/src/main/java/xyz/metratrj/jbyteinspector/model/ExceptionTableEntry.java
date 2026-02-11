@@ -4,5 +4,5 @@ public record ExceptionTableEntry(
         int startPc,
         int endPc,
         int handlerPc,
-        int catchType
+        String catchType
 ) { }

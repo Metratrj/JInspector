@@ -112,20 +112,44 @@ public class JByteInspectorEngine implements AnalysisService {
             int exceptionTableLength = in.readUnsignedShort();
             ExceptionTableEntry[] exceptionTable = new ExceptionTableEntry[exceptionTableLength];
             for (int i = 0; i < exceptionTableLength; i++) {
-                exceptionTable[i] = new ExceptionTableEntry(in.readUnsignedShort(), in.readUnsignedShort(), in.readUnsignedShort(), in.readUnsignedShort());
+                int startPc = in.readUnsignedShort();
+                int endPc = in.readUnsignedShort();
+                int handlerPc = in.readUnsignedShort();
+                int catchTypeIndex = in.readUnsignedShort();
+                String catchType = catchTypeIndex == 0 ? "any" : resolveClassName(cf, catchTypeIndex);
+                exceptionTable[i] = new ExceptionTableEntry(startPc, endPc, handlerPc, catchType);
             }
 
             int attributesCount = in.readUnsignedShort();
             AttributeReport[] attributes = new AttributeReport[attributesCount];
+            List<LocalVariableEntry> localVariableTable = new ArrayList<>();
             for (int i = 0; i < attributesCount; i++) {
                 int nameIndex = in.readUnsignedShort();
                 int length = in.readInt();
                 byte[] info = new byte[length];
                 in.readFully(info);
-                attributes[i] = new AttributeReport(resolveUtf8(cf, nameIndex), length, info);
+                String attrName = resolveUtf8(cf, nameIndex);
+                attributes[i] = new AttributeReport(attrName, length, info);
+
+                if (attrName.equals("LocalVariableTable")) {
+                    try (java.io.DataInputStream lvtIn = new java.io.DataInputStream(new java.io.ByteArrayInputStream(info))) {
+                        int lvtLen = lvtIn.readUnsignedShort();
+                        for (int j = 0; j < lvtLen; j++) {
+                            localVariableTable.add(new LocalVariableEntry(
+                                    lvtIn.readUnsignedShort(),
+                                    lvtIn.readUnsignedShort(),
+                                    resolveUtf8(cf, lvtIn.readUnsignedShort()),
+                                    resolveUtf8(cf, lvtIn.readUnsignedShort()),
+                                    lvtIn.readUnsignedShort()
+                            ));
+                        }
+                    } catch (IOException e) {
+                        logger.log(Level.WARNING, "Failed to parse LocalVariableTable", e);
+                    }
+                }
             }
 
-            return new CodeReport(maxStack, maxLocals, codeLength, code, instructions, exceptionTableLength, exceptionTable, attributesCount, attributes);
+            return new CodeReport(maxStack, maxLocals, codeLength, code, instructions, exceptionTableLength, exceptionTable, localVariableTable, attributesCount, attributes);
         } catch (IOException e) {
             logger.log(Level.WARNING, "Failed to parse Code attribute", e);
             return null;

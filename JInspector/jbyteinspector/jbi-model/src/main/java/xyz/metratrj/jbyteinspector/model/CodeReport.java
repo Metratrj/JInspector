@@ -12,6 +12,7 @@ public record CodeReport(
         List<InstructionReport> instructions,
         int exceptionTableLength,
         ExceptionTableEntry[] exceptionTable,
+        List<LocalVariableEntry> localVariableTable,
         int attributesCount,
         AttributeReport[] attributes
 ) {
@@ -20,12 +21,12 @@ public record CodeReport(
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CodeReport that = (CodeReport) o;
-        return maxStack == that.maxStack && maxLocals == that.maxLocals && codeLength == that.codeLength && exceptionTableLength == that.exceptionTableLength && attributesCount == that.attributesCount && Arrays.equals(code, that.code) && Objects.equals(instructions, that.instructions) && Arrays.equals(exceptionTable, that.exceptionTable) && Arrays.equals(attributes, that.attributes);
+        return maxStack == that.maxStack && maxLocals == that.maxLocals && codeLength == that.codeLength && exceptionTableLength == that.exceptionTableLength && attributesCount == that.attributesCount && Arrays.equals(code, that.code) && Objects.equals(instructions, that.instructions) && Arrays.equals(exceptionTable, that.exceptionTable) && Objects.equals(localVariableTable, that.localVariableTable) && Arrays.equals(attributes, that.attributes);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(maxStack, maxLocals, codeLength, instructions, exceptionTableLength, attributesCount);
+        int result = Objects.hash(maxStack, maxLocals, codeLength, instructions, exceptionTableLength, localVariableTable, attributesCount);
         result = 31 * result + Arrays.hashCode(code);
         result = 31 * result + Arrays.hashCode(exceptionTable);
         result = 31 * result + Arrays.hashCode(attributes);
