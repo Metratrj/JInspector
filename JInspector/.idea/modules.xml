@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-gui/JByteInspector.jbyteinspector.jbi-gui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/jbyteinspector/jbi-gui/JByteInspector.jbyteinspector.jbi-gui.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/jbi-gui.iml" filepath="$PROJECT_DIR$/jbi-gui.iml" />
     </modules>
   </component>

@@ -106,7 +106,7 @@ public class JByteInspectorEngine implements AnalysisService {
 
                 for (attribute_info a : m.getAttributes()) {
                     String attribute_name = resolveUtf8(cf, a.getAttribute_name_index());
-                    System.out.println("Attribute Name" + attribute_name);
+                    System.out.printf("Attribute Name: %s\n", attribute_name);
                     if (attribute_name.equals("Code")) {
                         try (DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(a.getInfo()))) {
                             // 1. Header lesen
@@ -260,13 +260,29 @@ public class JByteInspectorEngine implements AnalysisService {
                             AttributeReport[] attributeReports = new AttributeReport[attributes_count];
                             for (int i = 0; i < attributes_count; i++) {
                                 int    attribute_name_index = inputStream.readUnsignedShort();
+                                String attributeName        = resolveUtf8(cf, attribute_name_index);
                                 int    attribute_length     = inputStream.readInt();
                                 byte[] info                 = new byte[attribute_length];
                                 inputStream.readFully(info);
-                                System.out.printf("        attr_index: %d, length: %d, data: %s\n", attribute_name_index, attribute_length, HexFormat.of().formatHex(info));
+                                System.out.printf("        attr_index: %d, name: %s, length: %d, data: %s\n", attribute_name_index, attributeName, attribute_length, HexFormat.of().formatHex(info));
+                                if (attributeName.equals("LocalVariableTable")) {
+                                    System.out.printf("\t\t\t\tLocalVariableTable");
+                                    ByteBuffer atBB = ByteBuffer.wrap(info);
+                                    atBB.order(ByteOrder.BIG_ENDIAN);
+                                    int localVariableTableLength = atBB.getShort() & 0xFFFF;
+                                    for (int k =0; k < localVariableTableLength; k++) {
+                                        int startPC = atBB.getShort() & 0xFFFF;
+                                        int length  = atBB.getShort() & 0xFFFF;
+                                        int nameIndex = atBB.getShort() & 0xFFFF;
+                                        String variableName = resolveUtf8(cf, nameIndex);
+                                        int descriptionIndex = atBB.getShort() & 0xFFFF;
+                                        String description = resolveUtf8(cf, descriptionIndex);
+                                        int index = atBB.getShort() & 0xFFFF;
+                                        System.out.printf("          lvtEntry: %d, name: %s, desc: %s, index: %d\n", startPC, variableName, description, index);
+                                    }
+                                }
+                                attributeReports[i] = new AttributeReport(attributeName, attribute_length, info);
                             }
-
-
                             codeReport = new CodeReport(maxStack, maxLocals, codeLength, code, exception_table_length, tableEntries, attributes_count, attributeReports);
 
                         } catch (Exception e) {
@@ -290,7 +306,7 @@ public class JByteInspectorEngine implements AnalysisService {
             }
         }
 
-        return new ClassReport(className, superName, classFlags,cf.getConstantPool(),  methods, fields);
+        return new ClassReport(className, superName, classFlags, cf.getConstantPool(), methods, fields);
     }
 
     private String resolveClassName(ClassFile cf, int index) {

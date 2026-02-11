@@ -1,10 +1,12 @@
 plugins {
     // Core plugins don't need to be declared here with apply false
+    id 'idea'
 }
 
 subprojects {
     apply plugin: 'java-library'
     apply plugin: 'jacoco'
+    apply plugin: 'idea'
 
     group = 'xyz.metratrj.jbyteinspector'
     version = '0.1.0-SNAPSHOT'
