@@ -2,6 +2,7 @@ package xyz.metratrj.jbyteinspector.parser.utils;
 
 import xyz.metratrj.jbyteinspector.parser.classfile.AccessFlags;
 import xyz.metratrj.jbyteinspector.parser.classfile.ClassFile;
+
 import java.util.EnumSet;
 import java.util.Set;
 

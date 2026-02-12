@@ -1,8 +1,7 @@
 package xyz.metratrj.jbyteinspector.parser.model;
 
-import xyz.metratrj.jbyteinspector.parser.classfile.*;
-import xyz.metratrj.jbyteinspector.parser.classfile.*;
-
+import xyz.metratrj.jbyteinspector.parser.classfile.AccessFlags;
+import xyz.metratrj.jbyteinspector.parser.classfile.attribute_info;
 
 import java.util.List;
 

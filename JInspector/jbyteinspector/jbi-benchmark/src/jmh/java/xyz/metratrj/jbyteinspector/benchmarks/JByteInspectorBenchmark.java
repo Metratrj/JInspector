@@ -1,8 +1,9 @@
 package xyz.metratrj.jbyteinspector.benchmarks;
 
 import org.openjdk.jmh.annotations.*;
+import xyz.metratrj.jbyteinspector.api.AnalysisService;
 import xyz.metratrj.jbyteinspector.core.JByteInspectorEngine; // Wait, I need to check if I can replace 3 lines at once or if they are separated.
-import xyz.metratrj.jbyteinspector.parser.classfile.AnalysisService;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Thread)
 public class JByteInspectorBenchmark {
 
-    private Path fixturePath;
+    private Path            fixturePath;
     private AnalysisService engine;
 
     @Setup
